@@ -40,8 +40,8 @@ export default function BasicForm() {
             value={enteredData.education}
           />
 
-          <div className="flex justify-end">
-            <button className="mt-4 bg-[#090467] text-white shadow-md ">Continuar</button>
+          <div className="flex w-full">
+            <button className="mt-4 w-full bg-[#090467] text-white shadow-md ">Continuar</button>
           </div>
         </div>
       </form>
