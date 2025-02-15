@@ -3,11 +3,17 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { NeogmaModule } from './neogma/neogma.module';
+import { UserModule } from './user/user.module';
+import { OccupationModule } from './occupation/occupation.module';
+import { OccupationCategoryModule } from './occupation-category/occupation-category.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
     NeogmaModule.forRoot(),
+    UserModule,
+    OccupationModule,
+    OccupationCategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
