@@ -1,0 +1,678 @@
+Profession,Category
+Oficiales de las fuerzas militares,Fuerzas Armadas
+Suboficiales de las fuerzas militares,Fuerzas Armadas
+Otros miembros de las fuerzas militares,Fuerzas Armadas
+Directores formuladores y ejecutores de políticas y normas,Administración Pública y Gobierno
+Directores del gobierno,Administración Pública y Gobierno
+Jefes de comunidades étnicas,Liderazgo y Organizaciones Sociales
+"Dirigentes de organizaciones con un interés específico (partidos políticos, sindicatos y organizaciones sociales)",Liderazgo y Organizaciones Sociales
+Directores y gerentes generales,Administración Pública y Gobierno
+Directores y gerentes financieros,Administración Pública y Gobierno
+"Directores y gerentes de seguros, bienes raíces y corretaje financiero",Administración Pública y Gobierno
+"Directores y gerentes de banca, crédito e inversiones",Administración Pública y Gobierno
+Directores y gerentes de recursos humanos,Administración Pública y Gobierno
+Directores y gerentes de políticas y planeación,Administración Pública y Gobierno
+Directores y gerentes de limpieza y mantenimiento,Administración Pública y Gobierno
+Directores y gerentes de administración y servicios no clasificados en otras ocupaciones,Administración Pública y Gobierno
+Directores y gerentes de ventas y mercadeo,Administración Pública y Gobierno
+Directores y gerentes de comercio exterior,Administración Pública y Gobierno
+Directores y gerentes de publicidad y relaciones públicas,Administración Pública y Gobierno
+"Directores y gerentes de ingeniería, investigación y desarrollo",Administración Pública y Gobierno
+Directores y gerentes de producción agropecuaria y silvicultura,Administración Pública y Gobierno
+"Directores y gerentes de producción acuícola, piscícola y de pesca",Administración Pública y Gobierno
+Directores y gerentes de industrias manufactureras,Administración Pública y Gobierno
+Directores y gerentes de producción primaria (excepto agricultura),Administración Pública y Gobierno
+Directores y gerentes de empresas de construcción,Administración Pública y Gobierno
+Directores y gerentes de compras y adquisiciones,Administración Pública y Gobierno
+Directores y gerentes de servicios de correo y mensajería,Administración Pública y Gobierno
+"Directores y gerentes de transporte, distribución y logística",Administración Pública y Gobierno
+Directores y gerentes de cadena de suministro,Administración Pública y Gobierno
+Directores y gerentes de telecomunicaciones,Administración Pública y Gobierno
+Directores y gerentes de sistemas de información y procesamiento de datos,Administración Pública y Gobierno
+Directores y gerentes de comunicaciones y audiovisuales,Administración Pública y Gobierno
+Directores y gerentes de servicios de cuidados infantiles,Administración Pública y Gobierno
+Directores y gerentes de servicios de salud,Administración Pública y Gobierno
+Directores y gerentes de servicios de atención a personas mayores,Administración Pública y Gobierno
+"Directores y gerentes de servicios de bienestar social, comunitario y correccional",Administración Pública y Gobierno
+Directores y gerentes de programas de política educativa,Administración Pública y Gobierno
+Directores y administradores de educación superior y formación para el trabajo,Administración Pública y Gobierno
+Directores y administradores de educación básica y media,Administración Pública y Gobierno
+"Directores y gerentes de sucursales de bancos, de servicios financieros y de seguros",Administración Pública y Gobierno
+"Directores y gerentes de archivo, biblioteca, museo y galería de arte",Administración Pública y Gobierno
+Directores y gerentes de servicios y procesos de negocio,Administración Pública y Gobierno
+Directores y gerentes de servicios profesionales no clasificados en otras ocupaciones,Administración Pública y Gobierno
+Directores y gerentes de servicios hoteleros y hospedaje,Administración Pública y Gobierno
+Gerentes y administradores de servicios de alimentos y restaurantes,Atención al Cliente y Ventas
+Gerentes de comercios al por mayor y al por menor,Otros (Sin Clasificación Específica)
+"Directores y gerentes de empresas de música, artes escénicas y cultura",Administración Pública y Gobierno
+Directores y gerentes de esparcimiento y deportes,Administración Pública y Gobierno
+Gerentes y administradores de propiedad horizontal,Gerencia y Administración de Propiedades
+Otros gerentes y administradores de servicios no clasificados en otras ocupaciones,Atención al Cliente y Ventas
+Físicos y astrónomos,Ciencias e Investigación
+Meteorólogos,Ciencias Naturales y Medio Ambiente
+Químicos,Ciencias e Investigación
+"Geólogos, geofísicos y geoquímicos",Ciencias e Investigación
+Gemólogos,Ciencias Naturales y Medio Ambiente
+"Matemáticos, actuarios y estadísticos",Matemáticas y Estadística
+"Biólogos, botánicos, zoólogos y afines",Ciencias e Investigación
+"Agrónomos, agrícolas, pecuarios y zootecnistas",Agricultura y Desarrollo Rural
+Silvicultores y forestales,Agricultura y Medio Ambiente
+Extensionistas agropecuarios,Agricultura y Desarrollo Rural
+Profesionales ambientales y ecologistas,Ciencias Naturales y Medio Ambiente
+Profesionales en gestión de riesgo de desastres,Otros (Sin Clasificación Específica)
+Ingenieros industriales y de producción,Manufactura y Producción
+Ingenieros civiles,Otros (Sin Clasificación Específica)
+Ingenieros medioambientales,Ciencias Naturales y Medio Ambiente
+Ingenieros mecánicos,Otros (Sin Clasificación Específica)
+Ingenieros navales,Otros (Sin Clasificación Específica)
+Ingenieros aeronáuticos,Otros (Sin Clasificación Específica)
+Ingenieros químicos,Ciencias e Investigación
+Ingenieros de minas,Otros (Sin Clasificación Específica)
+Ingenieros metalúrgicos,Otros (Sin Clasificación Específica)
+Ingenieros de petróleo y gas,Otros (Sin Clasificación Específica)
+Ingenieros de materiales,Otros (Sin Clasificación Específica)
+Ingenieros biomédicos,Salud y Medicina
+Ingenieros no clasificados en otras ocupaciones,Otros (Sin Clasificación Específica)
+Ingenieros electricistas,Energía y Minería
+Ingenieros electrónicos,Otros (Sin Clasificación Específica)
+Ingenieros de automatización e instrumentación,Otros (Sin Clasificación Específica)
+Ingenieros de telecomunicaciones,Otros (Sin Clasificación Específica)
+Ingenieros y productores de audio y sonido,Otros (Sin Clasificación Específica)
+Arquitectos,Construcción e Infraestructura
+Arquitectos paisajistas,Construcción e Infraestructura
+Diseñadores industriales y de productos,Otros (Sin Clasificación Específica)
+Diseñadores de vestuario y moda,Otros (Sin Clasificación Específica)
+Diseñadores de espacios,Otros (Sin Clasificación Específica)
+Diseñadores de servicios,Atención al Cliente y Ventas
+Diseñadores de iluminación,Otros (Sin Clasificación Específica)
+"Planificadores urbanos, regionales y de tránsito",Otros (Sin Clasificación Específica)
+Cartógrafos e ingenieros topográficos y catastrales,Otros (Sin Clasificación Específica)
+Diseñadores gráficos,Otros (Sin Clasificación Específica)
+Diseñadores de imágenes computarizadas e interacción digital,Otros (Sin Clasificación Específica)
+Médicos generales,Salud y Medicina
+Médicos especialistas,Salud y Medicina
+Profesionales de enfermería,Otros (Sin Clasificación Específica)
+Profesionales de partería,Otros (Sin Clasificación Específica)
+Profesionales de medicina tradicional y alternativa,Otros (Sin Clasificación Específica)
+Paramédicos,Salud y Medicina
+Instrumentadores quirúrgicos,Otros (Sin Clasificación Específica)
+Veterinarios,Agricultura y Medio Ambiente
+Odontólogos,Salud y Medicina
+Farmacéuticos y químicos farmacéuticos,Salud y Medicina
+Profesionales de la salud y la higiene laboral y ambiental,Salud y Medicina
+Fisioterapeutas,Otros (Sin Clasificación Específica)
+Dietistas y nutricionistas,Otros (Sin Clasificación Específica)
+Fonoaudiólogos y terapeutas del lenguaje,Otros (Sin Clasificación Específica)
+Optómetras,Otros (Sin Clasificación Específica)
+Terapeutas ocupacionales,Otros (Sin Clasificación Específica)
+Profesionales en terapia respiratoria,Otros (Sin Clasificación Específica)
+Otros profesionales de terapia,Otros (Sin Clasificación Específica)
+Profesionales de la salud no clasificados en otras ocupaciones,Salud y Medicina
+Profesores de instituciones de educación superior,Educación y Formación
+Profesores de formación profesional,Educación y Formación
+Profesores de educación secundaria,Educación y Formación
+Profesores de educación básica primaria,Educación y Formación
+Profesores de primera infancia y preescolar,Educación y Formación
+Especialistas en métodos y procesos pedagógicos,Otros (Sin Clasificación Específica)
+Profesores e instructores de educación especial e inclusiva,Educación y Formación
+Pedagogos reeducadores,Educación y Formación
+Otros profesores de idiomas,Educación y Formación
+Otros profesores de música,Educación y Formación
+Otros profesores de artes,Educación y Formación
+Instructores de tecnología de la información,Tecnología de la Información
+Orientadores educativos,Otros (Sin Clasificación Específica)
+Otros profesionales de la educación no clasificados en otras ocupaciones,Educación y Formación
+Contadores,Otros (Sin Clasificación Específica)
+Auditores financieros y contables,"Finanzas, Contabilidad y Negocios"
+Asesores financieros y de inversiones,Otros (Sin Clasificación Específica)
+Analistas financieros,Otros (Sin Clasificación Específica)
+Profesionales y analistas de gestión y organización,Otros (Sin Clasificación Específica)
+Profesionales en políticas sociales y de administración,Administración Pública y Gobierno
+Profesionales de talento humano,Otros (Sin Clasificación Específica)
+Consejeros de servicios de empleo,Atención al Cliente y Ventas
+Profesionales de formación y desarrollo de personal,Otros (Sin Clasificación Específica)
+Evaluadores de competencias laborales,Otros (Sin Clasificación Específica)
+Publicistas y consultores de desarrollo comercial,Atención al Cliente y Ventas
+Administradores de comunidades virtuales,Otros (Sin Clasificación Específica)
+Profesionales en negocios internacionales,"Finanzas, Contabilidad y Negocios"
+Profesionales de relaciones públicas y comunicaciones,Otros (Sin Clasificación Específica)
+Profesionales de ventas técnicas y médicas (excluyendo las TIC),Atención al Cliente y Ventas
+Profesionales de ventas de tecnología de la información y las comunicaciones,Tecnología de la Información
+Analistas de sistemas,Otros (Sin Clasificación Específica)
+Desarrolladores de software,Tecnología de la Información
+Desarrolladores Web y multimedia,Tecnología de la Información
+Programadores de aplicaciones,Tecnología de la Información
+Desarrolladores y analistas de software y multimedia no clasificados en otras ocupaciones,Tecnología de la Información
+Diseñadores y administradores de bases de datos,Otros (Sin Clasificación Específica)
+Administradores de sistemas,Otros (Sin Clasificación Específica)
+Profesionales en redes de computadores,Otros (Sin Clasificación Específica)
+Profesionales en bases de datos y en redes de computadores no clasificados en otras ocupaciones,Otros (Sin Clasificación Específica)
+Abogados,Derecho y Justicia
+Jueces,Otros (Sin Clasificación Específica)
+Profesionales en ciencias forenses,Otros (Sin Clasificación Específica)
+Profesionales en derecho no clasificados en otras ocupaciones,Otros (Sin Clasificación Específica)
+Archivistas,Otros (Sin Clasificación Específica)
+Curadores de arte y patrimonio cultural,Otros (Sin Clasificación Específica)
+Curadores y supervisores musicales,Otros (Sin Clasificación Específica)
+Museólogos y museógrafos,Otros (Sin Clasificación Específica)
+Restauradores y conservadores de patrimonio cultural mueble,Otros (Sin Clasificación Específica)
+Restauradores y conservadores del patrimonio cultural construido,Otros (Sin Clasificación Específica)
+"Bibliotecólogos, documentalistas y afines",Otros (Sin Clasificación Específica)
+Economistas,"Finanzas, Contabilidad y Negocios"
+"Sociólogos, antropólogos y afines",Otros (Sin Clasificación Específica)
+"Filósofos, historiadores y especialistas en ciencias políticas",Administración Pública y Gobierno
+Psicólogos,Salud y Medicina
+Profesionales del trabajo social y consejeros,Otros (Sin Clasificación Específica)
+Gestores de recursos y donaciones,Otros (Sin Clasificación Específica)
+Profesionales religiosos y ministros de culto,Otros (Sin Clasificación Específica)
+Autores y otros escritores,Otros (Sin Clasificación Específica)
+Periodistas,Comunicación y Marketing
+Editores y redactores,"Arte, Cultura y Entretenimiento"
+"Traductores, intérpretes y lingüistas",Otros (Sin Clasificación Específica)
+Traductores e intérpretes de lenguas nativas,Otros (Sin Clasificación Específica)
+Intérpretes de lengua de señas,Otros (Sin Clasificación Específica)
+Guías-intérpretes,Otros (Sin Clasificación Específica)
+Artistas plásticos y visuales,"Arte, Cultura y Entretenimiento"
+Ilustradores artísticos,Otros (Sin Clasificación Específica)
+Intérpretes musicales,Otros (Sin Clasificación Específica)
+Directores e investigadores musicales,Administración Pública y Gobierno
+Autores y compositores musicales,Otros (Sin Clasificación Específica)
+Ejecutantes musicales,Otros (Sin Clasificación Específica)
+Compositores coreográficos e intérpretes de danza,Otros (Sin Clasificación Específica)
+Bailarines y otros ejecutantes de la danza,Otros (Sin Clasificación Específica)
+"Productores, directores y editores de cine, teatro y afines",Administración Pública y Gobierno
+Productores de campo para cine y televisión,Otros (Sin Clasificación Específica)
+"Realizadores y coordinadores de las artes escénicas, audiovisuales y afines",Otros (Sin Clasificación Específica)
+Actores,"Arte, Cultura y Entretenimiento"
+"Locutores y presentadores de radio, televisión y otros medios de comunicación",Otros (Sin Clasificación Específica)
+Artistas creativos e interpretativos no clasificados en otras ocupaciones,"Arte, Cultura y Entretenimiento"
+Técnicos en física y química,Otros (Sin Clasificación Específica)
+Técnicos en geología,Otros (Sin Clasificación Específica)
+Técnicos en meteorología,Otros (Sin Clasificación Específica)
+Técnicos en metrología,Otros (Sin Clasificación Específica)
+Auxiliares de laboratorio,Otros (Sin Clasificación Específica)
+Técnicos en construcción y arquitectura,Otros (Sin Clasificación Específica)
+Técnicos en topografía,Otros (Sin Clasificación Específica)
+Técnicos en cartografía,Otros (Sin Clasificación Específica)
+Técnicos en electricidad,Otros (Sin Clasificación Específica)
+Técnicos en electrónica,Otros (Sin Clasificación Específica)
+Técnicos en automatización e instrumentación,Otros (Sin Clasificación Específica)
+Técnicos en ingeniería mecánica,Otros (Sin Clasificación Específica)
+Técnicos en química industrial,Otros (Sin Clasificación Específica)
+Técnicos de minas y metalurgia,Otros (Sin Clasificación Específica)
+Operarios de exploración geofísica y geológica,Manufactura y Producción
+Delineantes y dibujantes técnicos,Otros (Sin Clasificación Específica)
+Auxiliares de producción gráfica,Manufactura y Producción
+Graficadores de imágenes computarizadas,Otros (Sin Clasificación Específica)
+Técnicos en fabricación industrial,Otros (Sin Clasificación Específica)
+Técnicos en ciencias físicas y en ingeniería no clasificados en otras ocupaciones,Otros (Sin Clasificación Específica)
+Supervisores de minería y canteras,Otros (Sin Clasificación Específica)
+Supervisores de perforación y servicio a pozos de petróleo y gas,Atención al Cliente y Ventas
+Supervisores y analistas de producción de hidrocarburos,Manufactura y Producción
+Supervisores de procesamiento de alimentos y bebidas,Otros (Sin Clasificación Específica)
+Supervisores de fabricación de productos de plástico y caucho,Otros (Sin Clasificación Específica)
+Supervisores de procesamiento de la madera y producción de pulpa y papel,Manufactura y Producción
+Supervisores de ensamble de vehículos de motor,Otros (Sin Clasificación Específica)
+Supervisores de impresión y ocupaciones relacionadas,Otros (Sin Clasificación Específica)
+"Supervisores de fabricación y tratamiento de productos mecánicos, metálicos y minerales",Otros (Sin Clasificación Específica)
+"Supervisores de fabricación y procesamiento de productos textiles, cuero y piel",Otros (Sin Clasificación Específica)
+Supervisores de fabricación de productos eléctricos y electrónicos,Otros (Sin Clasificación Específica)
+Supervisores de industrias manufactureras no clasificadas en otras ocupaciones,Otros (Sin Clasificación Específica)
+"Supervisores de la construcción, maestros generales de obra, instalación y reparación",Otros (Sin Clasificación Específica)
+Inspectores de sistemas e instalaciones de gas,Otros (Sin Clasificación Específica)
+Operadores de plantas de generación y distribución de energía,Energía y Minería
+"Operadores de incineradores, instalaciones de tratamiento de agua y desechos",Otros (Sin Clasificación Específica)
+Controladores de instalaciones de procesamiento de productos químicos,Ciencias e Investigación
+Operadores de instalaciones de refinación de petróleo y gas natural,Otros (Sin Clasificación Específica)
+Inspectores de oleoductos y gasoductos,Otros (Sin Clasificación Específica)
+Controladores de procesos de producción y tratamiento de metales,Manufactura y Producción
+Técnicos en control de procesos no clasificados en otras ocupaciones,Otros (Sin Clasificación Específica)
+Técnicos en ciencias biológicas (excluyendo la medicina),Otros (Sin Clasificación Específica)
+Técnicos agropecuarios,Agricultura y Desarrollo Rural
+"Inspectores de productos agrícola, pecuarios y de pesca",Agricultura y Desarrollo Rural
+Inspectores de riego agrícola,Otros (Sin Clasificación Específica)
+Supervisores de producción agrícola,Manufactura y Producción
+Supervisores de producción pecuaria,Manufactura y Producción
+Promotores de servicios agrícolas y relacionados,Atención al Cliente y Ventas
+Técnicos forestales y recursos naturales,Agricultura y Medio Ambiente
+Supervisores de explotación forestal y silvicultura,Agricultura y Medio Ambiente
+Oficiales maquinistas en navegación,Otros (Sin Clasificación Específica)
+Capitanes y oficiales de cubierta,Otros (Sin Clasificación Específica)
+"Pilotos, ingenieros e instructores de vuelo",Otros (Sin Clasificación Específica)
+"Controladores de tráfico aéreo, marítimo y ferroviario",Otros (Sin Clasificación Específica)
+Técnicos en seguridad aeronáutica e instrumentos de aeronavegación,Seguridad y Defensa
+Técnicos en imágenes diagnósticas,Otros (Sin Clasificación Específica)
+Técnicos en radioterapia,Otros (Sin Clasificación Específica)
+Técnicos en medicina nuclear,Otros (Sin Clasificación Específica)
+Otros técnicos en aparatos de diagnóstico y tratamiento médico no clasificados en otras ocupaciones,Salud y Medicina
+Técnicos de laboratorios médicos,Salud y Medicina
+Técnicos y asistentes farmacéuticos,Salud y Medicina
+Técnicos dentales,Otros (Sin Clasificación Específica)
+Técnicos de órtesis y prótesis médicas,Otros (Sin Clasificación Específica)
+Técnicos y profesionales del nivel medio en enfermería,Otros (Sin Clasificación Específica)
+Técnicos y profesionales del nivel medio en partería,Otros (Sin Clasificación Específica)
+Técnicos y profesionales del nivel medio en medicina alternativa,Otros (Sin Clasificación Específica)
+Practicantes de medicina tradicional ancestral,Otros (Sin Clasificación Específica)
+Técnicos y asistentes veterinarios,Agricultura y Medio Ambiente
+Higienistas y asistentes odontológicos,Otros (Sin Clasificación Específica)
+Técnicos en documentación sanitaria,Otros (Sin Clasificación Específica)
+Trabajadores comunitarios de la salud,Salud y Medicina
+Técnicos en óptica,Otros (Sin Clasificación Específica)
+Técnicos y asistentes terapeutas,Otros (Sin Clasificación Específica)
+Asistentes médicos,Salud y Medicina
+"Inspectores de sanidad, seguridad y salud ocupacional",Salud y Medicina
+Coordinadores de sistemas integrados de gestión,Otros (Sin Clasificación Específica)
+"Técnicos en prevención, gestión y control ambiental",Ciencias Naturales y Medio Ambiente
+Asistentes en saneamiento ambiental,Ciencias Naturales y Medio Ambiente
+Técnicos en atención prehospitalaria,Atención al Cliente y Ventas
+Otros técnicos y profesionales del nivel medio de la salud no clasificados en no clasificados en otras ocupaciones,Salud y Medicina
+"Agentes de bolsa, cambio y otros servicios financieros",Atención al Cliente y Ventas
+Analistas y asistentes financieros préstamos y créditos,Otros (Sin Clasificación Específica)
+Asistentes contables,"Finanzas, Contabilidad y Negocios"
+Asistentes financieros,Otros (Sin Clasificación Específica)
+Asistentes tesorería,Otros (Sin Clasificación Específica)
+Técnicos de contabilidad y afines,Otros (Sin Clasificación Específica)
+"Técnicos y profesionales del nivel medio de servicios estadísticos, matemáticos y afines",Atención al Cliente y Ventas
+"Tasadores, avaluadores y liquidadores de seguros",Otros (Sin Clasificación Específica)
+Agentes y corredores de seguros,Otros (Sin Clasificación Específica)
+Representantes comerciales,Atención al Cliente y Ventas
+Agentes de compras,Otros (Sin Clasificación Específica)
+Agentes de operaciones comerciales y consignatarios,Atención al Cliente y Ventas
+Asistentes de comercio exterior,Otros (Sin Clasificación Específica)
+Gestores y agentes de servicios de aduana,Atención al Cliente y Ventas
+"Coordinadores y productores de conferencias, eventos y espectáculos",Otros (Sin Clasificación Específica)
+Agentes de empleo y contratistas de mano de obra,Otros (Sin Clasificación Específica)
+Agentes inmobiliarios,Otros (Sin Clasificación Específica)
+Agentes y promotores artísticos y deportivos,Otros (Sin Clasificación Específica)
+"Asistentes de mercadeo, publicidad y comunicaciones",Comunicación y Marketing
+Auxiliares de promoción artística,Otros (Sin Clasificación Específica)
+Agentes de servicios comerciales no clasificados en otras ocupaciones,Atención al Cliente y Ventas
+Supervisores administrativos,Otros (Sin Clasificación Específica)
+Supervisores de entidades financieras,Otros (Sin Clasificación Específica)
+"Supervisores y coordinadores de procesos de negocio, empleados de información y servicio al cliente",Atención al Cliente y Ventas
+Supervisores de empleados de correo y mensajería,Otros (Sin Clasificación Específica)
+"Supervisores de almacenamiento, inventario y distribución",Otros (Sin Clasificación Específica)
+Supervisores de operación de transporte ferroviario,Transporte y Logística
+Supervisores de operación de transporte terrestre (no ferroviario),Transporte y Logística
+Secretarios jurídicos,Otros (Sin Clasificación Específica)
+Asistentes administrativos,Otros (Sin Clasificación Específica)
+Asistentes de talento humano,Otros (Sin Clasificación Específica)
+Técnicos en archivística,Otros (Sin Clasificación Específica)
+Secretarios médicos,Salud y Medicina
+Inspectores de aduana y fronteras,Otros (Sin Clasificación Específica)
+Agentes de administración tributaria,Otros (Sin Clasificación Específica)
+Funcionarios e inspectores de servicios de seguridad social,Atención al Cliente y Ventas
+Funcionarios e inspectores gubernamentales de expedición de licencias,Otros (Sin Clasificación Específica)
+Inspectores y detectives de policía,Seguridad y Defensa
+Técnicos investigadores criminalísticos y judiciales,Ciencias e Investigación
+Investigadores criminalísticos y judiciales,Ciencias e Investigación
+Agentes de gobierno y profesionales del nivel medio para la aplicación de regulaciones no clasificados,Administración Pública y Gobierno
+"Asistentes de juzgados, tribunales y afines",Otros (Sin Clasificación Específica)
+Auxiliares de tribunales,Otros (Sin Clasificación Específica)
+Asistentes legales y afines,Otros (Sin Clasificación Específica)
+Trabajadores y asistentes sociales y comunitarios,Otros (Sin Clasificación Específica)
+Auxiliares laicos de las religiones,Otros (Sin Clasificación Específica)
+Atletas y deportistas,Otros (Sin Clasificación Específica)
+Entrenadores y preparadores físicos,Ciencias e Investigación
+Árbitros,Otros (Sin Clasificación Específica)
+Instructores de educación física y recreación,Educación y Formación
+Recreadores,Otros (Sin Clasificación Específica)
+Fotógrafos,"Arte, Cultura y Entretenimiento"
+Decoradores de interiores,Otros (Sin Clasificación Específica)
+ocupaciones técnicas relacionadas con museos y galerías,Otros (Sin Clasificación Específica)
+Técnicos en biblioteca,Otros (Sin Clasificación Específica)
+Técnicos en promoción y animación a la lectura y la escritura,Otros (Sin Clasificación Específica)
+Chefs,Turismo y Hostelería
+Otros técnicos de actividades artísticas,Otros (Sin Clasificación Específica)
+Artistas corporales,"Arte, Cultura y Entretenimiento"
+Auxiliares de producción de eventos y espectáculos,Manufactura y Producción
+Asistentes de dirección y producción en las artes escénicas y audiovisuales,Manufactura y Producción
+Técnicos y profesionales de nivel medio en &nbsp,Manufactura y Producción
+Técnicos en operaciones de tecnología de la información y las comunicaciones,Tecnología de la Información
+Técnicos en asistencia y soporte de tecnologías de la información,Tecnología de la Información
+Representantes de servicios especializados BPO,Atención al Cliente y Ventas
+Técnicos en redes y tecnologías de la información,Tecnología de la Información
+Técnicos de la Web,Otros (Sin Clasificación Específica)
+Operadores de cámara de cine y televisión,Otros (Sin Clasificación Específica)
+Técnicos en transmisión audiovisual,Otros (Sin Clasificación Específica)
+"Asistentes en cine, televisión y artes escénicas",Otros (Sin Clasificación Específica)
+Operadores de audio y sonido,Otros (Sin Clasificación Específica)
+Asistentes de producción de audio y sonido,Manufactura y Producción
+Técnicos en telecomunicaciones,Otros (Sin Clasificación Específica)
+Supervisores de telecomunicaciones,Otros (Sin Clasificación Específica)
+Operadores de radio,Otros (Sin Clasificación Específica)
+Oficinistas generales,Otros (Sin Clasificación Específica)
+Auxiliares de aduana,Otros (Sin Clasificación Específica)
+Secretarios generales,Otros (Sin Clasificación Específica)
+Operadores de máquinas de procesamiento de texto y mecanógrafos,Otros (Sin Clasificación Específica)
+Grabadores de datos,Otros (Sin Clasificación Específica)
+Digitadores,Otros (Sin Clasificación Específica)
+Cajeros de bancos y afines,"Finanzas, Contabilidad y Negocios"
+Receptores de apuestas y afines,Otros (Sin Clasificación Específica)
+Prestamistas,Otros (Sin Clasificación Específica)
+"Cobradores, auxiliares de cartera y afines",Otros (Sin Clasificación Específica)
+Empleados de ventas y servicios de viajes,Atención al Cliente y Ventas
+Empleados de centros de llamadas,Otros (Sin Clasificación Específica)
+Telefonistas,Otros (Sin Clasificación Específica)
+Recepcionistas de hoteles,Turismo y Hostelería
+Auxiliares de información y servicio al cliente,Atención al Cliente y Ventas
+Informadores turísticos,Educación y Formación
+Recepcionistas generales,Otros (Sin Clasificación Específica)
+Entrevistadores de encuestas y de investigaciones de mercados,Otros (Sin Clasificación Específica)
+Auxiliares administrativos en salud,Salud y Medicina
+Otros empleados de servicios de información al cliente no clasificados en otras ocupaciones,Atención al Cliente y Ventas
+"Auxiliares de contabilidad, costos y tesorería",Otros (Sin Clasificación Específica)
+Auxiliares de servicios estadísticos y financieros,Atención al Cliente y Ventas
+Auxiliares de avalúos,Otros (Sin Clasificación Específica)
+Auxiliares de nómina y prestaciones,Otros (Sin Clasificación Específica)
+Auxiliares de almacén y pesaje,Otros (Sin Clasificación Específica)
+Auxiliares de compras e inventarios,Otros (Sin Clasificación Específica)
+Empleados de servicios de apoyo a la producción,Atención al Cliente y Ventas
+Empleados y operarios de servicios de transporte,Atención al Cliente y Ventas
+Inspectores y controladores de transporte,Transporte y Logística
+Empleados de bibliotecas,Otros (Sin Clasificación Específica)
+Empleados de servicios de correos,Atención al Cliente y Ventas
+"Codificadores de datos, correctores de pruebas de imprenta y afines",Otros (Sin Clasificación Específica)
+Escribientes públicos y afines,Otros (Sin Clasificación Específica)
+Empleados de archivos,Otros (Sin Clasificación Específica)
+Auxiliares de talento humano,Otros (Sin Clasificación Específica)
+Auxiliares de seguridad en el trabajo,Seguridad y Defensa
+Auxiliares de publicación y afines,Otros (Sin Clasificación Específica)
+Otro personal de apoyo administrativo no clasificados en otras ocupaciones,Otros (Sin Clasificación Específica)
+Personal de servicio a pasajeros,Atención al Cliente y Ventas
+Revisores y cobradores de los transportes públicos,Transporte y Logística
+Guías de turismo,Turismo y Hostelería
+Anfitriones turísticos locales,Otros (Sin Clasificación Específica)
+Cocineros,Turismo y Hostelería
+Sabedores de la cocina tradicional,Otros (Sin Clasificación Específica)
+Meseros y capitanes de meseros,Otros (Sin Clasificación Específica)
+Bartenders,Otros (Sin Clasificación Específica)
+Baristas,Otros (Sin Clasificación Específica)
+Peluqueros,Otros (Sin Clasificación Específica)
+Manicuristas y pedicuristas,Otros (Sin Clasificación Específica)
+Cosmetólogos esteticistas,Otros (Sin Clasificación Específica)
+Maquilladores,Otros (Sin Clasificación Específica)
+Asesores de imagen,Otros (Sin Clasificación Específica)
+Otras ocupaciones elementales de los servicios no clasificados en otras ocupaciones,Atención al Cliente y Ventas
+"Supervisores de mantenimiento y limpieza en oficinas, hoteles y otros establecimientos",Turismo y Hostelería
+Ecónomos y mayordomos domésticos,Otros (Sin Clasificación Específica)
+Conserjes y afines,Otros (Sin Clasificación Específica)
+"Astrólogos, adivinos y afines",Otros (Sin Clasificación Específica)
+Acompañantes,Otros (Sin Clasificación Específica)
+Tanatopractores,"Arte, Cultura y Entretenimiento"
+Coordinadores de servicios funerarios,Atención al Cliente y Ventas
+Personal de servicios funerarios,Atención al Cliente y Ventas
+Cuidadores de animales,Otros (Sin Clasificación Específica)
+Instructores de conducción,Otros (Sin Clasificación Específica)
+Otros trabajadores de servicios personales no clasificados en otras ocupaciones,Atención al Cliente y Ventas
+Vendedores en quioscos y puestos de mercado,Atención al Cliente y Ventas
+Vendedores ambulantes de alimentos preparados para consumo inmediato,Atención al Cliente y Ventas
+Comerciantes de tiendas,Otros (Sin Clasificación Específica)
+Supervisores de tiendas y almacenes,Otros (Sin Clasificación Específica)
+"Vendedores y auxiliares de venta en tiendas, almacenes y afines",Atención al Cliente y Ventas
+"Cajeros de comercio, taquilleros y expendedores de boletas",Otros (Sin Clasificación Específica)
+"Modelos de moda, arte y publicidad",Comunicación y Marketing
+"Demostradores de tiendas, almacenes y afines",Otros (Sin Clasificación Específica)
+Vendedores puerta a puerta,Atención al Cliente y Ventas
+Vendedores a través de medios tecnológicos,Atención al Cliente y Ventas
+Expendedores de combustibles para vehículos,Otros (Sin Clasificación Específica)
+Vendedores de comidas en mostrador,Atención al Cliente y Ventas
+Otros vendedores no clasificados en otras ocupaciones,Atención al Cliente y Ventas
+Cuidadores de niños,Otros (Sin Clasificación Específica)
+Auxiliares de maestros y primera infancia,Otros (Sin Clasificación Específica)
+Trabajadores de los cuidados personales en instituciones,Otros (Sin Clasificación Específica)
+Trabajadores de los cuidados personales a domicilio,Otros (Sin Clasificación Específica)
+Auxiliares en enfermería,Otros (Sin Clasificación Específica)
+Auxiliares de salud oral,Salud y Medicina
+Auxiliares en salud pública,Salud y Medicina
+Auxiliares de laboratorio clínico,Otros (Sin Clasificación Específica)
+Auxiliares de droguería y farmacia,Otros (Sin Clasificación Específica)
+Trabajadores de los cuidados personales en servicios de salud no clasificados en otras ocupaciones,Salud y Medicina
+Oficiales de bomberos,Seguridad y Defensa
+Suboficiales de bomberos,Seguridad y Defensa
+Bomberos,Seguridad y Defensa
+Rescatistas,Otros (Sin Clasificación Específica)
+Oficiales de policía,Seguridad y Defensa
+Suboficiales y nivel ejecutivo de la policía,Seguridad y Defensa
+Patrulleros y agentes de policía,Seguridad y Defensa
+Auxiliares de policía,Seguridad y Defensa
+Oficiales del cuerpo de custodia y vigilancia,Otros (Sin Clasificación Específica)
+Suboficiales del cuerpo de custodia y vigilancia,Otros (Sin Clasificación Específica)
+Guardianes de prisión,Otros (Sin Clasificación Específica)
+Supervisores de vigilantes,Seguridad y Defensa
+Vigilantes y guardias de seguridad,Seguridad y Defensa
+Guardavidas y salvavidas,Otros (Sin Clasificación Específica)
+Agentes de tránsito,Otros (Sin Clasificación Específica)
+Técnicos operativos de tránsito,Otros (Sin Clasificación Específica)
+Personal de los servicios de protección no clasificadas en otras ocupaciones,Atención al Cliente y Ventas
+Agricultores de cultivos extensivos,Agricultura y Medio Ambiente
+Trabajadores agrícolas calificados de cultivos extensivos,Otros (Sin Clasificación Específica)
+Trabajadores calificados de riego agrícola,Otros (Sin Clasificación Específica)
+Agricultores de plantaciones de árboles y arbustos,Agricultura y Medio Ambiente
+Trabajadores agrícolas calificados de plantaciones de árboles y arbustos,Otros (Sin Clasificación Específica)
+"Agricultores de huertas, invernaderos, viveros y jardines",Agricultura y Medio Ambiente
+"Trabajadores agrícolas calificados de huertas, invernaderos, viveros y jardines",Otros (Sin Clasificación Específica)
+Agricultores y trabajadores calificados de cultivos mixtos,Agricultura y Medio Ambiente
+Criadores de animales (excepto aves de corral),Otros (Sin Clasificación Específica)
+Trabajadores calificados de la cría de animales (excepto aves de corral),Otros (Sin Clasificación Específica)
+Avicultores,Otros (Sin Clasificación Específica)
+Trabajadores calificados de la avicultura,Otros (Sin Clasificación Específica)
+Criadores y trabajadores calificados de la apicultura y la sericicultura,Otros (Sin Clasificación Específica)
+"Criadores y trabajadores pecuarios calificados, avicultores y criadores de insectos no clasificados en otras ocupaciones",Agricultura y Desarrollo Rural
+Productores y trabajadores calificados de explotaciones agropecuarias mixtas cuya producción se destina al mercado,Manufactura y Producción
+Trabajadores calificados de explotación forestal,Agricultura y Medio Ambiente
+Trabajadores de silvicultura y forestación,Otros (Sin Clasificación Específica)
+Productores de acuicultura,Otros (Sin Clasificación Específica)
+Trabajadores acuícolas calificados,Otros (Sin Clasificación Específica)
+Capitanes y patrones de pesca de aguas dulces y costeras,Otros (Sin Clasificación Específica)
+Pescadores de aguas dulces y costeras,Otros (Sin Clasificación Específica)
+Capitanes y patrones de pesca de alta mar,Otros (Sin Clasificación Específica)
+Pescadores de alta mar,Otros (Sin Clasificación Específica)
+Cazadores y tramperos,Otros (Sin Clasificación Específica)
+Trabajadores agrícolas de subsistencia,Otros (Sin Clasificación Específica)
+Trabajadores pecuarios de subsistencia,Agricultura y Desarrollo Rural
+Trabajadores agropecuarios de subsistencia,Agricultura y Desarrollo Rural
+"Pescadores, cazadores, tramperos y recolectores de subsistencia",Otros (Sin Clasificación Específica)
+Constructores de casas,Construcción e Infraestructura
+Albañiles y oficiales de construcción,Construcción e Infraestructura
+"Labrantes, tronzadores y grabadores de piedra",Otros (Sin Clasificación Específica)
+"Operarios en cemento armado, enfoscadores y afines",Manufactura y Producción
+Carpinteros de armar y de obra blanca,Construcción e Infraestructura
+Oficiales y operarios de la construcción de obra gruesa y afines no clasificados en otras ocupaciones,Manufactura y Producción
+Techadores,Otros (Sin Clasificación Específica)
+Enchapadores,Otros (Sin Clasificación Específica)
+Instaladores de pisos,Otros (Sin Clasificación Específica)
+Revocadores,Otros (Sin Clasificación Específica)
+Instaladores de material aislante y de insonorización,Otros (Sin Clasificación Específica)
+Cristaleros y vidrieros,Otros (Sin Clasificación Específica)
+Fontaneros y plomeros,Otros (Sin Clasificación Específica)
+Instaladores de tuberías para sistemas de extinción de incendios,Otros (Sin Clasificación Específica)
+Instaladores de redes y equipos a gas,Otros (Sin Clasificación Específica)
+Operarios de mantenimiento de redes de abastecimiento de agua y gas,Manufactura y Producción
+Mecánicos montadores de aire acondicionado y refrigeración,Otros (Sin Clasificación Específica)
+Pintores y empapeladores,Otros (Sin Clasificación Específica)
+Barnizadores y afines,Otros (Sin Clasificación Específica)
+Limpiadores de fachadas y deshollinadores,Otros (Sin Clasificación Específica)
+"Operarios de fundición, moldeadores y macheros",Manufactura y Producción
+Soldadores y oxicortadores,Otros (Sin Clasificación Específica)
+Chapistas y caldereros,Otros (Sin Clasificación Específica)
+Latoneros,Otros (Sin Clasificación Específica)
+Montadores de estructuras metálicas,Otros (Sin Clasificación Específica)
+Aparejadores,Otros (Sin Clasificación Específica)
+Instaladores y empalmadores de cables,Otros (Sin Clasificación Específica)
+Herreros y forjadores,Otros (Sin Clasificación Específica)
+Herramentistas y afines,Otros (Sin Clasificación Específica)
+Ajustadores y operadores de máquinas herramientas,Otros (Sin Clasificación Específica)
+Pulidores de metales y afiladores de herramientas,Otros (Sin Clasificación Específica)
+Mecánicos y reparadores de vehículos de motor,Otros (Sin Clasificación Específica)
+Mecánicos y reparadores de sistemas y motores de aeronaves,Otros (Sin Clasificación Específica)
+Mecánicos industriales,Otros (Sin Clasificación Específica)
+Mecánicos de equipo pesado,Otros (Sin Clasificación Específica)
+"Mecánicos de maquinaria textil, confección, cuero, calzado y marroquinería",Otros (Sin Clasificación Específica)
+Marineros de sala de máquinas,Otros (Sin Clasificación Específica)
+Auxiliares en automatización e instrumentación industrial,Otros (Sin Clasificación Específica)
+Reparadores de bicicletas y afines,Otros (Sin Clasificación Específica)
+Mecánicos y reparadores de instrumentos de precisión,Otros (Sin Clasificación Específica)
+Fabricantes y afinadores de instrumentos musicales,Otros (Sin Clasificación Específica)
+Alfareros y ceramistas (barro y arcilla),Otros (Sin Clasificación Específica)
+"Operarios de fabricación, moldeo y acabado del vidrio",Manufactura y Producción
+Artesanos trabajos en vidrio,Otros (Sin Clasificación Específica)
+"Rotulistas, pintores decorativos y grabadores",Otros (Sin Clasificación Específica)
+Pre-impresores y pre-prensistas de artes gráficas,Otros (Sin Clasificación Específica)
+Tipógrafos,Otros (Sin Clasificación Específica)
+Impresores de artes gráficas,Otros (Sin Clasificación Específica)
+Encuadernadores y afines,Otros (Sin Clasificación Específica)
+Tejedores con telares,Otros (Sin Clasificación Específica)
+Tejedores con agujas,Otros (Sin Clasificación Específica)
+Otros tejedores,Otros (Sin Clasificación Específica)
+Cesteros y mimbreros,Otros (Sin Clasificación Específica)
+Sombrereros artesanales,Otros (Sin Clasificación Específica)
+Talladores de piezas artesanales de madera,Otros (Sin Clasificación Específica)
+Decoradores de piezas artesanales en madera,Otros (Sin Clasificación Específica)
+Joyeros,Otros (Sin Clasificación Específica)
+Orfebres y plateros,Otros (Sin Clasificación Específica)
+Bisuteros,Otros (Sin Clasificación Específica)
+Artesanos del cuero,Otros (Sin Clasificación Específica)
+Artesanos de papel,Otros (Sin Clasificación Específica)
+Artesanos del hierro y otros metales,Otros (Sin Clasificación Específica)
+Artesanos de las semillas y cortezas vegetales,Otros (Sin Clasificación Específica)
+Artesanos trabajos en materiales líticos,Otros (Sin Clasificación Específica)
+Artesanos de otros materiales no clasificados en otras ocupaciones,Otros (Sin Clasificación Específica)
+"Electricistas de obra, residenciales y afines",Energía y Minería
+Ayudantes electricistas,Energía y Minería
+Electricistas industriales,Energía y Minería
+Reparadores de aparatos electrodomésticos,Otros (Sin Clasificación Específica)
+Mecánicos electricistas,Energía y Minería
+Instaladores y reparadores de líneas eléctricas,Otros (Sin Clasificación Específica)
+"Ajustadores, reparadores e instaladores en electrónica",Otros (Sin Clasificación Específica)
+Técnicos instaladores de redes y líneas de telecomunicaciones,Otros (Sin Clasificación Específica)
+"Auxiliares técnicos de instalación, mantenimiento y reparación de sistemas de telecomunicaciones",Otros (Sin Clasificación Específica)
+Operarios de mantenimiento y servicio de televisión por cable,Atención al Cliente y Ventas
+"Carniceros, pescaderos y afines",Otros (Sin Clasificación Específica)
+"Panaderos, pasteleros y confiteros",Otros (Sin Clasificación Específica)
+Transformadores de caña panelera,Educación y Formación
+Operarios de la elaboración de productos lácteos,Manufactura y Producción
+"Operarios de la conservación de frutas, legumbres, verduras y afines",Manufactura y Producción
+Catadores y clasificadores de alimentos y bebidas,Otros (Sin Clasificación Específica)
+Preparadores y elaboradores de cigarros y productos del tabaco,Otros (Sin Clasificación Específica)
+Operarios del tratamiento de la madera,Manufactura y Producción
+Ebanistas y carpinteros (excluye carpinteros de armar y de obra blanca),Construcción e Infraestructura
+Ajustadores y operadores de máquinas para trabajar madera,Otros (Sin Clasificación Específica)
+"Sastres, modistos, peleteros y sombrereros",Otros (Sin Clasificación Específica)
+"Patronistas de productos de tela, cuero y piel",Otros (Sin Clasificación Específica)
+"Cortadores de tela, cuero y piel",Otros (Sin Clasificación Específica)
+"Costureros, bordadores y afines",Otros (Sin Clasificación Específica)
+"Tapiceros, colchoneros y afines",Otros (Sin Clasificación Específica)
+"Apelambradores, pellejeros y curtidores",Otros (Sin Clasificación Específica)
+Zapateros y afines,Otros (Sin Clasificación Específica)
+Buzos,Otros (Sin Clasificación Específica)
+Dinamiteros y pegadores,Otros (Sin Clasificación Específica)
+Analistas de calidad de textiles,Otros (Sin Clasificación Específica)
+"Inspectores de control de calidad, fabricación de productos de tela, piel y cuero",Otros (Sin Clasificación Específica)
+"Inspectores de control de calidad, procesamiento de la madera",Otros (Sin Clasificación Específica)
+Clasificadores y probadores de productos (excluyendo alimentos y bebidas) no clasificados en otras ocupaciones,Otros (Sin Clasificación Específica)
+Fumigadores y otros controladores de plagas y malas hierbas,Otros (Sin Clasificación Específica)
+"Otros oficiales, operarios y oficios relacionados no clasificados",Manufactura y Producción
+Mineros y canteros,Energía y Minería
+Operadores de servicios e instalaciones mineras,Atención al Cliente y Ventas
+Operadores de equipo pesado de minería,Otros (Sin Clasificación Específica)
+Operadores de instalaciones de procesamiento de minerales y rocas,Otros (Sin Clasificación Específica)
+Perforadores de pozos de gas y petróleo,Otros (Sin Clasificación Específica)
+Perforadores de pozos de agua,Otros (Sin Clasificación Específica)
+Operadores de servicios en perforación de petróleo y gas,Atención al Cliente y Ventas
+Operadores de producción de hidrocarburos,Manufactura y Producción
+Operadores de servicios a pozos de hidrocarburos,Atención al Cliente y Ventas
+Operadores torres de perforación de pozos hidrocarburos,Otros (Sin Clasificación Específica)
+Operadores de máquinas para fabricar cemento y otros productos minerales,Otros (Sin Clasificación Específica)
+Operadores de instalaciones de procesamiento de metales,Otros (Sin Clasificación Específica)
+"Operadores de máquinas pulidoras, galvanizadoras y recubridoras de metales",Otros (Sin Clasificación Específica)
+Operadores de máquinas de planta química,Otros (Sin Clasificación Específica)
+Operadores de planta de gas,Otros (Sin Clasificación Específica)
+Operadores de máquinas y procesadores fotográficos y de películas,Otros (Sin Clasificación Específica)
+Operadores de máquinas para fabricar productos de caucho,Otros (Sin Clasificación Específica)
+Operadores de máquinas para fabricar productos de material plástico,Otros (Sin Clasificación Específica)
+Operadores de máquinas para fabricar productos de papel,Otros (Sin Clasificación Específica)
+"Operadores de máquinas de preparación de fibras, hilado y devanado",Otros (Sin Clasificación Específica)
+Operadores de telares y otras máquinas tejedoras,Otros (Sin Clasificación Específica)
+Operadores de máquinas de coser y bordar,Otros (Sin Clasificación Específica)
+"Operadores de máquinas de blanqueamiento, teñido y limpieza de tejidos",Otros (Sin Clasificación Específica)
+Operadores de máquinas de tratamiento de pieles y cueros,Otros (Sin Clasificación Específica)
+Operadores de máquinas para la fabricación de calzado y afines,Otros (Sin Clasificación Específica)
+Operadores de máquinas de lavandería,Otros (Sin Clasificación Específica)
+Operadores de máquinas para fabricar productos textiles y artículos de piel y cuero no clasificadas en otras ocupaciones,Otros (Sin Clasificación Específica)
+Operadores de máquinas para elaborar alimentos y productos afines,Otros (Sin Clasificación Específica)
+Operadores de máquinas para la fabricación de papel,Otros (Sin Clasificación Específica)
+Operadores de máquinas para la producción de pulpa,Manufactura y Producción
+Operadores de instalaciones de procesamiento de la madera,Otros (Sin Clasificación Específica)
+"Operadores de fabricación, moldeo y acabado del vidrio",Otros (Sin Clasificación Específica)
+Operadores de moldeo de arcilla y piedra,Otros (Sin Clasificación Específica)
+Operadores de máquinas de vapor y calderas,Otros (Sin Clasificación Específica)
+"Operadores de máquinas de embalaje, embotellamiento y etiquetado",Otros (Sin Clasificación Específica)
+Operadores portuarios,Otros (Sin Clasificación Específica)
+Otros operadores de máquinas y de instalaciones fijas no clasificados en otras ocupaciones,Otros (Sin Clasificación Específica)
+Ensambladores de maquinaria mecánica,Otros (Sin Clasificación Específica)
+Ensambladores de productos electrónicos,Otros (Sin Clasificación Específica)
+Ensambladores de aparatos y equipo eléctrico,Otros (Sin Clasificación Específica)
+Ensambladores de transformadores y motores eléctricos industriales,Educación y Formación
+Operadores de máquinas para la fabricación de productos y componentes eléctricos,Otros (Sin Clasificación Específica)
+Ensambladores no clasificados en otras ocupaciones,Otros (Sin Clasificación Específica)
+Maquinistas de transporte ferroviario,Transporte y Logística
+"Guardafrenos, guardagujas y agentes de maniobras",Otros (Sin Clasificación Específica)
+Conductores de motocicletas,Transporte y Logística
+Conductores de camionetas y vehículos livianos,Transporte y Logística
+Conductores de taxis,Transporte y Logística
+"Conductores de buses, microbuses y tranvías",Transporte y Logística
+Conductores de camiones y vehículos pesados,Transporte y Logística
+Operadores de maquinaria agrícola y forestal móvil,Agricultura y Medio Ambiente
+"Operadores de máquinas de movimiento de tierras, construcción de vías y afines",Otros (Sin Clasificación Específica)
+"Operadores de grúas, aparatos elevadores y afines",Otros (Sin Clasificación Específica)
+Operadores de montacargas,Otros (Sin Clasificación Específica)
+Marineros de cubierta y de apoyo,Otros (Sin Clasificación Específica)
+Operadores de embarcaciones menores,Otros (Sin Clasificación Específica)
+Personal de servicio doméstico,Atención al Cliente y Ventas
+"Aseadores de oficinas, hoteles y otros establecimientos",Turismo y Hostelería
+Lavanderos y planchadores manuales,Otros (Sin Clasificación Específica)
+Lavadores de vehículos,Otros (Sin Clasificación Específica)
+Limpiadores de ventanas y vitrinas,Otros (Sin Clasificación Específica)
+Otro personal de limpieza no clasificados en otras ocupaciones,Otros (Sin Clasificación Específica)
+Obreros y peones de explotaciones agrícolas,Otros (Sin Clasificación Específica)
+Obreros y peones de explotaciones ganaderas,Otros (Sin Clasificación Específica)
+Obreros y peones de explotaciones agropecuarias,Otros (Sin Clasificación Específica)
+Obreros y peones de jardinería y horticultura,Otros (Sin Clasificación Específica)
+Obreros y peones forestales y de silvicultura,Agricultura y Medio Ambiente
+Obreros y peones de pesca y acuicultura,Otros (Sin Clasificación Específica)
+Obreros y peones de minas y canteras,Otros (Sin Clasificación Específica)
+Obreros y ayudantes de producción en pozos de petróleo y gas,Manufactura y Producción
+Obreros y peones de obras públicas y mantenimiento,Otros (Sin Clasificación Específica)
+Obreros y operarios de cementerios,Manufactura y Producción
+Obreros y peones de la construcción,Otros (Sin Clasificación Específica)
+Empacadores manuales,Otros (Sin Clasificación Específica)
+Obreros y ayudantes en el procesamiento de la madera y producción de pulpa y papel,Manufactura y Producción
+Obreros y ayudantes en el tratamiento de metales y minerales,Otros (Sin Clasificación Específica)
+Obreros y ayudantes de planta química,Otros (Sin Clasificación Específica)
+Obreros y ayudantes en la elaboración de alimentos y bebidas,Otros (Sin Clasificación Específica)
+Obreros y peones de la industria manufacturera no clasificados en otras ocupaciones,Otros (Sin Clasificación Específica)
+Conductores de vehículos accionados a pedal o a brazo,Transporte y Logística
+Conductores de vehículos y maquinaria de tracción animal,Transporte y Logística
+Obreros y peones de carga y descarga,Otros (Sin Clasificación Específica)
+Obreros y peones portuarios,Otros (Sin Clasificación Específica)
+Operarios y auxiliares de rampa de transporte aéreo,Manufactura y Producción
+Ayudantes de transporte automotor,Transporte y Logística
+Surtidores de estanterías,Otros (Sin Clasificación Específica)
+Cocineros de comidas rápidas,Turismo y Hostelería
+Ayudantes de cocina,Otros (Sin Clasificación Específica)
+Trabajadores ambulantes de servicios y afines,Atención al Cliente y Ventas
+Vendedores ambulantes (excluyendo comidas de preparación inmediata),Atención al Cliente y Ventas
+Recolectores de basura y material reciclable,Otros (Sin Clasificación Específica)
+Clasificadores de desechos,Otros (Sin Clasificación Específica)
+Barrenderos y afines,Otros (Sin Clasificación Específica)
+"Mandaderos, maleteros y repartidores",Transporte y Logística
+Mensajeros,Otros (Sin Clasificación Específica)
+Personas que realizan trabajos varios,Otros (Sin Clasificación Específica)
+Acarreadores de agua y recolectores de leña,Otros (Sin Clasificación Específica)
+Recolectores de dinero y surtidores de máquinas de venta automática,Otros (Sin Clasificación Específica)
+Lectores de medidores,Otros (Sin Clasificación Específica)
+Auxiliares de servicios de recreación y deporte,Atención al Cliente y Ventas
+Ayudantes de mecánica y servicio automotriz,Atención al Cliente y Ventas
+Otras ocupaciones elementales no clasificadas en otras ocupaciones,Otros (Sin Clasificación Específica)
+,Otros (Sin Clasificación Específica)
