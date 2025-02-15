@@ -7,7 +7,7 @@ import Card from './Card';
 export default function BasicForm() {
   const [enteredData, setEnteredData] = useState({
     name: '',
-    email: '',
+    birthdate: '',
     education: '',
   });
 
@@ -25,11 +25,11 @@ export default function BasicForm() {
       <form onSubmit={handleSubmit}>
         <h2 className="text-3xl font-bold mb-2 text-[#090467]">Bienvenido a Magneto!</h2>
         <h3 className="text-l mb-2 text-[#090467]">
-          Para empezar tu busqueda de empleo necesitamos algunos datos
+          Para empezar tu búsqueda de empleo necesitamos algunos datos
         </h3>
         <div>
-          <Input label="Nombre" handleChange={handleChange} inputId="name" />
-          <Input label="Email" handleChange={handleChange} inputId="email" />
+          <Input label="Nombre" handleChange={handleChange} type="text" inputId="name" />
+          <Input label="Fecha de Nacimiento" handleChange={handleChange} type="date" inputId="birthdate" />
 
           <Dropdown
             options={educationOptions}
