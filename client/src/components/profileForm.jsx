@@ -11,19 +11,23 @@ export default function ProfileFrom() {
         setProfile((prev) => prev + 1);
         setLikedProfiles((prev) => [...prev, profiles[profile]])
     }
-    
+
     const handleDislike = () => {
-        setProfile(profile+1)
+        setProfile((prev) => prev+1)
     }
-    
+
     return (
         <Card>
             <MotionContainer handleLike={handleLike} handleDislike={handleDislike}>
-                <ProfileCard profile={profiles[profile]}/>
+                <ProfileCard profile={profiles[profile]} />
             </MotionContainer>
-            <div className="w-full h-8 flex mt-4 items-center justify-center space-x-9">
-                <i class="fa-solid fa-thumbs-down fa-2xl mt-3" style={{color: "#d02224"}}></i>
-                <i class="fa-solid fa-thumbs-up fa-2xl" style={{color: "#090467"}}></i>
+            <div className="flex justify-center items-center space-x-12 mt-4 w-full">
+                <div className="flex flex-col items-center bg-red-500 w-1/3 p-1 rounded-2xl">
+                    <i className="fa-solid fa-times text-white text-2xl"></i>
+                </div>
+                <div className="flex flex-col items-center bg-green-500 w-1/3 p-1 rounded-2xl">
+                    <i className="fa-solid fa-heart text-white text-2xl "></i>
+                </div>
             </div>
         </Card>
     );
