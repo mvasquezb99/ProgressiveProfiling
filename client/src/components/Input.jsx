@@ -1,5 +1,5 @@
 import { inputStyles, labelStyles } from '../constants/styles';
-export default function Input({ label, handleChange, inputId }) {
+export default function Input({ label, handleChange, type, inputId }) {
   return (
     <div className="flex flex-col">
       <label className={labelStyles} htmlFor="name">
@@ -8,7 +8,7 @@ export default function Input({ label, handleChange, inputId }) {
       <input
         className={inputStyles}
         onChange={(e) => handleChange(inputId, e.target.value)}
-        type="text"
+        type={type}
         name={inputId}
         id={inputId}
       />

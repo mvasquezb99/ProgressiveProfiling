@@ -3,11 +3,13 @@ import Dropdown from './Dropdown';
 import { educationOptions } from '../constants/educationOptions';
 import Input from './Input';
 import Card from './Card';
+import CardTitle from './CardTitle';
+import Button from './Button';
 
 export default function BasicForm() {
   const [enteredData, setEnteredData] = useState({
     name: '',
-    email: '',
+    birthdate: '',
     education: '',
   });
 
@@ -23,13 +25,14 @@ export default function BasicForm() {
   return (
     <Card>
       <form onSubmit={handleSubmit}>
-        <h2 className="text-3xl font-bold mb-2 text-[#090467]">Bienvenido a Magneto!</h2>
-        <h3 className="text-l mb-2 text-[#090467]">
-          Para empezar tu busqueda de empleo necesitamos algunos datos
-        </h3>
+        <CardTitle
+          title={'Bienvenido a Magneto!'}
+          subtitle={'Para empezar tu búsqueda de empleo necesitamos algunos datos'}
+        />
+
         <div>
-          <Input label="Nombre" handleChange={handleChange} inputId="name" />
-          <Input label="Email" handleChange={handleChange} inputId="email" />
+          <Input label="Nombre" handleChange={handleChange} type="text" inputId="name" />
+          <Input label="Fecha de Nacimiento" handleChange={handleChange} type="date" inputId="birthdate" />
 
           <Dropdown
             options={educationOptions}
@@ -40,8 +43,8 @@ export default function BasicForm() {
             value={enteredData.education}
           />
 
-          <div className="flex justify-end">
-            <button className="mt-4 bg-[#090467] text-white shadow-md ">Continuar</button>
+          <div className="flex w-full">
+            <Button>Continuar</Button>
           </div>
         </div>
       </form>
