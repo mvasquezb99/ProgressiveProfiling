@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Card from './Card';
-import MotionContainer from "./motionContainer";
-import ProfileCard from "./profileCard";
+import MotionContainer from "./MotionContainer";
+import ProfileCard from "./ProfileCard";
 import { profiles } from "../constants/profiles";
 export default function ProfileFrom() {
     const [profile, setProfile] = useState(0);

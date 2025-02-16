@@ -23,7 +23,7 @@ export default function BasicForm() {
   };
 
   return (
-    <Card>
+    <Card rem={25}>
       <form onSubmit={handleSubmit}>
         <CardTitle
           title={'Bienvenido a Magneto!'}
