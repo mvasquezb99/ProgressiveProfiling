@@ -12,7 +12,7 @@ export default function ProfileCard({profile}) {
                         <small>💼 {profile.educacion[0].area}</small>
                     </div>
                     <div className="text-sm overflow-y-hidden space-y-1">
-                        <p className="text-base text-gray-700 leading-relaxed">Actualmente trabajo como  <strong>{profile.trabajo[0].posicion}</strong> en {profile.trabajo[0].organizacion} cuento con experiencia en {profile.educacion[0].area} y puedo aportar:
+                        <p className="text-base text-gray-700 leading-snug">Actualmente trabajo como  <strong>{profile.trabajo[0].posicion}</strong> en {profile.trabajo[0].organizacion} cuento con experiencia en {profile.educacion[0].area} y puedo aportar:
                         </p>
                         <div className="h-max overflow-y-hidden list-disc pl-5 text-sm text-gray-700 space-y-1 ">
                             {

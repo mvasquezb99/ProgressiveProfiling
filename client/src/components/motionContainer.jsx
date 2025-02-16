@@ -28,7 +28,7 @@ export default function MotionContainer({children, handleLike, handleDislike}) {
             dragSnapToOrigin
             dragConstraints={{ left: -5, right: 5 }}
             onDragEnd={() => { setSwipe("") }}
-            class={` w-[20rem] h-[30rem] ${swipe}`}
+            class={` w-[20rem] h-[28rem] ${swipe}`}
             id="dragBox"
         >
             {children}
