@@ -12,11 +12,11 @@ export type OcupationInstance = NeogmaInstance<
 >;
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface OccupationRelatedNodes { }
+export interface OccupationRelatedNodes {}
 
 @Injectable()
 export class OccupationClass {
-  constructor(@Inject(NEOGMA_CONNECTION) private readonly neogma: Neogma) { }
+  constructor(@Inject(NEOGMA_CONNECTION) private readonly neogma: Neogma) {}
   public occupationModel = ModelFactory<
     OccupationPropertiesI,
     OccupationRelatedNodes

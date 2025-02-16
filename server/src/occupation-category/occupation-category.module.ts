@@ -1,11 +1,10 @@
-import { Module, forwardRef } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { OccupationCategoryClass } from './occupation-category.model';
+import { OccupationModule } from 'src/occupation/occupation.module';
 
 @Module({
-    providers: [OccupationCategoryClass],
-    exports: [OccupationCategoryClass],
-    // imports: [forwardRef(() => OccupationModule)], // Si depende de OccupationModule
-    // providers: [forwardRef(() => OccupationCategoryClass)],
-    // exports: [forwardRef(() => OccupationCategoryClass)],
+  imports: [OccupationModule],
+  providers: [OccupationCategoryClass],
+  exports: [OccupationCategoryClass],
 })
 export class OccupationCategoryModule {}

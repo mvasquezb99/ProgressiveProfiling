@@ -29,7 +29,7 @@ export class OccupationCategoryClass {
   constructor(
     @Inject(NEOGMA_CONNECTION) private readonly neogma: Neogma,
     @Inject(OccupationClass) private readonly occupationClass: OccupationClass,
-  ) { }
+  ) {}
 
   public categoryModel = ModelFactory<
     CategoryPropertiesI,

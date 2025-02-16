@@ -5,4 +5,4 @@ import { OccupationClass } from './occupation.model';
   providers: [OccupationClass],
   exports: [OccupationClass],
 })
-export class OccupationModule { }
+export class OccupationModule {}

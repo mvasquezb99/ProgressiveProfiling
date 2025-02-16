@@ -40,15 +40,12 @@ export class NeogmaModule {
               );
               await neogma.verifyConnectivity();
               console.log('Connected to Neo4j');
-              //await seedManager.seedData(neogma);
-              //console.log('Seeded data');
               return neogma;
             } catch (error) {
               throw new ConnectionError(error);
             }
           },
         },
-        
       ],
       exports: [NEOGMA_CONNECTION],
     };

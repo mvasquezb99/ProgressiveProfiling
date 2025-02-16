@@ -1,14 +1,15 @@
-import { Inject, Module, OnModuleInit } from '@nestjs/common';
-import { seedDataClass } from './seed.service';
-import { NEOGMA_CONNECTION } from 'src/neogma/neogma-config.interface';
-import { Neogma } from 'neogma';
+import { Module, OnModuleInit } from '@nestjs/common';
+import { SeedDataService } from './seed.service';
+import { OccupationCategoryModule } from 'src/occupation-category/occupation-category.module';
+import { OccupationModule } from 'src/occupation/occupation.module';
 
 @Module({
-    providers: [seedDataClass],
+  imports: [OccupationModule, OccupationCategoryModule],
+  providers: [SeedDataService],
 })
-export class SeedModule implements OnModuleInit{
-    constructor(private readonly seedDataClass: seedDataClass, @Inject(NEOGMA_CONNECTION) private readonly neogma: Neogma) {}
-    async onModuleInit() {
-        await this.seedDataClass.seedData(this.neogma);
-    }
+export class SeedModule implements OnModuleInit {
+  constructor(private readonly seedDataClass: SeedDataService) {}
+  async onModuleInit() {
+    await this.seedDataClass.seedData();
+  }
 }
