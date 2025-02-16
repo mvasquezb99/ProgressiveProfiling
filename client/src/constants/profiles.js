@@ -1,11 +1,11 @@
 export const profiles = [
     {
-        nombre: "María González López",
+        nombre: "María González",
         educacion: [
             {
                 grado: "Licenciatura",
                 area: "Ciencias Políticas",
-                institucion: "Universidad Nacional Autónoma de México (UNAM)"
+                institucion: "Universidad Nacional Autónoma de México"
             }
         ],
         trabajo: [
@@ -17,12 +17,12 @@ export const profiles = [
         habilidades: [
             "Análisis de Políticas Públicas",
             "Gestión de Proyectos",
-            "Tecnologías (Excel, SPSS, Tableau)",
-            "Negociación y Mediación",
+            "Tecnologías (Excel, SPSS)",
+            
         ]
     },
     {
-        nombre: "Carlos Martínez Ramírez",
+        nombre: "Carlos Martínez ",
         educacion: [
             {
                 grado: "Maestría",
@@ -33,18 +33,18 @@ export const profiles = [
         trabajo: [
             {
                 posicion: "Director General",
-                organizacion: "Grupo Empresarial Innovación S.A. de C.V."
+                organizacion: "Grupo Empresarial Innovación S.A."
             }
         ],
         habilidades: [
             "Liderazgo Estratégico",
             "Gestión Financiera",
             "Planificación y Organización",
-            "Tecnologías (ERP, SAP, Oracle)"
+            
         ]
     },
     {
-        nombre: "Ana Lucía Fernández Torres",
+        nombre: "Ana Lucía ",
         educacion: [
             {
                 grado: "Licenciatura",
@@ -60,18 +60,18 @@ export const profiles = [
         ],
         habilidades: [
             "Estrategias de Mercado",
-            "Análisis de Datos (Google Analytics, Tableau)",
+            "Análisis de Datos (Google Analytics)",
             "Gestión de Redes Sociales",
-            "Innovación y Creatividad"
+            
         ]
     },
     {
-        nombre: "Diego Alejandro Méndez",
+        nombre: "Diego Alejandro ",
         educacion: [
             {
                 grado: "Doctorado",
                 area: "Inteligencia Artificial",
-                institucion: "Massachusetts Institute of Technology (MIT)"
+                institucion: "Massachusetts Institute of Technology "
             }
         ],
         trabajo: [
@@ -82,13 +82,13 @@ export const profiles = [
         ],
         habilidades: [
             "Machine Learning",
-            "Desarrollo en Python, TensorFlow, PyTorch",
+            "Desarrollo en Python y TensorFlow",
             "Big Data",
-            "Análisis Predictivo"
+            
         ]
     },
     {
-        nombre: "Laura Sofía Jiménez",
+        nombre: "Laura Sofía ",
         educacion: [
             {
                 grado: "Maestría",
@@ -106,11 +106,11 @@ export const profiles = [
             "Gestión de Talento",
             "Clima Organizacional",
             "Psicología del Trabajo",
-            "Evaluación del Desempeño"
+            
         ]
     },
     {
-        nombre: "Fernando Rodríguez Vega",
+        nombre: "Fernando Rodríguez ",
         educacion: [
             {
                 grado: "Licenciatura",
@@ -128,11 +128,11 @@ export const profiles = [
             "Desarrollo Frontend y Backend",
             "JavaScript, React, Node.js",
             "Bases de Datos SQL y NoSQL",
-            "Optimización de Rendimiento"
+            
         ]
     },
     {
-        nombre: "Sofía Martínez del Valle",
+        nombre: "Sofía Martínez ",
         educacion: [
             {
                 grado: "Licenciatura",
@@ -150,11 +150,11 @@ export const profiles = [
             "Diseño de Espacios",
             "Software CAD y BIM",
             "Proyectos de Sostenibilidad",
-            "Modelado 3D"
+            
         ]
     },
     {
-        nombre: "Gabriel Torres Menéndez",
+        nombre: "Gabriel Torres ",
         educacion: [
             {
                 grado: "Licenciatura",
@@ -172,11 +172,11 @@ export const profiles = [
             "Análisis de Inversiones",
             "Modelos Financieros",
             "Mercados Bursátiles",
-            "Gestión de Riesgo"
+            
         ]
     },
     {
-        nombre: "Valentina López Rivera",
+        nombre: "Valentina López ",
         educacion: [
             {
                 grado: "Maestría",
@@ -194,7 +194,7 @@ export const profiles = [
             "Redacción y Edición",
             "SEO y Estrategia Digital",
             "Investigación Periodística",
-            "Storytelling"
+            
         ]
     }
 ];
