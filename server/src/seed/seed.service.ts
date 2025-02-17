@@ -31,6 +31,7 @@ export class SeedDataService {
 
     const csvFilePath = path.join(
       __dirname,
+      '..',
       'assets',
       'professions_with_category.csv',
     );
@@ -42,7 +43,6 @@ export class SeedDataService {
     let profession: string = '';
     let category: string = '';
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     parse(
       fileContent,
       {
@@ -66,44 +66,50 @@ export class SeedDataService {
           }
         },
       },
-      async (error) => {
+      (error) => {
         if (error) {
           console.error(error);
         } else {
           console.log('Database seeding started...');
-          //console.log(categoriesOccupationsMap);
-          await this.populateDatabase(categoriesOccupationsMap);
-          console.log('Database seeded successfully.');
+          this.populateDatabase(categoriesOccupationsMap)
+            .then(() => console.log('Database seeded successfully.'))
+            .catch(console.error);
         }
       },
     );
   }
 
   async populateDatabase(categoriesOccupationsMap: Record<string, string[]>) {
-    const categoryNodes = await this.occupationCategoryClass.categoryModel.createMany(
-      Object.keys(categoriesOccupationsMap).map((categoryName) => ({ name: categoryName }))
+    await this.occupationCategoryClass.categoryModel.createMany(
+      Object.keys(categoriesOccupationsMap).map((categoryName) => ({
+        name: categoryName,
+      })),
     );
-  
-    const professionNodes = await this.occupationClass.occupationModel.createMany(
-      Object.values(categoriesOccupationsMap).flat().map((profession) => ({ name: profession }))
+
+    await this.occupationClass.occupationModel.createMany(
+      Object.values(categoriesOccupationsMap)
+        .flat()
+        .map((profession) => ({ name: profession })),
     );
-  
-    const relationshipPromises = Object.entries(categoriesOccupationsMap).flatMap(([categoryName, professions]) =>
+
+    const relationshipPromises = Object.entries(
+      categoriesOccupationsMap,
+    ).flatMap(([categoryName, professions]) =>
       professions.map(async (profession) => {
-        const categoryNode = await this.occupationCategoryClass.categoryModel.findOne({
-          where: { name: categoryName },
-        });
-  
+        const categoryNode =
+          await this.occupationCategoryClass.categoryModel.findOne({
+            where: { name: categoryName },
+          });
+
         if (categoryNode) {
-          return categoryNode.relateTo({
-            alias: "Has",
+          await categoryNode.relateTo({
+            alias: 'Has',
             where: { name: profession.trim() },
           });
         }
-      })
+      }),
     );
-  
+
     await Promise.all(relationshipPromises);
   }
-  
 }
