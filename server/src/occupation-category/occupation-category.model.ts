@@ -7,6 +7,7 @@ import {
 } from 'neogma';
 import { NEOGMA_CONNECTION } from 'src/neogma/neogma-config.interface';
 import { OccupationClass } from 'src/occupation/occupation.model';
+import { UserClass } from 'src/user/user.model';
 
 export type CategoryPropertiesI = {
   name: string;
