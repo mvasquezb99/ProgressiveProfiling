@@ -26,8 +26,8 @@ export class SeedDataService {
    */
   async seedData() {
     await this.neogma.queryRunner.run('MATCH (n) DETACH DELETE n'); // Clear the database
-    const professions: { name: string }[] = [];
-    const categories: { name: string }[] = [];
+
+    const categoriesOccupationsMap: Record<string, string[]> = {}; // create a dict
 
     const csvFilePath = path.join(
       __dirname,
@@ -39,6 +39,9 @@ export class SeedDataService {
 
     const fileContent = fs.readFileSync(csvFilePath, { encoding: 'utf-8' });
 
+    let profession: string = '';
+    let category: string = '';
+
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     parse(
       fileContent,
@@ -49,14 +52,16 @@ export class SeedDataService {
         cast: (columnValue: string, context: ExtendedCastingContext) => {
           const trimmedValue = columnValue.trim();
           if (context.column.trim() === 'Profession') {
-            if (!professions.some((p) => p.name === trimmedValue)) {
-              professions.push({ name: trimmedValue });
-            }
+            profession = trimmedValue;
           }
 
           if (context.column.trim() === 'Category') {
-            if (!categories.some((c) => c.name === trimmedValue)) {
-              categories.push({ name: trimmedValue });
+            category = trimmedValue;
+            if (!(category in categoriesOccupationsMap)) {
+              categoriesOccupationsMap[category] = [];
+            }
+            if (!categoriesOccupationsMap[category].includes(profession)) {
+              categoriesOccupationsMap[category].push(profession);
             }
           }
         },
@@ -65,18 +70,40 @@ export class SeedDataService {
         if (error) {
           console.error(error);
         } else {
-          await this.populateDatabase(professions, categories);
+          console.log('Database seeding started...');
+          //console.log(categoriesOccupationsMap);
+          await this.populateDatabase(categoriesOccupationsMap);
           console.log('Database seeded successfully.');
         }
       },
     );
   }
 
-  async populateDatabase(
-    professions: { name: string }[],
-    categories: { name: string }[],
-  ) {
-    await this.occupationClass.occupationModel.createMany(professions);
-    await this.occupationCategoryClass.categoryModel.createMany(categories);
+  async populateDatabase(categoriesOccupationsMap: Record<string, string[]>) {
+    const categoryNodes = await this.occupationCategoryClass.categoryModel.createMany(
+      Object.keys(categoriesOccupationsMap).map((categoryName) => ({ name: categoryName }))
+    );
+  
+    const professionNodes = await this.occupationClass.occupationModel.createMany(
+      Object.values(categoriesOccupationsMap).flat().map((profession) => ({ name: profession }))
+    );
+  
+    const relationshipPromises = Object.entries(categoriesOccupationsMap).flatMap(([categoryName, professions]) =>
+      professions.map(async (profession) => {
+        const categoryNode = await this.occupationCategoryClass.categoryModel.findOne({
+          where: { name: categoryName },
+        });
+  
+        if (categoryNode) {
+          return categoryNode.relateTo({
+            alias: "Has",
+            where: { name: profession.trim() },
+          });
+        }
+      })
+    );
+  
+    await Promise.all(relationshipPromises);
   }
+  
 }
