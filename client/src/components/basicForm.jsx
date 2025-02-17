@@ -11,6 +11,7 @@ export default function BasicForm() {
     name: '',
     birthdate: '',
     education: '',
+    // TODO: Add Category
   });
 
   const handleSubmit = (e) => {
@@ -44,7 +45,7 @@ export default function BasicForm() {
           />
 
           <div className="flex w-full">
-            <Button>Continuar</Button>
+            <Button to={"/instructions"}>Continuar</Button>
           </div>
         </div>
       </form>

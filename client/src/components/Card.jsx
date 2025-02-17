@@ -1,10 +1,15 @@
-export default function Card({ rem , children }) {
+import ProgressTracker from "./ProgressTracker";
+
+export default function Card({ rem, children, step }) {
   return (
-    <div
-      className={`bg-[#f4f4fa] flex flex-col items-center p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300`}
-      style={ rem && { width: `${rem}rem` }}
-    >
-      {children}
+    <div className="flex flex-col">
+      <div
+        className={`bg-[#f4f4fa] flex flex-col items-center p-8 rounded-xl`}
+        style={rem && { width: `${rem}rem` }}
+      >
+        {children}
+      </div>
+      <ProgressTracker step={step} />
     </div>
   );
 }

@@ -21,7 +21,7 @@ export default function ProfessionForm() {
   };
 
   return (
-    <Card rem={30}>
+    <Card rem={30} step={3}>
       <CardTitle
         title="Un ultimo paso"
         subtitle="Selecciona al menos 3 ocupaciones que se relacionen contigo"
