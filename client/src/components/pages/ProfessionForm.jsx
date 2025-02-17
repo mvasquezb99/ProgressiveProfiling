@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import CardTitle from './CardTitle';
-import Card from './Card';
-import ProfessionItem from './ProfessionItem';
-import Button from './Button';
-import { professions } from '../constants/professions';
+import CardTitle from '../common/CardTitle';
+import Card from '../layout/Card';
+import ProfessionItem from '../features/ProfessionItem';
+import Button from '../common/Button';
+import { professions } from '../../constants/professions';
 
 export default function ProfessionForm() {
   const [selectedProfessions, setSelectedProfessions] = useState([]);

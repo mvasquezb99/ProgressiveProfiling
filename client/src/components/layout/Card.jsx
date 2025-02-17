@@ -1,4 +1,4 @@
-import ProgressTracker from "./ProgressTracker";
+import ProgressTracker from "../features/ProgressTracker";
 
 export default function Card({ rem, children, step }) {
   return (

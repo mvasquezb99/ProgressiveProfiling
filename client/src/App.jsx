@@ -1,9 +1,9 @@
 import './App.css';
-import BasicForm from './components/BasicForm';
-import ProfileFrom from './components/profileForm';
-import ProfessionForm from './components/ProfessionForm';
+import BasicForm from './components/pages/basicForm';
+import ProfileFrom from './components/pages/profileForm';
+import ProfessionForm from './components/pages/ProfessionForm';
 import { Route, Routes } from 'react-router';
-import ProfileInstructions from './components/ProfileInstructions';
+import ProfileInstructions from './components/pages/ProfileInstructions';
 
 function App() {
   return (

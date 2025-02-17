@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import prop from '../assets/prop.jpg'
+import prop from '../../assets/prop.jpg'
 export default function ProfileCard({profile}) {
     return (
         <div className="h-full w-full bg-white rounded-2xl text-black flex flex-col shadow-md">

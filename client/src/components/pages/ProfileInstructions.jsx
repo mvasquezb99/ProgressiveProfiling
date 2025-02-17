@@ -1,7 +1,7 @@
-import Card from "./Card";
+import Card from "../layout/Card";
 import React from "react";
-import CardTitle from "./CardTitle";
-import Button from "./Button";
+import CardTitle from "../common/CardTitle";
+import Button from "../common/Button";
 
 export default function ProfileInstructions() {
     return (

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import Card from './Card';
-import MotionContainer from "./MotionContainer";
-import ProfileCard from "./ProfileCard";
-import { profiles } from "../constants/profiles";
-import CardTitle from "./CardTitle";
-import Button from "./Button";
-import SwipeArrows from "./swipeArrows";
+import Card from '../layout/Card';
+import MotionContainer from "../layout/motionContainer";
+import ProfileCard from "../features/profileCard";
+import { profiles } from "../../constants/profiles";
+import Button from "../common/Button";
+import SwipeArrows from "../features/SwipeArrows";
 
 export default function ProfileFrom() {
     const [profile, setProfile] = useState(0);
@@ -19,7 +18,6 @@ export default function ProfileFrom() {
     const handleDislike = () => {
         setProfile((prev) => prev+1)
     }
-
 
     return (
         <Card step={2}>

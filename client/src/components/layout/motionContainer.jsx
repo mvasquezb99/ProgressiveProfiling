@@ -15,7 +15,6 @@ export default function MotionContainer({children, handleLike, handleDislike}) {
         }
     }
 
-
     useEffect(() => {
         card.current = document.getElementById("dragBox");
     }, [])

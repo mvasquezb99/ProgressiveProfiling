@@ -1,4 +1,4 @@
-import { inputStyles, labelStyles } from '../constants/styles';
+import { inputStyles, labelStyles } from '../../constants/styles';
 
 export default function Dropdown({ options, label, placeholder, ...props }) {
   return (

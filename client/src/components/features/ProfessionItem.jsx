@@ -1,4 +1,4 @@
-import { labelStyles } from '../constants/styles';
+import { labelStyles } from '../../constants/styles';
 import { useState } from 'react';
 export default function ProfessionItem({ id, profession, handleClick }) {
   const [isClicked, setIsClicked] = useState(false);
