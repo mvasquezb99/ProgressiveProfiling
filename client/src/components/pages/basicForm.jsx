@@ -1,16 +1,17 @@
 import { useState } from 'react';
-import Dropdown from './Dropdown';
-import { educationOptions } from '../constants/educationOptions';
-import Input from './Input';
-import Card from './Card';
-import CardTitle from './CardTitle';
-import Button from './Button';
+import Dropdown from '../common/Dropdown';
+import { educationOptions } from '../../constants/educationOptions';
+import Input from '../common/Input';
+import Card from '../layout/Card';
+import CardTitle from '../common/CardTitle';
+import Button from '../common/Button';
 
 export default function BasicForm() {
   const [enteredData, setEnteredData] = useState({
     name: '',
     birthdate: '',
     education: '',
+    // TODO: Add Category
   });
 
   const handleSubmit = (e) => {
@@ -44,7 +45,7 @@ export default function BasicForm() {
           />
 
           <div className="flex w-full">
-            <Button>Continuar</Button>
+            <Button to={"/instructions"}>Continuar</Button>
           </div>
         </div>
       </form>

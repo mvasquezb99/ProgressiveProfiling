@@ -1,4 +1,4 @@
-import { inputStyles, labelStyles } from '../constants/styles';
+import { inputStyles, labelStyles } from '../../constants/styles';
 export default function Input({ label, handleChange, type, inputId }) {
   return (
     <div className="flex flex-col">
