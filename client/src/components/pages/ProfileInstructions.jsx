@@ -20,7 +20,7 @@ export default function ProfileInstructions() {
                     <small className="text-sm text-gray-700 leading-snug">
                         * Debes de elegir <strong>almenos 3 perfiles</strong>, pero si quieres puedes continuar explorandolos.
                     </small>
-                    <Button to="/profiles">
+                    <Button>
                         Iniciar
                     </Button>
                 </div>

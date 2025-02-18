@@ -45,7 +45,7 @@ export default function BasicForm() {
           />
 
           <div className="flex w-full">
-            <Button to={"/instructions"}>Continuar</Button>
+            <Button onClick={handleSubmit}>Continuar</Button>
           </div>
         </div>
       </form>
