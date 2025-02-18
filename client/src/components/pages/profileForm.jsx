@@ -27,7 +27,7 @@ export default function ProfileFrom() {
             <SwipeArrows handleDislike={handleDislike} handleLike={handleLike}/>
             {
                 likedProfiles.length >= 3 ? <>
-                    <Button to="/occupations">
+                    <Button>
                         Continuar
                     </Button>
                 </>: ''
