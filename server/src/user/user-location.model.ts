@@ -5,7 +5,7 @@ import { NEOGMA_CONNECTION } from 'src/neogma/neogma-config.interface';
 export type LocationPropertiesI = {
   postalCode: string;
   city: string;
-  countryCode: string;
+  country: string;
   region: string;
 };
 
@@ -35,9 +35,9 @@ export class LocationClass {
         },
         city: {
           type: 'string',
-          required: true,
+          required: false,
         },
-        countryCode: {
+        country: {
           type: 'string',
           required: false,
         },

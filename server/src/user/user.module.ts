@@ -6,11 +6,12 @@ import { UserService } from './user.service';
 import { EducationClass } from './user-education.model';
 import { LocationClass } from './user-location.model';
 import { WorkClass } from './user-work.model';
+import { OccupationCategoryModule } from 'src/occupation-category/occupation-category.module';
 
 @Module({
-  imports: [OccupationModule],
+  imports: [OccupationModule, OccupationCategoryModule],
   providers: [UserClass, UserService, EducationClass, LocationClass, WorkClass],
-  exports: [UserClass],
+  exports: [UserClass,LocationClass,EducationClass,WorkClass],
   controllers: [UserController],
 })
 export class UserModule {}

@@ -22,11 +22,11 @@ export class WorkClass {
       schema: {
         position: {
           type: 'string',
-          required: true,
+          required: false,
         },
         organization: {
           type: 'string',
-          required: true,
+          required: false,
         },
       },
     },

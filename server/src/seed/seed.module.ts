@@ -4,13 +4,14 @@ import { OccupationCategoryModule } from 'src/occupation-category/occupation-cat
 import { OccupationModule } from 'src/occupation/occupation.module';
 import { NeogmaModule } from 'src/neogma/neogma.module';
 import { ConfigModule } from '@nestjs/config';
-
+import { UserModule } from 'src/user/user.module';
 @Module({
   imports: [
     NeogmaModule.forRoot(),
     OccupationModule,
     OccupationCategoryModule,
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
+    UserModule,
   ],
   providers: [SeedDataService],
 })

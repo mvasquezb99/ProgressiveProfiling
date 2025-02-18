@@ -10,6 +10,7 @@ import { OccupationClass } from 'src/occupation/occupation.model';
 import { EducationClass } from './user-education.model';
 import { LocationClass } from './user-location.model';
 import { WorkClass } from './user-work.model';
+import { OccupationCategoryClass } from 'src/occupation-category/occupation-category.model';
 
 export enum Type {
   SAMPLE = 'sample',
@@ -42,6 +43,7 @@ export class UserClass {
   constructor(
     @Inject(NEOGMA_CONNECTION) private readonly neogma: Neogma,
     @Inject(OccupationClass) private readonly occupationClass: OccupationClass,
+    @Inject(OccupationCategoryClass) private readonly occupationCategoryClass: OccupationCategoryClass,
     private readonly workClass: WorkClass,
     private readonly locationClass: LocationClass,
     private readonly educationClass: EducationClass,
@@ -88,7 +90,7 @@ export class UserClass {
           name: 'LikesOccupation',
         },
         LikesCategory: {
-          model: this.occupationClass.occupationModel,
+          model: this.occupationCategoryClass.categoryModel,
           direction: 'out',
           name: 'LikesCategory',
         },
