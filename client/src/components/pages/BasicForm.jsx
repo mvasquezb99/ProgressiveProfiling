@@ -38,36 +38,29 @@ export default function BasicForm({ nextStep }) {
     });
   };
 
+  const getLocationData = async (position) => {
+    const { city, country, address, postcode, region, countryCode } = await getLocation(
+      position.coords.latitude,
+      position.coords.longitude
+    );
+
+    setEnteredData((prevData) => {
+      return {
+        ...prevData,
+        city,
+        country,
+        address,
+        postcode,
+        region,
+        countryCode,
+      };
+    });
+  };
+
   useEffect(() => {
     const calc = async () => {
       try {
-        const getCoords = () =>
-          new Promise((resolve, reject) => {
-            navigator.geolocation.getCurrentPosition(
-              (position) => {
-                resolve({
-                  lat: position.coords.latitude,
-                  lon: position.coords.longitude,
-                });
-              },
-              (error) => reject(error)
-            );
-          });
-
-        const { lat, lon } = await getCoords();
-        const { city, country, address, postcode, region, countryCode } = await getLocation(lat, lon);
-
-        setEnteredData((prevData) => {
-          return {
-            ...prevData,
-            city,
-            country,
-            address,
-            postcode,
-            region,
-            countryCode,
-          };
-        });
+        navigator.geolocation.getCurrentPosition(getLocationData);
       } catch (error) {
         console.error('Error obteniendo la ubicación:', error);
       }

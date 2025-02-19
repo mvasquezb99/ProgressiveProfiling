@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Card from '../layout/Card';
-import MotionContainer from '../layout/motionContainer';
-import ProfileCard from '../features/profileCard';
+import MotionContainer from '../layout/MotionContainer';
+import ProfileCard from '../features/ProfileCard';
 import { profiles } from '../../constants/profiles';
 import Button from '../common/Button';
 import SwipeArrows from '../features/SwipeArrows';

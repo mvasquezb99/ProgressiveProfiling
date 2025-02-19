@@ -1,5 +1,5 @@
 import './App.css';
-import BasicForm from './components/pages/basicForm';
+import BasicForm from './components/pages/BasicForm';
 import ProfileFrom from './components/pages/profileForm';
 import ProfessionForm from './components/pages/ProfessionForm';
 import ProfileInstructions from './components/pages/ProfileInstructions';
