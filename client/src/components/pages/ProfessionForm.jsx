@@ -5,7 +5,7 @@ import ProfessionItem from '../features/ProfessionItem';
 import Button from '../common/Button';
 import { professions } from '../../constants/professions';
 
-export default function ProfessionForm() {
+export default function ProfessionForm({ nextStep }) {
   const [selectedProfessions, setSelectedProfessions] = useState([]);
 
   const submit = () => {
@@ -14,9 +14,9 @@ export default function ProfessionForm() {
 
   const handleClick = (id) => {
     if (selectedProfessions.includes(id)) {
-      setSelectedProfessions(selectedProfessions.filter((profession) => profession !== id));
+      setSelectedProfessions((prevData) => prevData.filter((profession) => profession !== id));
     } else {
-      setSelectedProfessions([...selectedProfessions, id]);
+      setSelectedProfessions((prevData) => [...prevData, id]);
     }
   };
 

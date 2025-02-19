@@ -3,7 +3,7 @@ import React from "react";
 import CardTitle from "../common/CardTitle";
 import Button from "../common/Button";
 
-export default function ProfileInstructions() {
+export default function ProfileInstructions({nextStep}) {
     return (
         <Card step={1}>
             <div className="flex flex-col justify-between h-[30rem]">
@@ -20,7 +20,7 @@ export default function ProfileInstructions() {
                     <small className="text-sm text-gray-700 leading-snug">
                         * Debes de elegir <strong>almenos 3 perfiles</strong>, pero si quieres puedes continuar explorandolos.
                     </small>
-                    <Button>
+                    <Button onClick={() => nextStep(3)}>
                         Iniciar
                     </Button>
                 </div>

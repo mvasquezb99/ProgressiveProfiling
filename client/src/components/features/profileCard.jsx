@@ -17,7 +17,7 @@ export default function ProfileCard({profile}) {
                         <div className="h-max overflow-y-hidden list-disc pl-5 text-sm text-gray-700 space-y-1 ">
                             {
                                 profile.habilidades.map((h) => (
-                                    <li className="text-sm text-gray-700 ">{h}</li>
+                                    <li key={h} className="text-sm text-gray-700 ">{h}</li>
                                 ))
                             }
                         </div>
