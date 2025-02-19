@@ -23,8 +23,8 @@ export type UserPropertiesI = {
   email: string;
   image: string;
   birthdate: string; //TODO: MM-DD-YYYY
-  skills: string[];
-  languages: string[];
+  skills: string;
+  languages: string;
 };
 
 export type UserInstance = NeogmaInstance<UserPropertiesI, UserRelatedNodes>;
@@ -43,7 +43,8 @@ export class UserClass {
   constructor(
     @Inject(NEOGMA_CONNECTION) private readonly neogma: Neogma,
     @Inject(OccupationClass) private readonly occupationClass: OccupationClass,
-    @Inject(OccupationCategoryClass) private readonly occupationCategoryClass: OccupationCategoryClass,
+    @Inject(OccupationCategoryClass)
+    private readonly occupationCategoryClass: OccupationCategoryClass,
     private readonly workClass: WorkClass,
     private readonly locationClass: LocationClass,
     private readonly educationClass: EducationClass,

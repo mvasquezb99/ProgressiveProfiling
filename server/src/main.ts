@@ -13,9 +13,10 @@ async function bootstrap() {
 
   // Create Swagger document
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api/docs', app, document); // Swagger UI available at /api/docs
+  SwaggerModule.setup('api/docs', app, document);
 
   await app.listen(process.env.PORT ?? 3000);
   console.log(`Application is running on: ${await app.getUrl()}`);
+  console.log(`Swagger is running on: ${await app.getUrl()}/api/docs`);
 }
 bootstrap().catch(console.error);

@@ -18,7 +18,7 @@ export class WorkClass {
 
   public workModel = ModelFactory<WorkPropertiesI, WorkRelatedNodes>(
     {
-      label: 'Location',
+      label: 'Work',
       schema: {
         position: {
           type: 'string',
