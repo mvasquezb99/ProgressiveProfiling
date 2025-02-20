@@ -11,6 +11,7 @@ import { EducationClass } from 'src/user/user-education.model';
 import { LocationClass } from 'src/user/user-location.model';
 import { WorkClass } from 'src/user/user-work.model';
 import { faker } from '@faker-js/faker';
+import { v4 as uuidv4 } from "uuid"
 interface ExtendedCastingContext extends CastingContext {
   column: string;
 }
@@ -185,6 +186,7 @@ export class SeedDataService {
       city: faker.location.city(),
       country: faker.location.country(),
       region: faker.location.county(),
+      uuid:uuidv4(),
     }));
 
     const education = Array.from({ length: 20 }, () => ({
@@ -202,11 +204,13 @@ export class SeedDataService {
         'Biology',
       ]),
       institution: faker.company.name(),
+      uuid : uuidv4(),
     }));
 
     const work = Array.from({ length: 20 }, () => ({
       position: faker.person.jobTitle(),
       organization: faker.company.name(),
+      uuid: uuidv4(),
     }));
 
     await this.userClass.userModel.createMany(users);
@@ -268,17 +272,17 @@ export class SeedDataService {
 
         await userNode.relateTo({
           alias: "HasLocation",
-          where: { city: randomLocation.city },
+          where: { uuid: randomLocation.uuid },
         });
 
         await userNode.relateTo({
           alias: "HasEducation",
-          where: { institution: randomEducation.institution },
+          where: { uuid: randomEducation.uuid },
         });
 
         await userNode.relateTo({
           alias: "WorkExperience",
-          where: { organization: randomWork.organization },
+          where: { uuid: randomWork.uuid },
         });
       console.log("----------------------------------------")
     }

@@ -1,12 +1,15 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { NeogmaInstance, Neogma, ModelFactory } from 'neogma';
 import { NEOGMA_CONNECTION } from 'src/neogma/neogma-config.interface';
+import { v4 as uuidv4 } from "uuid";
+
 
 export type LocationPropertiesI = {
   postalCode: string;
   city: string;
   country: string;
   region: string;
+  uuid: string;
 };
 
 export type LocationInstance = NeogmaInstance<
@@ -27,7 +30,7 @@ export class LocationClass {
   >(
     {
       label: 'Location',
-      primaryKeyField: 'city',
+      primaryKeyField: 'uuid',
       schema: {
         postalCode: {
           type: 'string',
@@ -44,6 +47,11 @@ export class LocationClass {
         region: {
           type: 'string',
           required: false,
+        },
+        uuid: { 
+          type: "string", 
+          required: true, 
+          default: () => uuidv4()
         },
       },
     },

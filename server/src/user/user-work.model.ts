@@ -1,10 +1,13 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { NeogmaInstance, Neogma, ModelFactory } from 'neogma';
 import { NEOGMA_CONNECTION } from 'src/neogma/neogma-config.interface';
+import { v4 as uuidv4 } from "uuid";
+
 
 export type WorkPropertiesI = {
   position: string;
   organization: string;
+  uuid:string;
 };
 
 export type WorkInstance = NeogmaInstance<WorkPropertiesI, WorkRelatedNodes>;
@@ -28,7 +31,13 @@ export class WorkClass {
           type: 'string',
           required: false,
         },
+        uuid: { 
+          type: "string", 
+          required: true, 
+          default: () => uuidv4()
+        },
       },
+      primaryKeyField: "uuid",
     },
     this.neogma,
   );
