@@ -1,5 +1,8 @@
 import { labelStyles } from '../../constants/styles';
 import { useState } from 'react';
+
+import PropTypes from 'prop-types';
+
 export default function ProfessionItem({ id, profession, handleClick }) {
   const [isClicked, setIsClicked] = useState(false);
 
@@ -24,4 +27,10 @@ export default function ProfessionItem({ id, profession, handleClick }) {
       <p className={labelStyles}>{profession}</p>
     </div>
   );
+}
+
+ProfessionItem.propTypes = {
+  id: PropTypes.string,
+  profession: PropTypes.string,
+  handleClick: PropTypes.func,
 }

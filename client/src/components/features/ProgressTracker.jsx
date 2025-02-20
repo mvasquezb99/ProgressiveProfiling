@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from 'prop-types';
 
 export default function ProgressTracker({ step }) {
     return (
@@ -8,4 +8,8 @@ export default function ProgressTracker({ step }) {
             <div className={`w-[30%] h-2 ${step === 3 ? "opacity-100" : "opacity-65 animate-pulse"} bg-[#090467] rounded-xl`}></div>
         </div>
     )
+}
+
+ProgressTracker.propTypes = {
+    step: PropTypes.number,
 }

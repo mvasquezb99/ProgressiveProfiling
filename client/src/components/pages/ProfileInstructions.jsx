@@ -1,7 +1,7 @@
 import Card from "../layout/Card";
-import React from "react";
 import CardTitle from "../common/CardTitle";
 import Button from "../common/Button";
+import PropTypes from 'prop-types';
 
 export default function ProfileInstructions({nextStep}) {
     return (
@@ -27,4 +27,8 @@ export default function ProfileInstructions({nextStep}) {
             </div>
         </Card>
     )
+}
+
+ProfileInstructions.propTypes = {
+  nextStep: PropTypes.func,
 }

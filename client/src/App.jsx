@@ -18,7 +18,7 @@ function App() {
       {step === 1 && <BasicForm nextStep={handleNextStep} />}
       {step === 2 && <ProfileInstructions nextStep={handleNextStep} />}
       {step === 3 && <ProfileFrom nextStep={handleNextStep} />}
-      {step === 4 && <ProfessionForm nextStep={handleNextStep} />}
+      {step === 4 && <ProfessionForm/>}
     </div>
   );
 }
