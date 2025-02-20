@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { profiles } from '../../constants/profiles';
+
 import Card from '../layout/Card';
 import MotionContainer from '../layout/MotionContainer';
 import ProfileCard from '../features/ProfileCard';
-import { profiles } from '../../constants/profiles';
 import Button from '../common/Button';
 import SwipeArrows from '../features/SwipeArrows';
+import PropTypes from 'prop-types';
 
 export default function ProfileFrom({ nextStep }) {
   const [profile, setProfile] = useState(0);
@@ -34,4 +36,9 @@ export default function ProfileFrom({ nextStep }) {
       )}
     </Card>
   );
+}
+
+
+ProfileFrom.propTypes = {
+  nextStep: PropTypes.func,
 }

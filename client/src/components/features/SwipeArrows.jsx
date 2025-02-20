@@ -1,4 +1,5 @@
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import PropTypes from 'prop-types';
 
 const SwipeArrows = ({handleLike, handleDislike}) => {
   return (
@@ -26,5 +27,10 @@ const SwipeArrows = ({handleLike, handleDislike}) => {
     </div>
   );
 };
+
+SwipeArrows.propTypes = {
+    handleLike: PropTypes.func,
+    handleDislike: PropTypes.func,
+}
 
 export default SwipeArrows;

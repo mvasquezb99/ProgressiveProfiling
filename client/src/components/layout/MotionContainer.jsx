@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { useDragControls } from "motion/react"
+import { useEffect, useRef, useState } from "react";
 
-export default function MotionContainer({children, handleLike, handleDislike}) {
+import PropTypes from 'prop-types';
+
+export default function MotionContainer({ children, handleLike, handleDislike }) {
     const controls = useDragControls();
     const card = useRef(null); // Mantener elementos del DOM sin re-renders innecesarios.
     const [swipe, setSwipe] = useState("");
@@ -33,4 +35,10 @@ export default function MotionContainer({children, handleLike, handleDislike}) {
             {children}
         </motion.div>
     )
+}
+
+MotionContainer.propTypes = {
+    children: PropTypes.node,
+    handleLike: PropTypes.func,
+    handleDislike: PropTypes.func,
 }

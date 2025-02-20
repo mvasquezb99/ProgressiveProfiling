@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
 import prop from '../../assets/prop.jpg'
-export default function ProfileCard({profile}) {
+import PropTypes from 'prop-types';
+
+export default function ProfileCard({ profile }) {
     return (
         <div className="h-full w-full bg-white rounded-2xl text-black flex flex-col shadow-md">
             <div className="h-1/2 w-full rounded-t-2xl ">
@@ -21,9 +22,17 @@ export default function ProfileCard({profile}) {
                                 ))
                             }
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </div>
         </div>
     )
+}
+
+
+/**
+ * Expand in propTypes when the connection to the db is established
+ */
+ProfileCard.propTypes = {
+    profile: PropTypes.object.isRequired,
 }

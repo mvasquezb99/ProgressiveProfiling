@@ -1,5 +1,7 @@
 import { inputStyles, labelStyles } from '../../constants/styles';
 
+import PropTypes from 'prop-types';
+
 export default function Dropdown({ options, label, placeholder, ...props }) {
   return (
     <div className="flex flex-col">
@@ -16,4 +18,10 @@ export default function Dropdown({ options, label, placeholder, ...props }) {
       </select>
     </div>
   );
+}
+
+Dropdown.propTypes = {
+  options: PropTypes.array,
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
 }

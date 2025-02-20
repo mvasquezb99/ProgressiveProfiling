@@ -8,6 +8,9 @@ import Card from '../layout/Card';
 import CardTitle from '../common/CardTitle';
 import Button from '../common/Button';
 
+import PropTypes from 'prop-types';
+
+
 export default function BasicForm({ nextStep }) {
   const [enteredData, setEnteredData] = useState({
     name: '',
@@ -97,4 +100,8 @@ export default function BasicForm({ nextStep }) {
       </form>
     </Card>
   );
+}
+
+BasicForm.propTypes = {
+  nextStep: PropTypes.func,
 }
