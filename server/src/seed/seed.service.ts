@@ -129,6 +129,36 @@ export class SeedDataService {
   }
 
   async populateUsers() {
+
+    const categoriesSkillsMap: Record<string, string[]> = {
+      "Transporte y Logística": ["Conducción", "Gestión de flotas", "Logística", "Mantenimiento de vehículos"],
+      "Construcción e Infraestructura": ["Carpintería", "Electricidad", "Albañilería", "Dibujo técnico"],
+      "Seguridad y Defensa": ["Vigilancia", "Protección personal", "Control de accesos", "Investigación"],
+      "Fuerzas Armadas": ["Estrategia militar", "Entrenamiento físico", "Manejo de armas", "Operaciones tácticas"],
+      "Comunicación y Marketing": ["Redacción", "SEO", "Marketing digital", "Gestión de redes sociales"],
+      "Turismo y Hostelería": ["Atención al cliente", "Gestión hotelera", "Gastronomía", "Guía turístico"],
+      "Arte, Cultura y Entretenimiento": ["Dibujo", "Música", "Actuación", "Diseño gráfico"],
+      "Administración Pública y Gobierno": ["Legislación", "Políticas públicas", "Gestión de proyectos", "Negociación"],
+      "Finanzas, Contabilidad y Negocios": ["Contabilidad", "Análisis financiero", "Gestión de riesgos", "Inversiones"],
+      "Tecnología de la Información": ["Desarrollo web", "Bases de datos", "Ciberseguridad", "Administración de sistemas"],
+      "Educación y Formación": ["Pedagogía", "Didáctica", "Planificación educativa", "Psicología educativa"],
+      "Salud y Medicina": ["Medicina general", "Enfermería", "Farmacología", "Terapia física"],
+      "Energía y Minería": ["Ingeniería petrolera", "Energía renovable", "Minería", "Geología"],
+      "Manufactura y Producción": ["Automatización", "Control de calidad", "Mantenimiento industrial", "Producción en línea"],
+      "Otros": ["Habilidades blandas", "Trabajo en equipo", "Creatividad", "Resolución de problemas"],
+      "Agricultura y Desarrollo Rural": ["Agrotecnología", "Irrigación", "Cultivo", "Ganadería"],
+      "Matemáticas y Estadística": ["Cálculo", "Probabilidad", "Análisis de datos", "Modelado matemático"],
+      "Ciencias Naturales y Medio Ambiente": ["Biología", "Ecología", "Gestión ambiental", "Cambio climático"],
+      "Ciencias e Investigación": ["Metodología científica", "Escritura académica", "Experimentación", "Análisis de resultados"],
+      "Gerencia y Administración de Propiedades": ["Gestión inmobiliaria", "Administración de edificios", "Tasación", "Mantenimiento"],
+      "Atención al Cliente y Ventas": ["Negociación", "Empatía", "Resolución de conflictos", "Técnicas de venta"],
+      "Liderazgo y Organizaciones Sociales": ["Gestión de equipos", "Mediación", "Planificación estratégica", "Empoderamiento comunitario"]
+    };
+    
+    
+
+    const allSkills = Object.values(categoriesSkillsMap).flat();
+
     faker.seed(123);
     const users = Array.from({ length: 20 }, () => ({
       type: Type.SAMPLE,
@@ -137,9 +167,9 @@ export class SeedDataService {
       image: faker.image.personPortrait(),
       birthdate: faker.date.birthdate().toISOString(),
       skills: faker.helpers
-        .arrayElements(['JavaScript', 'Python', 'Java', 'Node', 'Php'], {
+        .arrayElements(allSkills, {
           min: 1,
-          max: 5,
+          max: 4,
         })
         .join(', '),
       languages: faker.helpers
@@ -183,5 +213,76 @@ export class SeedDataService {
     await this.locationClass.locationModel.createMany(locations);
     await this.educationClass.educationModel.createMany(education);
     await this.workClass.workModel.createMany(work);
+
+
+    //relate users with categories
+    const usersNodes = await this.userClass.userModel.findMany();
+    const locationsNodes = await this.locationClass.locationModel.findMany();
+    const educationsNodes = await this.educationClass.educationModel.findMany();
+    const worksNodes = await this.workClass.workModel.findMany();
+    let relationOccupation = '';
+
+    for (const userNode of usersNodes) {
+      const userSkills = userNode.skills.split(", ");
+    
+      for (const userSkill of userSkills) {
+        for (const occupationSkill of Object.keys(categoriesSkillsMap)) {
+          if(categoriesSkillsMap[occupationSkill].includes(userSkill)){
+            relationOccupation = occupationSkill;
+          }
+        }
+
+        const category = await this.occupationCategoryClass.categoryModel.findOne({
+          where: { name: relationOccupation },
+        });
+
+        if (!category){
+          continue
+        };
+
+        const relationships = await userNode.findRelationships({
+          alias: "LikesCategory",
+          where: {
+            relationship: {},
+            target: { name: relationOccupation },
+          },
+        });
+
+        if (relationships.length === 0) {
+          await userNode.relateTo({
+            alias: "LikesCategory",
+            where: { name: relationOccupation },
+          });
+        }
+
+        
+
+
+
+        
+      }
+
+        const randomEducation = educationsNodes[Math.floor(Math.random() * educationsNodes.length)];
+        const randomLocation = locationsNodes[Math.floor(Math.random() * locationsNodes.length)];
+        const randomWork = worksNodes[Math.floor(Math.random() * worksNodes.length)];
+
+        await userNode.relateTo({
+          alias: "HasLocation",
+          where: { city: randomLocation.city },
+        });
+
+        await userNode.relateTo({
+          alias: "HasEducation",
+          where: { institution: randomEducation.institution },
+        });
+
+        await userNode.relateTo({
+          alias: "WorkExperience",
+          where: { organization: randomWork.organization },
+        });
+      console.log("----------------------------------------")
+    }
+      
+    };
+  
   }
-}
