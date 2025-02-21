@@ -1,8 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { NeogmaInstance, Neogma, ModelFactory } from 'neogma';
 import { NEOGMA_CONNECTION } from 'src/neogma/neogma-config.interface';
-import { v4 as uuidv4 } from "uuid";
-
+import { v4 as uuidv4 } from 'uuid';
 
 export type LocationPropertiesI = {
   postalCode: string;
@@ -18,11 +17,11 @@ export type LocationInstance = NeogmaInstance<
 >;
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface LocationRelatedNodes {}
+export interface LocationRelatedNodes { }
 
 @Injectable()
 export class LocationClass {
-  constructor(@Inject(NEOGMA_CONNECTION) private readonly neogma: Neogma) {}
+  constructor(@Inject(NEOGMA_CONNECTION) private readonly neogma: Neogma) { }
 
   public locationModel = ModelFactory<
     LocationPropertiesI,
@@ -48,10 +47,10 @@ export class LocationClass {
           type: 'string',
           required: false,
         },
-        uuid: { 
-          type: "string", 
-          required: true, 
-          default: () => uuidv4()
+        uuid: {
+          type: 'string',
+          required: true,
+          default: () => uuidv4(),
         },
       },
     },

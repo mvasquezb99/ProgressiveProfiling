@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ModelFactory, Neogma, NeogmaInstance } from 'neogma';
 import { NEOGMA_CONNECTION } from 'src/neogma/neogma-config.interface';
 import {} from 'src/user/user.model';

@@ -6,7 +6,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 @ApiTags('occupation')
 @Controller('occupation')
 export class OccupationController {
-  constructor(private readonly occupationService: OccupationService) { }
+  constructor(private readonly occupationService: OccupationService) {}
 
   @Get()
   @ApiOperation({ summary: 'Get all occupations' })

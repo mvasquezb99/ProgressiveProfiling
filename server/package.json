@@ -27,6 +27,7 @@
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/swagger": "^11.0.3",
+    "csrf-csrf": "^3.1.0",
     "csv-parse": "^5.6.0",
     "neogma": "^1.14.1",
     "nest-commander": "^3.16.0",

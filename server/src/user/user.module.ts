@@ -11,7 +11,7 @@ import { OccupationCategoryModule } from 'src/occupation-category/occupation-cat
 @Module({
   imports: [OccupationModule, OccupationCategoryModule],
   providers: [UserClass, UserService, EducationClass, LocationClass, WorkClass],
-  exports: [UserClass,LocationClass,EducationClass,WorkClass],
+  exports: [UserClass, LocationClass, EducationClass, WorkClass],
   controllers: [UserController],
 })
-export class UserModule {}
+export class UserModule { }

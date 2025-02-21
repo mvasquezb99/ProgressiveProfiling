@@ -1,13 +1,13 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { NeogmaInstance, Neogma, ModelFactory } from 'neogma';
 import { NEOGMA_CONNECTION } from 'src/neogma/neogma-config.interface';
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 
 export type EducationPropertiesI = {
   degree: string;
   institution: string;
   area: string;
-  uuid : string;
+  uuid: string;
 };
 
 export type EducationInstance = NeogmaInstance<
@@ -16,11 +16,11 @@ export type EducationInstance = NeogmaInstance<
 >;
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface EducationRelatedNodes {}
+export interface EducationRelatedNodes { }
 
 @Injectable()
 export class EducationClass {
-  constructor(@Inject(NEOGMA_CONNECTION) private readonly neogma: Neogma) {}
+  constructor(@Inject(NEOGMA_CONNECTION) private readonly neogma: Neogma) { }
 
   public educationModel = ModelFactory<
     EducationPropertiesI,
@@ -41,13 +41,13 @@ export class EducationClass {
           type: 'string',
           required: false,
         },
-        uuid: { 
-          type: "string", 
-          required: true, 
-          default: () => uuidv4()
+        uuid: {
+          type: 'string',
+          required: true,
+          default: () => uuidv4(),
         },
       },
-      primaryKeyField: "uuid"
+      primaryKeyField: 'uuid',
     },
     this.neogma,
   );

@@ -6,7 +6,7 @@ import { ResponseOccupationCategoryDto } from './dto/response-occupation-categor
 export class OccupationCategoryService {
   constructor(
     private readonly occupationCategoryClass: OccupationCategoryClass,
-  ) { }
+  ) {}
 
   async findAll(): Promise<ResponseOccupationCategoryDto[]> {
     const occupationCategory =

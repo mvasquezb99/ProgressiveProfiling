@@ -4,14 +4,13 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  // Swagger configuration
+  app.enableCors();
   const config = new DocumentBuilder()
     .setTitle('Progresive Profiling API')
     .setDescription('API documentation')
     .setVersion('0.0.1')
     .build();
 
-  // Create Swagger document
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
 
