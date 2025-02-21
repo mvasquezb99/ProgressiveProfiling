@@ -7,7 +7,6 @@ import {
   NEOGMA_CONNECTION,
   NeogmaModuleOptions,
 } from './neogma-config.interface';
-import { seedData } from './neogma.seed';
 
 @Global()
 @Module({})
@@ -41,8 +40,6 @@ export class NeogmaModule {
               );
               await neogma.verifyConnectivity();
               console.log('Connected to Neo4j');
-              await seedData(neogma);
-              console.log('Seeded data');
               return neogma;
             } catch (error) {
               throw new ConnectionError(error);
