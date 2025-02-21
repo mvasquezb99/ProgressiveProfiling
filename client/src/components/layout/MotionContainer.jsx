@@ -6,15 +6,23 @@ import PropTypes from 'prop-types';
 
 export default function MotionContainer({ children, handleLike, handleDislike }) {
     const controls = useDragControls();
-    const card = useRef(null); // Mantener elementos del DOM sin re-renders innecesarios.
-    const [swipe, setSwipe] = useState("");
+    const card = useRef(null);
+    const [action, setAction] = useState(false);
 
     const handleDrag = (_, info) => {
-        if (info.offset.x > 5) {
-            handleLike();
-        } else if (info.offset.x < -5) {
-            handleDislike();
+        if (!action) {
+            if (info.offset.x > 5) {
+                handleLike();
+                setAction(true);
+            } else if (info.offset.x < -5) {
+                handleDislike();
+                setAction(true);
+            }
         }
+    }
+
+    const handleActionChange = () => {
+        setAction(false);
     }
 
     useEffect(() => {
@@ -25,11 +33,11 @@ export default function MotionContainer({ children, handleLike, handleDislike })
         <motion.div
             drag="x"
             dragControls={controls}
-            onDragStart={handleDrag}
+            onDrag={handleDrag}
+            onDragEnd={handleActionChange}
             dragSnapToOrigin
             dragConstraints={{ left: -5, right: 5 }}
-            onDragEnd={() => { setSwipe("") }}
-            className={` w-[20rem] h-[28rem] ${swipe}`}
+            className={`w-[20rem] h-[28rem]`}
             id="dragBox"
         >
             {children}
