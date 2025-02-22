@@ -1,10 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ResponseUserDto } from './dto/response-user.dto';
 
-@ApiTags('user')
-@Controller('user')
+@ApiTags('users')
+@Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
@@ -17,5 +17,16 @@ export class UserController {
   })
   findAll(): Promise<ResponseUserDto[]> {
     return this.userService.findAll();
+  }
+
+  @Get('categories')
+  @ApiOperation({ summary: 'Get all users that like a certain category' })
+  @ApiResponse({
+    status: 200,
+    description: 'Return all users that like a certain category ',
+    type: [ResponseUserDto],
+  })
+  findAllByOccupation(@Query('category') name: string): Promise<ResponseUserDto[]> {
+    return this.userService.findByCategory(name);
   }
 }

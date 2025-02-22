@@ -27,7 +27,7 @@ export class SeedDataService {
     @Inject(LocationClass) private readonly locationClass: LocationClass,
     @Inject(EducationClass) private readonly educationClass: EducationClass,
     @Inject(WorkClass) private readonly workClass: WorkClass,
-  ) { }
+  ) {}
 
   /**
    * Seeds the database with initial user data.

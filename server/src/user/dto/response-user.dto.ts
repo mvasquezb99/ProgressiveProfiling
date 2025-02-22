@@ -1,4 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { UserPropertiesI } from '../user.model';
+import { ResponseEducationDto } from './response-education.dto';
+import { ResponseLocationDto } from './response-location.dto';
+import { ResponseWorkDto } from './response-work.dto';
+import { LocationMapper } from '../mapper/location.mapper';
+import { EducationMapper } from '../mapper/education.mapper';
+import { WorkMapper } from '../mapper/work.mapper';
+import { UserMapper } from '../mapper/user.mapper';
 
 export class ResponseUserDto {
   @ApiProperty({
@@ -27,5 +35,38 @@ export class ResponseUserDto {
     description: 'User languages',
   })
   languages: string;
-  //TODO: Add relationships fields
+
+  education: ResponseEducationDto;
+
+  location: ResponseLocationDto;
+
+  work: ResponseWorkDto;
+
+  static apply(user: UserPropertiesI, relationships: Node[] = []): ResponseUserDto {
+
+    const userDto = UserMapper.apply(user);
+
+    for (let i = 0; i < relationships.length; i++) {
+      const element: Node = relationships[i];
+
+      switch (element['labels'][0]) {
+        case "Location":
+          userDto.location = LocationMapper.apply(element['properties']);
+          break;
+        case "Education":
+          userDto.education = EducationMapper.apply(element['properties']);
+          break;
+        case "Work":
+          userDto.work = WorkMapper.apply(element['properties']);
+          break;
+        default:
+          break;
+
+      }
+    }
+
+    return userDto;
+  }
+
+
 }

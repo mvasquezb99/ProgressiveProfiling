@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { LocationPropertiesI } from '../user-location.model';
 
 export class ResponseLocationDto {
   @ApiProperty({
@@ -21,4 +22,15 @@ export class ResponseLocationDto {
     description: 'Region',
   })
   region: string;
+
+  static apply(location: LocationPropertiesI): ResponseLocationDto{
+    const dto = new ResponseLocationDto();
+
+    dto.country = location.country
+    dto.city = location.city
+    dto.postalCode = location.postalCode
+    dto.region = location.region
+
+    return dto;
+  }
 }

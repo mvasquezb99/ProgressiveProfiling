@@ -16,11 +16,11 @@ export type EducationInstance = NeogmaInstance<
 >;
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface EducationRelatedNodes { }
+export interface EducationRelatedNodes {}
 
 @Injectable()
 export class EducationClass {
-  constructor(@Inject(NEOGMA_CONNECTION) private readonly neogma: Neogma) { }
+  constructor(@Inject(NEOGMA_CONNECTION) private readonly neogma: Neogma) {}
 
   public educationModel = ModelFactory<
     EducationPropertiesI,

@@ -14,4 +14,4 @@ import { OccupationCategoryModule } from 'src/occupation-category/occupation-cat
   exports: [UserClass, LocationClass, EducationClass, WorkClass],
   controllers: [UserController],
 })
-export class UserModule { }
+export class UserModule {}

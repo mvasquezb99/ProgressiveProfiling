@@ -8,7 +8,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 export class OccupationCategoryController {
   constructor(
     private readonly occupationCategoryService: OccupationCategoryService,
-  ) { }
+  ) {}
 
   @Get()
   @ApiOperation({ summary: 'Get all occupation categories' })

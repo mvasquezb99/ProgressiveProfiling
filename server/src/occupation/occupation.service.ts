@@ -4,7 +4,7 @@ import { ResponseOccupationDto } from './dto/response-occupation.dto';
 
 @Injectable()
 export class OccupationService {
-  constructor(private readonly occupationClass: OccupationClass) { }
+  constructor(private readonly occupationClass: OccupationClass) {}
 
   async findAll(): Promise<ResponseOccupationDto[]> {
     const occupations = await this.occupationClass.occupationModel.findMany();
