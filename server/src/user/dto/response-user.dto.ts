@@ -11,6 +11,9 @@ import { QueryNode } from 'src/scripts/queries';
 import { LocationPropertiesI } from '../user-location.model';
 import { EducationPropertiesI } from '../user-education.model';
 import { WorkPropertiesI } from '../user-work.model';
+import { ResponseOccupationCategoryDto } from 'src/occupation-category/dto/response-occupation-category.dto';
+import { CategoryPropertiesI } from 'src/occupation-category/occupation-category.model';
+import { OccupationCategoryMapper } from 'src/occupation-category/mapper/occupation-category.mapper';
 
 export class ResponseUserDto {
   @ApiProperty({
@@ -55,17 +58,21 @@ export class ResponseUserDto {
     description: 'User work experience',
   })
   work: ResponseWorkDto;
+  @ApiProperty({
+    example: '{ name: "Tecnology" }',
+    description: 'User occupation category',
+  })
+  category: ResponseOccupationCategoryDto[];
 
   static apply(
     user: UserPropertiesI,
     relationships: QueryNode[] = [],
   ): ResponseUserDto {
     const userDto = UserMapper.apply(user);
-    console.log(userDto);
 
     for (let i = 0; i < relationships.length; i++) {
       const element: QueryNode = relationships[i];
-
+      console.log(element);
       switch (element.labels[0]) {
         case 'Location':
           userDto.location = LocationMapper.apply(
@@ -80,6 +87,13 @@ export class ResponseUserDto {
         case 'Work':
           userDto.work = WorkMapper.apply(
             element.properties as WorkPropertiesI,
+          );
+          break;
+        case 'Category':
+          userDto.category.push(
+            OccupationCategoryMapper.apply(
+              element.properties as CategoryPropertiesI,
+            ),
           );
           break;
         default:
