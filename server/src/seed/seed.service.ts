@@ -27,7 +27,7 @@ export class SeedDataService {
     @Inject(LocationClass) private readonly locationClass: LocationClass,
     @Inject(EducationClass) private readonly educationClass: EducationClass,
     @Inject(WorkClass) private readonly workClass: WorkClass,
-  ) { }
+  ) {}
 
   /**
    * Seeds the database with initial user data.
@@ -270,7 +270,7 @@ export class SeedDataService {
     faker.seed(123);
     const users = Array.from({ length: 20 }, () => ({
       type: Type.SAMPLE,
-      name: faker.internet.username(),
+      name: faker.person.fullName(),
       email: faker.internet.email(),
       image: faker.image.personPortrait(),
       birthdate: faker.date.birthdate().toISOString(),
@@ -283,7 +283,7 @@ export class SeedDataService {
       languages: faker.helpers
         .arrayElements(['English', 'Español', 'French'], {
           min: 1,
-          max: 5,
+          max: 3,
         })
         .join(', '),
     }));
@@ -305,10 +305,10 @@ export class SeedDataService {
         'Superior',
       ]),
       area: faker.helpers.arrayElement([
-        'Computer Science',
-        'Mathematics',
-        'Physics',
-        'Biology',
+        'Ciencias de la Computación',
+        'Matemáticas',
+        'Física',
+        'Biología',
       ]),
       institution: faker.company.name(),
       uuid: uuidv4(),

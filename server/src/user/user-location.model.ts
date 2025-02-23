@@ -17,11 +17,11 @@ export type LocationInstance = NeogmaInstance<
 >;
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface LocationRelatedNodes { }
+export interface LocationRelatedNodes {}
 
 @Injectable()
 export class LocationClass {
-  constructor(@Inject(NEOGMA_CONNECTION) private readonly neogma: Neogma) { }
+  constructor(@Inject(NEOGMA_CONNECTION) private readonly neogma: Neogma) {}
 
   public locationModel = ModelFactory<
     LocationPropertiesI,
