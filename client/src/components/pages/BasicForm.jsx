@@ -10,7 +10,6 @@ import Button from '../common/Button';
 
 import PropTypes from 'prop-types';
 
-
 export default function BasicForm({ nextStep }) {
   const [enteredData, setEnteredData] = useState({
     name: '',
@@ -104,4 +103,4 @@ export default function BasicForm({ nextStep }) {
 
 BasicForm.propTypes = {
   nextStep: PropTypes.func,
-}
+};
