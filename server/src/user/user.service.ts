@@ -1,39 +1,44 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { UserClass } from './user.model';
+import { Injectable } from '@nestjs/common';
+import { UserClass, UserPropertiesI } from './user.model';
 import { ResponseUserDto } from './dto/response-user.dto';
-import { Neogma } from 'neogma';
-import { NEOGMA_CONNECTION } from 'src/neogma/neogma-config.interface';
-import { QueryBuilder } from 'neogma';
-import { queryRelationships, queryUsers } from 'src/scripts/queries';
+import { QueryNode, queryRelationships, queryUsers } from 'src/scripts/queries';
 @Injectable()
 export class UserService {
-  constructor(
-    private readonly userClass: UserClass,
-    @Inject(NEOGMA_CONNECTION) private readonly neogma: Neogma,
-  ) { }
+  constructor(private readonly userClass: UserClass) {}
 
   async findAll(): Promise<ResponseUserDto[]> {
+    const dtoData: Record<string, QueryNode[]> = {};
     const users = await this.userClass.userModel.findMany();
-
-    return users.map((user) => ResponseUserDto.apply(user));
-  }
-
-  async findByCategory(category: string): Promise<ResponseUserDto[]> {
-    
-    let dtoData: Record<string,Node[]> = {}
-    
-    const userNodes = queryUsers(category, this.neogma);
-    const users = (await userNodes).records.map((r) => r.get('u'));
 
     await Promise.all(
       users.map(async (user) => {
-        let relationsNodes = queryRelationships(user.properties.name, this.neogma);
-        dtoData[user.properties.name] = (await relationsNodes).records.map((r) => r.get('n'));
-      })
-    )
-    
-    return users.map((user) => ResponseUserDto.apply(user.properties, dtoData[user.properties.name]));
+        const relationsNodes = await queryRelationships(user.name);
+        dtoData[user.name] = relationsNodes.records.map(
+          (r) => r.get('n') as QueryNode,
+        );
+      }),
+    );
+
+    return users.map((user) => ResponseUserDto.apply(user, dtoData[user.name]));
   }
 
+  async findByCategory(category: string): Promise<ResponseUserDto[]> {
+    const dtoData: Record<string, QueryNode[]> = {};
 
+    const userNodes = await queryUsers(category);
+    const users = userNodes.records.map((r) => r.get('u') as QueryNode);
+    const usersProp = users.map((u) => u.properties as UserPropertiesI);
+    await Promise.all(
+      usersProp.map(async (user) => {
+        const relationsNodes = await queryRelationships(user.name);
+        dtoData[user.name] = relationsNodes.records.map(
+          (r) => r.get('n') as QueryNode,
+        );
+      }),
+    );
+
+    return usersProp.map((user) =>
+      ResponseUserDto.apply(user, dtoData[user.name]),
+    );
+  }
 }

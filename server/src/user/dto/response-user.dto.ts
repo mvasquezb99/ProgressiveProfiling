@@ -7,6 +7,10 @@ import { LocationMapper } from '../mapper/location.mapper';
 import { EducationMapper } from '../mapper/education.mapper';
 import { WorkMapper } from '../mapper/work.mapper';
 import { UserMapper } from '../mapper/user.mapper';
+import { QueryNode } from 'src/scripts/queries';
+import { LocationPropertiesI } from '../user-location.model';
+import { EducationPropertiesI } from '../user-education.model';
+import { WorkPropertiesI } from '../user-work.model';
 
 export class ResponseUserDto {
   @ApiProperty({
@@ -35,38 +39,53 @@ export class ResponseUserDto {
     description: 'User languages',
   })
   languages: string;
-
+  @ApiProperty({
+    example: '{ degree: "Bachelor", institution: "MIT", area: "Biology" }',
+    description: 'User education',
+  })
   education: ResponseEducationDto;
-
+  @ApiProperty({
+    example:
+      '{ postalCode: "89472-3818", city: "San Francisco", country: "United States", region: "California" }',
+    description: 'User location',
+  })
   location: ResponseLocationDto;
-
+  @ApiProperty({
+    example: '{ position: "Software Engineer", organization: "Google" }',
+    description: 'User work experience',
+  })
   work: ResponseWorkDto;
 
-  static apply(user: UserPropertiesI, relationships: Node[] = []): ResponseUserDto {
-
+  static apply(
+    user: UserPropertiesI,
+    relationships: QueryNode[] = [],
+  ): ResponseUserDto {
     const userDto = UserMapper.apply(user);
+    console.log(userDto);
 
     for (let i = 0; i < relationships.length; i++) {
-      const element: Node = relationships[i];
+      const element: QueryNode = relationships[i];
 
-      switch (element['labels'][0]) {
-        case "Location":
-          userDto.location = LocationMapper.apply(element['properties']);
+      switch (element.labels[0]) {
+        case 'Location':
+          userDto.location = LocationMapper.apply(
+            element.properties as LocationPropertiesI,
+          );
           break;
-        case "Education":
-          userDto.education = EducationMapper.apply(element['properties']);
+        case 'Education':
+          userDto.education = EducationMapper.apply(
+            element.properties as EducationPropertiesI,
+          );
           break;
-        case "Work":
-          userDto.work = WorkMapper.apply(element['properties']);
+        case 'Work':
+          userDto.work = WorkMapper.apply(
+            element.properties as WorkPropertiesI,
+          );
           break;
         default:
           break;
-
       }
     }
-
     return userDto;
   }
-
-
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ResponseUserDto } from './dto/response-user.dto';
@@ -6,7 +6,7 @@ import { ResponseUserDto } from './dto/response-user.dto';
 @ApiTags('users')
 @Controller('users')
 export class UserController {
-  constructor(private readonly userService: UserService) { }
+  constructor(private readonly userService: UserService) {}
 
   @Get()
   @ApiOperation({ summary: 'Get all users' })
@@ -26,7 +26,9 @@ export class UserController {
     description: 'Return all users that like a certain category ',
     type: [ResponseUserDto],
   })
-  findAllByOccupation(@Query('category') name: string): Promise<ResponseUserDto[]> {
-    return this.userService.findByCategory(name);
+  findAllByOccupation(
+    @Query('category') category: string,
+  ): Promise<ResponseUserDto[]> {
+    return this.userService.findByCategory(category);
   }
 }

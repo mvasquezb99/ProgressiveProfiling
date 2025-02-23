@@ -1,18 +1,18 @@
-import { ResponseUserDto } from "../dto/response-user.dto";
-import { UserPropertiesI } from "../user.model";
+import { ResponseUserDto } from '../dto/response-user.dto';
+import { UserPropertiesI } from '../user.model';
 
 export class UserMapper {
-    static apply(user : UserPropertiesI): ResponseUserDto {
-        const userDto = new ResponseUserDto();
-        
-        userDto.type = user.type;
-        userDto.name = user.name;
-        userDto.email = user.email;
-        userDto.image = user.image;
-        userDto.birthdate = user.birthdate;
-        userDto.skills = user.skills;
-        userDto.languages = user.languages;
+  static apply(user: UserPropertiesI): ResponseUserDto {
+    const userDto = new ResponseUserDto();
 
-        return userDto;
-    }
+    userDto.type = user.type;
+    userDto.name = user.name;
+    userDto.email = user.email;
+    userDto.image = user.image;
+    userDto.birthdate = user.birthdate;
+    userDto.skills = user.skills;
+    userDto.languages = user.languages;
+
+    return userDto;
+  }
 }
