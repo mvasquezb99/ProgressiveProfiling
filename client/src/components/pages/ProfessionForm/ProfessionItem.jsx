@@ -1,4 +1,4 @@
-import { labelStyles } from '../../constants/styles';
+import { labelStyles } from '../../../constants/styles';
 import { useState } from 'react';
 
 import PropTypes from 'prop-types';

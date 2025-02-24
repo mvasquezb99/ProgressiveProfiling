@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
-import { getLocation } from '../../utils/calcLocation';
-import { educationOptions } from '../../constants/educationOptions';
+import { getLocation } from '../../../utils/calcLocation';
+import { educationOptions } from '../../../constants/educationOptions';
 
-import Dropdown from '../common/Dropdown';
-import Input from '../common/Input';
-import Card from '../layout/Card';
-import CardTitle from '../common/CardTitle';
-import Button from '../common/Button';
+import Dropdown from '../../common/Dropdown';
+import Input from '../../common/Input';
+import Card from '../../layout/Card';
+import CardTitle from '../../common/CardTitle';
+import Button from '../../common/Button';
 
 import PropTypes from 'prop-types';
-
 
 export default function BasicForm({ nextStep }) {
   const [enteredData, setEnteredData] = useState({
@@ -104,4 +103,4 @@ export default function BasicForm({ nextStep }) {
 
 BasicForm.propTypes = {
   nextStep: PropTypes.func,
-}
+};

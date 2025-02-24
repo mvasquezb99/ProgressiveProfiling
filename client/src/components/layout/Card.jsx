@@ -1,4 +1,4 @@
-import ProgressTracker from "../features/ProgressTracker";
+import ProgressTracker from "../common/ProgressTracker";
 import PropTypes from 'prop-types';
 
 export default function Card({ rem, children, step }) {

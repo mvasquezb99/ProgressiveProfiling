@@ -24,4 +24,4 @@ Input.propTypes = {
   handleChange: PropTypes.func,
   type: PropTypes.string,
   inputId: PropTypes.string,
-}
+};

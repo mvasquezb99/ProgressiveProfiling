@@ -1,9 +1,8 @@
 import './App.css';
 import BasicForm from './components/pages/BasicForm';
-import ProfileFrom from './components/pages/profileForm';
-import ProfessionForm from './components/pages/ProfessionForm';
 import ProfileInstructions from './components/pages/ProfileInstructions';
-
+import ProfileFrom from './components/pages/ProfileForm';
+import ProfessionForm from './components/pages/ProfessionForm';
 import { useState } from 'react';
 
 function App() {
