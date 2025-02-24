@@ -1,9 +1,9 @@
-import '../../../index.css';
+import '../../../../index.css';
 import React from 'react';
-import ProfessionForm from '../professionForm';
+import ProfessionForm from '../ProfessionForm';
 
 export default {
-    title: 'Componentes/pages/ProfessionForm',
+    title: 'Componentes/pages/ProfessionForm/ProfessionForm',
     component: ProfessionForm,
     parameters: {
         layout: 'centered',

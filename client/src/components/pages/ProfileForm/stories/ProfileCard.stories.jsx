@@ -1,11 +1,11 @@
-import '../../../index.css';
+import '../../../../index.css';
 import React from 'react';
 import ProfileCard from '../ProfileCard'
-import { profiles } from '../../../constants/profiles'
+import { profiles } from '../../../../constants/profiles'
 
 
 export default {
-    title: 'Componentes/features/ProfileCard',
+    title: 'Componentes/pages/ProfileForm/ProfileCard',
     component: ProfileCard,
     parameters: {
         layout: 'centered',

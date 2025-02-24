@@ -1,9 +1,9 @@
-import '../../../index.css';
+import '../../../../index.css';
 import React from 'react';
 import ProfileForm from '../ProfileForm';
 
 export default {
-    title: 'Componentes/pages/ProfileForm',
+    title: 'Componentes/pages/ProfileForm/ProfileForm',
     component: ProfileForm,
     parameters: {
         layout: 'centered',

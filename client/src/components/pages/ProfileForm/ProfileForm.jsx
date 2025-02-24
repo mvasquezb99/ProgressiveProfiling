@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { profiles } from '../../constants/profiles';
+import { profiles } from '../../../constants/profiles';
 
-import Card from '../layout/Card';
-import MotionContainer from '../layout/MotionContainer';
-import ProfileCard from '../features/ProfileCard';
-import Button from '../common/Button';
-import SwipeArrows from '../features/SwipeArrows';
+import Card from '../../layout/Card';
+import MotionContainer from '../../layout/MotionContainer';
+import ProfileCard from './ProfileCard';
+import Button from '../../common/Button';
+import SwipeArrows from './SwipeArrows';
 import PropTypes from 'prop-types';
 
 export default function ProfileFrom({ nextStep }) {

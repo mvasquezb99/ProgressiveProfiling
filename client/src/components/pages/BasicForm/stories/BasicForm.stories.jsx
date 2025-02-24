@@ -1,9 +1,9 @@
-import '../../../index.css';
+import '../../../../index.css';
 import React from 'react';
-import BasicForm from '../basicForm';
+import BasicForm from '../BasicForm'
 
 export default {
-  title: 'Componentes/pages/BasicForm',
+  title: 'Componentes/pages/BasicForm/BasicForm',
   component: BasicForm,
   parameters: {
     layout: 'centered',

@@ -3,7 +3,7 @@ import React from 'react';
 import ProgressTracker from '../ProgressTracker'
 
 export default {
-    title: 'Componentes/features/ProgressTracker',
+    title: 'Componentes/common/ProgressTracker',
     component: ProgressTracker,
     parameters: {
         layout: 'centered',

@@ -1,4 +1,4 @@
-import prop from '../../assets/prop.jpg'
+import prop from '../../../assets/prop.jpg'
 import PropTypes from 'prop-types';
 
 export default function ProfileCard({ profile }) {

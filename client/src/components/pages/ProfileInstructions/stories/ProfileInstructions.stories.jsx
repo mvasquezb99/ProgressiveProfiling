@@ -1,9 +1,9 @@
-import '../../../index.css';
+import '../../../../index.css';
 import React from 'react';
 import ProfileInstructions from '../ProfileInstructions';
 
 export default {
-    title: 'Componentes/pages/ProfileInstructions',
+    title: 'Componentes/pages/ProfileInstructions/ProfileInstructions',
     component: ProfileInstructions,
     parameters: {
         layout: 'centered',

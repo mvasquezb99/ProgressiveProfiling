@@ -1,7 +1,7 @@
 import '../../../index.css';
 import React from 'react';
 import MotionContainer from '../MotionContainer';
-import ProfileCard from '../../features/ProfileCard'
+import ProfileCard from '../../pages/ProfileForm/ProfileCard'
 import {profiles} from '../../../constants/profiles'
 
 export default {

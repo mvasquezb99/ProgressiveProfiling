@@ -1,10 +1,10 @@
-import '../../../index.css';
+import '../../../../index.css';
 import React from 'react';
 import SwipeArrows from '../SwipeArrows'
 
 
 export default {
-    title: 'Componentes/features/SwipeArrows',
+    title: 'Componentes/pages/ProfileForm/SwipeArrows',
     component: SwipeArrows,
     parameters: {
         layout: 'centered',

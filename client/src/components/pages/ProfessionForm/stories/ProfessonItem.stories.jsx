@@ -1,9 +1,9 @@
-import '../../../index.css';
+import '../../../../index.css';
 import React from 'react';
 import ProfessionItem from '../ProfessionItem';
 
 export default {
-  title: 'Componentes/features/ProfessionItem',
+  title: 'Componentes/pages/ProfessionForm/ProfessionItem',
   component: ProfessionItem,
   parameters: {
     layout: 'centered',
