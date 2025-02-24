@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function ProfileCard({ profile }) {
     return (
-        <div className="h-full w-full bg-white rounded-2xl text-black flex flex-col shadow-md">
+        <div className="h-full w-full max-w-80 bg-white rounded-2xl text-black flex flex-col shadow-md">
             <div className="h-1/2 w-full rounded-t-2xl ">
                 <img className="h-full w-full max-h-45 rounded-t-2xl object-cover object-center" src={prop} alt="prop"></img>
                 <div className="w-full h-full p-2 pl-4 space-y-1">
