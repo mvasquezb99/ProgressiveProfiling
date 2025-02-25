@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
-
+import { useCallback, useEffect, useState, useContext } from 'react';
+import { FormContext } from '../../../context/context';
 import Card from '../../layout/Card';
 import MotionContainer from '../../layout/MotionContainer';
 import ProfileCard from './ProfileCard';
@@ -11,10 +11,12 @@ import Loading from '../../common/Loading';
 
 export default function ProfileFrom({ nextStep }) {
   const [likedProfiles, setLikedProfiles] = useState([]);
-  const [categoryProfiles, setCategoryProfiles] = useState(null)
+  const [categoryProfiles, setCategoryProfiles] = useState(null);
   const [profile, setProfile] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [enteredData, setEnteredData] = useContext(FormContext);
 
   const handleLike = () => {
     setLikedProfiles((prev) => [...prev, profile]);
@@ -31,27 +33,27 @@ export default function ProfileFrom({ nextStep }) {
   const getRandomProfile = useCallback((array) => {
     const randomIndex = getRandomInt(0, array.length - 1);
     setProfile(array[randomIndex]);
-  }, [])
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/users/categories?category=Gerencia y Administración de Propiedades");
+        const response = await axios.get(
+          `http://localhost:3000/users/categories?category=${enteredData.occupationCategory}`
+        );
         setCategoryProfiles(response.data);
 
         if (response.data.length >= 1) {
-          getRandomProfile(response.data)
+          getRandomProfile(response.data);
         }
-      }
-      catch (err) {
+      } catch (err) {
         setError(err.message);
-      }
-      finally {
+      } finally {
         setIsLoading(false);
       }
-    }
+    };
     fetchData();
-  }, [getRandomProfile])
+  }, [getRandomProfile]);
 
   return (
     <Card step={2}>
@@ -70,7 +72,6 @@ export default function ProfileFrom({ nextStep }) {
   );
 }
 
-
 ProfileFrom.propTypes = {
   nextStep: PropTypes.func,
-}
+};

@@ -34,11 +34,7 @@ const Template = (args) => <Dropdown {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  options: [
-    { id: 1, value: 'Option 1' },
-    { id: 2, value: 'Option 2' },
-    { id: 3, value: 'Option 3' },
-  ],
+  options: ['Opcion 1', 'Opcion 2', 'Opcion 3'],
   label: 'Example dropdown',
   placeholder: 'Select an option',
 };

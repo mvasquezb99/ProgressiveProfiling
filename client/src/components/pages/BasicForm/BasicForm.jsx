@@ -1,37 +1,39 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { getLocation } from '../../../utils/calcLocation';
-import { educationOptions } from '../../../constants/educationOptions';
-
+import { categories } from '../../../constants/educationCategories';
+import { FormContext } from '../../../context/context';
 import Dropdown from '../../common/Dropdown';
 import Input from '../../common/Input';
 import Card from '../../layout/Card';
 import CardTitle from '../../common/CardTitle';
 import Button from '../../common/Button';
-
 import PropTypes from 'prop-types';
+import ErrorMessage from '../../common/ErrorMessage';
 
 export default function BasicForm({ nextStep }) {
-  const [enteredData, setEnteredData] = useState({
-    name: '',
-    birthdate: '',
-    education: '',
-    city: '',
-    country: '',
-    address: '',
-    postcode: '',
-    region: '',
-    countryCode: '',
-
-    // TODO: Add Category
-  });
+  const [enteredData, setEnteredData] = useContext(FormContext);
+  const [error, setError] = useState({ name: false, birthdate: false, occupationCategory: false });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    nextStep(2);
-    console.log(enteredData);
+    const errors = {
+      name: enteredData.name.trim() === '',
+      birthdate: enteredData.birthdate.trim() === '',
+      occupationCategory: enteredData.occupationCategory.trim() === '',
+    };
+
+    setError(errors);
+
+    if (!errors.name && !errors.birthdate && !errors.occupationCategory) {
+      nextStep(2);
+      console.log(enteredData);
+    }
   };
 
   const handleChange = (id, value) => {
+    if (error) {
+      setError((prev) => ({ ...prev, [id]: false }));
+    }
     setEnteredData((prev) => {
       return {
         ...prev,
@@ -81,16 +83,21 @@ export default function BasicForm({ nextStep }) {
 
         <div>
           <Input label="Nombre" handleChange={handleChange} type="text" inputId="name" />
+          {error.name && <ErrorMessage message="!Por favor ingresa tu nombre!" />}
           <Input label="Fecha de Nacimiento" handleChange={handleChange} type="date" inputId="birthdate" />
+          {error.birthdate && <ErrorMessage message="!Por favor ingresa tu fecha de nacimiento!" />}
 
           <Dropdown
-            options={educationOptions}
-            label={'Nivel de educación'}
-            placeholder="-- Seleccione un nivel de educación --"
+            options={categories}
+            label={'Categoría de ocupación'}
+            placeholder="-- Seleccione una Categoría de ocupación --"
             name="select"
-            onChange={(e) => handleChange('education', e.target.value)}
-            value={enteredData.education}
+            onChange={(e) => handleChange('occupationCategory', e.target.value)}
+            value={enteredData.occupationCategory}
           />
+          {error.occupationCategory && (
+            <ErrorMessage message="!Por favor ingresa tu categoría de ocupación!" />
+          )}
 
           <div className="flex w-full">
             <Button onClick={handleSubmit}>Continuar</Button>
