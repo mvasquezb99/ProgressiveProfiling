@@ -9,7 +9,7 @@ export class UserService {
   constructor(
     private readonly userClass: UserClass,
     @Inject(ProfilerService) private readonly profilerService: ProfilerService,
-  ) { }
+  ) {}
 
   async findAll(): Promise<ResponseUserDto[]> {
     const dtoData: Record<string, QueryNode[]> = {};

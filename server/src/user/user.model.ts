@@ -22,7 +22,7 @@ export type UserPropertiesI = {
   name: string;
   email: string;
   image: string;
-  birthdate: string; //TODO: MM-DD-YYYY
+  birthdate: string;
   skills: string;
   languages: string;
 };

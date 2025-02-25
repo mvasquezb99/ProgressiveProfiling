@@ -59,7 +59,7 @@ export class ResponseUserDto {
   })
   work: ResponseWorkDto;
   @ApiProperty({
-    example: '{ name: "Tecnology" }',
+    example: '[{ name: "Tecnology" }, { name: "Business" }]',
     description: 'User occupation category',
   })
   category: ResponseOccupationCategoryDto[];
@@ -72,7 +72,6 @@ export class ResponseUserDto {
 
     for (let i = 0; i < relationships.length; i++) {
       const element: QueryNode = relationships[i];
-      console.log(element);
       switch (element.labels[0]) {
         case 'Location':
           userDto.location = LocationMapper.apply(
