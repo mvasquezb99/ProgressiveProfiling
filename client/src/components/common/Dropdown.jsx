@@ -11,8 +11,8 @@ export default function Dropdown({ options, label, placeholder, ...props }) {
       <select className={inputStyles} {...props}>
         <option hidden>{placeholder}</option>
         {options.map((option) => (
-          <option key={option.id} value={option.id}>
-            {option.value}
+          <option key={option} value={option}>
+            {option}
           </option>
         ))}
       </select>
@@ -24,4 +24,4 @@ Dropdown.propTypes = {
   options: PropTypes.array,
   label: PropTypes.string,
   placeholder: PropTypes.string,
-}
+};
