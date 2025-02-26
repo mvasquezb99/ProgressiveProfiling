@@ -3,7 +3,7 @@ import { UserClass, UserPropertiesI } from './user.model';
 import { ResponseUserDto } from './dto/response-user.dto';
 import { QueryNode, queryRelationships, queryUsers } from 'src/scripts/queries';
 import { ProfilerService } from 'src/profiler/profiler.service';
-import { RequestUserDto } from './dto/request-user.dto';
+import { RequestInfoDto } from './dto/request-info.dto';
 @Injectable()
 export class UserService {
   constructor(
@@ -47,7 +47,7 @@ export class UserService {
     );
   }
 
-  generateProfile(body: RequestUserDto[]) {
+  generateProfile(body: RequestInfoDto) {
     return this.profilerService.profilingAlgorithm(body);
   }
 }

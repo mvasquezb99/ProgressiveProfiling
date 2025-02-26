@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { RequestUserDto } from 'src/user/dto/request-user.dto';
+import { RequestInfoDto } from 'src/user/dto/request-info.dto';
 
 @Injectable()
 export class ProfilerService {
-  profilingAlgorithm(body: RequestUserDto[]) {
+  profilingAlgorithm(body: RequestInfoDto) {
     return (
       'From liked users: ' + JSON.stringify(body) + '\nGenerating profile...'
     );

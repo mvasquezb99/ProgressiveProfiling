@@ -1,8 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { ApiProperty } from '@nestjs/swagger';
 import {
-  IsEmail,
-  IsEnum,
   IsInstance,
   IsNotEmptyObject,
   IsString,
@@ -14,26 +11,10 @@ import { RequestWorkDto } from './request-work.dto';
 import { RequestOccupationCategoryDto } from 'src/occupation-category/dto/request-occupation-category.dto';
 import { Type } from 'class-transformer';
 
-export enum Status {
-  LIKED = 'liked',
-  DISLIKED = 'disliked',
-}
-
 export class RequestUserDto {
-  @ApiProperty({
-    example: 'sample',
-    description: 'User type (liked | disliked)',
-  })
-  @IsEnum(Status)
-  status: Status;
-
   @ApiProperty({ example: 'John Doe', description: 'User name' })
   @IsString()
   name: string;
-
-  @ApiProperty({ example: 'JohnDoe@example.com', description: 'User email' })
-  @IsEmail()
-  email: string;
 
   @ApiProperty({
     example: 'Software Engineer, Web Developer',

@@ -2,15 +2,15 @@ import {
   Body,
   Controller,
   Get,
-  ParseArrayPipe,
   Post,
   Query,
+  UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ResponseUserDto } from './dto/response-user.dto';
-import { RequestUserDto } from './dto/request-user.dto';
+import { RequestInfoDto } from './dto/request-info.dto';
 
 @ApiTags('users')
 @Controller('users')
@@ -44,16 +44,11 @@ export class UserController {
   @Post('generate')
   @ApiOperation({ summary: 'Generate a profile' })
   @ApiResponse({
-    status: 200,
+    status: 201,
     description: 'Generate a profile',
   })
-  generateProfile(
-    @Body(
-      new ParseArrayPipe({ items: RequestUserDto }),
-      new ValidationPipe({ transform: true }),
-    )
-    body: RequestUserDto[],
-  ) {
+  @UsePipes(new ValidationPipe({ transform: true }))
+  generateProfile(@Body() body: RequestInfoDto) {
     return this.userService.generateProfile(body);
   }
 }
