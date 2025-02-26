@@ -1,6 +1,6 @@
-import Card from "../layout/Card";
-import CardTitle from "../common/CardTitle";
-import Button from "../common/Button";
+import Card from "../../layout/Card";
+import CardTitle from "../../common/CardTitle";
+import Button from "../../common/Button";
 import PropTypes from 'prop-types';
 
 export default function ProfileInstructions({nextStep}) {
