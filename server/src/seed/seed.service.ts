@@ -126,6 +126,27 @@ export class SeedDataService {
       }),
     );
 
+    // RELACIONAR Ciencias e Investigación -> Tecnología de la Información
+    // RELACIONAR Transporte y Logística -> Manufactura y Producción
+    // EJEMPLO RELACION CON PESO
+    const transporteNode =
+      await this.occupationCategoryClass.categoryModel.findOne({
+        where: {
+          name: 'Transporte y Logística',
+        },
+      });
+
+    if (!transporteNode) {
+      return;
+    }
+
+    await transporteNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Seguridad y Defensa' },
+      properties: { Weight: 1 },
+    });
+    // ----------------------------------------
+
     await Promise.all(relationshipPromises);
   }
 
