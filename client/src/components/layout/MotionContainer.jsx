@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import PropTypes from 'prop-types';
 
-export default function MotionContainer({ children, handleLike, handleDislike }) {
+export default function MotionContainer({ children, handleLike, handleDislike, handleSuperlike }) {
     const controls = useDragControls();
     const card = useRef(null);
     const [action, setAction] = useState(false);
@@ -16,6 +16,10 @@ export default function MotionContainer({ children, handleLike, handleDislike })
                 setAction(true);
             } else if (info.offset.x < -10) {
                 handleDislike();
+                setAction(true);
+            } 
+            else if (info.offset.y < -10) {
+                handleSuperlike();
                 setAction(true);
             }
         }
@@ -31,12 +35,12 @@ export default function MotionContainer({ children, handleLike, handleDislike })
 
     return (
         <motion.div
-            drag="x"
+            drag
             dragControls={controls}
             onDrag={handleDrag}
             onDragEnd={handleActionChange}
             dragSnapToOrigin
-            dragConstraints={{ left: -10, right: 10 }}
+            dragConstraints={{ left: -10, right: 10, top: -10, bottom: 10 }}
             className={`w-[20rem] h-[28rem]`}
             id="dragBox"
         >
@@ -49,4 +53,5 @@ MotionContainer.propTypes = {
     children: PropTypes.node,
     handleLike: PropTypes.func,
     handleDislike: PropTypes.func,
+    handleSuperlike: PropTypes.func,
 }

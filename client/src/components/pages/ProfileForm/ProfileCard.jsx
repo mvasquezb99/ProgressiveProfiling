@@ -14,15 +14,8 @@ export default function ProfileCard({ profile }) {
                         <small>💼 {education.area}</small>
                     </div>
                     <div className="text-sm overflow-y-hidden space-y-1">
-                        <p className="text-base text-gray-700 leading-snug">Actualmente trabajo como  <strong>{work.position}</strong> en {work.organization} cuento con experiencia en {education.area} y puedo aportar:
+                        <p className="text-base text-gray-700 leading-snug">Actualmente trabajo como  <strong style={{ color: 'blue' }}>{work.position}</strong> en {work.organization} cuento con experiencia en {education.area}.
                         </p>
-                        <div className="h-max overflow-y-hidden list-disc pl-5 text-sm text-gray-700 space-y-1 ">
-                            {
-                                skills.split(',').map((h) => (
-                                    <li key={h} className="text-sm text-gray-700 ">{h}</li>
-                                ))
-                            }
-                        </div>
                     </div>
                 </div>
             </div>
