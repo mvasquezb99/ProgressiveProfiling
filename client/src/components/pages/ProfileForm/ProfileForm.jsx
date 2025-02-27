@@ -14,7 +14,9 @@ export default function ProfileFrom({ nextStep }) {
   const [dislikedProfiles, setDislikedProfiles] = useState([]);
   const [superlikedProfiles, setSuperlikedProfiles] = useState([]);
   const [categoryProfiles, setCategoryProfiles] = useState(null);
+
   const [profile, setProfile] = useState(null);
+
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -69,7 +71,7 @@ export default function ProfileFrom({ nextStep }) {
         {!isLoading ? <ProfileCard profile={profile} /> : <Loading />}
       </MotionContainer>
       <SwipeArrows handleDislike={handleDislike} handleLike={handleLike} handleSuperlike={handleSuperlike} />
-      {likedProfiles.length >= 3 ? (
+      {likedProfiles.length >= 7 || superlikedProfiles >= 7 ? (
         <>
           <Button onClick={() => nextStep(4)}>Continuar</Button>
         </>

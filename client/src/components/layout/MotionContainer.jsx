@@ -17,7 +17,7 @@ export default function MotionContainer({ children, handleLike, handleDislike, h
             } else if (info.offset.x < -10) {
                 handleDislike();
                 setAction(true);
-            } 
+            }
             else if (info.offset.y < -10) {
                 handleSuperlike();
                 setAction(true);
@@ -40,7 +40,7 @@ export default function MotionContainer({ children, handleLike, handleDislike, h
             onDrag={handleDrag}
             onDragEnd={handleActionChange}
             dragSnapToOrigin
-            dragConstraints={{ left: -10, right: 10, top: -10, bottom: 10 }}
+            dragConstraints={{ left: -10, right: 10, top: -10, bottom: 0 }}
             className={`w-[20rem] h-[28rem]`}
             id="dragBox"
         >
