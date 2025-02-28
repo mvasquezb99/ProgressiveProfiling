@@ -11,8 +11,12 @@ import Loading from '../../common/Loading';
 
 export default function ProfileFrom({ nextStep }) {
   const [likedProfiles, setLikedProfiles] = useState([]);
+  const [dislikedProfiles, setDislikedProfiles] = useState([]);
+  const [superlikedProfiles, setSuperlikedProfiles] = useState([]);
   const [categoryProfiles, setCategoryProfiles] = useState(null);
+
   const [profile, setProfile] = useState(null);
+
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -24,6 +28,12 @@ export default function ProfileFrom({ nextStep }) {
   };
 
   const handleDislike = () => {
+    setDislikedProfiles((prev) => [...prev, profile]);
+    getRandomProfile(categoryProfiles);
+  };
+
+  const handleSuperlike = () => {
+    setSuperlikedProfiles((prev) => [...prev, profile]);
     getRandomProfile(categoryProfiles);
   };
 
@@ -57,11 +67,11 @@ export default function ProfileFrom({ nextStep }) {
 
   return (
     <Card step={2}>
-      <MotionContainer handleLike={handleLike} handleDislike={handleDislike}>
+      <MotionContainer handleLike={handleLike} handleDislike={handleDislike} handleSuperlike={handleSuperlike}>
         {!isLoading ? <ProfileCard profile={profile} /> : <Loading />}
       </MotionContainer>
-      <SwipeArrows handleDislike={handleDislike} handleLike={handleLike} />
-      {likedProfiles.length >= 3 ? (
+      <SwipeArrows handleDislike={handleDislike} handleLike={handleLike} handleSuperlike={handleSuperlike} />
+      {likedProfiles.length >= 7 || superlikedProfiles >= 7 ? (
         <>
           <Button onClick={() => nextStep(4)}>Continuar</Button>
         </>
