@@ -128,7 +128,8 @@ export class SeedDataService {
 
     await Promise.all(relationshipPromises);
 
-    // RELACIONAR Ciencias e Investigación -> Tecnología de la Información
+    //--------Relate Ciencias e Investigación-------------
+
     const cienceNode =
       await this.occupationCategoryClass.categoryModel.findOne({
         where: {
@@ -136,36 +137,84 @@ export class SeedDataService {
         },
       });
 
-    if (!cienceNode) {
-      return;
-    }
+      if (!cienceNode) {
+        return;
+      }
+  
 
+    //With Tecnología de la Información
     await cienceNode.relateTo({
       alias: 'Similar',
       where: { name: 'Tecnología de la Información' },
-      properties: { Weight: 5 },
+      properties: { Weight: 1 },
     });
-    
-    // RELACIONAR Transporte y Logística -> Manufactura y Producción
-    const transportNode =
+
+    //With Transporte y Logística
+
+    await cienceNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Transporte y Logística' },
+      properties: { Weight: 9 },
+    });
+
+    //With Manufactura y Producción
+
+    await cienceNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Manufactura y Producción' },
+      properties: { Weight: 9 },
+    });
+
+
+    //--------Relate Tecnología de la Información-------------
+
+    const tecnologiaNode =
+      await this.occupationCategoryClass.categoryModel.findOne({
+        where: {
+          name: 'Tecnología de la Información',
+        },
+      });
+
+      if (!tecnologiaNode) {
+        return;
+      }
+
+    //With Transporte y Logística
+
+    await tecnologiaNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Transporte y Logística' },
+      properties: { Weight: 9 },
+    });
+
+    //With Manufactura y Producción
+
+    await tecnologiaNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Manufactura y Producción' },
+      properties: { Weight: 9 },
+    });
+
+    //--------Relate Transporte y Logística-------------
+
+    const transporteNode =
       await this.occupationCategoryClass.categoryModel.findOne({
         where: {
           name: 'Transporte y Logística',
         },
       });
 
-    if (!transportNode) {
-      return;
-    }
+      if (!transporteNode) {
+        return;
+      }
 
-    await transportNode.relateTo({
+    //With Manufactura y Producción
+
+    await transporteNode.relateTo({
       alias: 'Similar',
       where: { name: 'Manufactura y Producción' },
-      properties: { Weight: 5 },
+      properties: { Weight: 1 },
     });
-    // EJEMPLO RELACION CON PESO
-    // ----------------------------------------
-
     
   }
 
