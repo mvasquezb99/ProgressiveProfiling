@@ -12,6 +12,7 @@ import { LocationClass } from 'src/user/user-location.model';
 import { WorkClass } from 'src/user/user-work.model';
 import { faker } from '@faker-js/faker';
 import { v4 as uuidv4 } from 'uuid';
+import chalk from 'chalk';
 interface ExtendedCastingContext extends CastingContext {
   column: string;
 }
@@ -27,7 +28,7 @@ export class SeedDataService {
     @Inject(LocationClass) private readonly locationClass: LocationClass,
     @Inject(EducationClass) private readonly educationClass: EducationClass,
     @Inject(WorkClass) private readonly workClass: WorkClass,
-  ) {}
+  ) { }
 
   /**
    * Seeds the database with initial user data.
@@ -137,10 +138,10 @@ export class SeedDataService {
         },
       });
 
-      if (!cienceNode) {
-        return;
-      }
-  
+    if (!cienceNode) {
+      return;
+    }
+
 
     //With Tecnología de la Información
     await cienceNode.relateTo({
@@ -175,9 +176,9 @@ export class SeedDataService {
         },
       });
 
-      if (!tecnologiaNode) {
-        return;
-      }
+    if (!tecnologiaNode) {
+      return;
+    }
 
     //With Transporte y Logística
 
@@ -204,9 +205,9 @@ export class SeedDataService {
         },
       });
 
-      if (!transporteNode) {
-        return;
-      }
+    if (!transporteNode) {
+      return;
+    }
 
     //With Manufactura y Producción
 
@@ -215,7 +216,7 @@ export class SeedDataService {
       where: { name: 'Manufactura y Producción' },
       properties: { Weight: 1 },
     });
-    
+
   }
 
   async populateUsers() {
@@ -357,7 +358,7 @@ export class SeedDataService {
     const allSkills = Object.values(categoriesSkillsMap).flat();
 
     faker.seed(123);
-    const users = Array.from({ length: 20 }, () => ({
+    const users = Array.from({ length: 50 }, () => ({
       type: Type.SAMPLE,
       name: faker.person.fullName(),
       email: faker.internet.email(),
@@ -419,21 +420,21 @@ export class SeedDataService {
     const locationsNodes = await this.locationClass.locationModel.findMany();
     const educationsNodes = await this.educationClass.educationModel.findMany();
     const worksNodes = await this.workClass.workModel.findMany();
-    let relationOccupation = '';
+    let relationCategory = '';
 
     for (const userNode of usersNodes) {
       const userSkills = userNode.skills.split(', ');
 
       for (const userSkill of userSkills) {
-        for (const occupationSkill of Object.keys(categoriesSkillsMap)) {
-          if (categoriesSkillsMap[occupationSkill].includes(userSkill)) {
-            relationOccupation = occupationSkill;
+        for (const categorySkill of Object.keys(categoriesSkillsMap)) {
+          if (categoriesSkillsMap[categorySkill].includes(userSkill)) {
+            relationCategory = categorySkill;
           }
         }
 
         const category =
           await this.occupationCategoryClass.categoryModel.findOne({
-            where: { name: relationOccupation },
+            where: { name: relationCategory },
           });
 
         if (!category) {
@@ -444,16 +445,31 @@ export class SeedDataService {
           alias: 'LikesCategory',
           where: {
             relationship: {},
-            target: { name: relationOccupation },
+            target: { name: relationCategory },
           },
         });
 
         if (relationships.length === 0) {
           await userNode.relateTo({
             alias: 'LikesCategory',
-            where: { name: relationOccupation },
+            where: { name: relationCategory },
           });
         }
+
+        //Relate user with occupation from the specific category
+        const categoryRelatedOccupations = await category.findRelationships({
+          alias: 'Has',
+        });
+
+
+        const categoryRelatedOccupationsMap = categoryRelatedOccupations.map(item => item.target.dataValues.name);
+        const selectedOccupation = categoryRelatedOccupationsMap[Math.floor(Math.random() * categoryRelatedOccupationsMap.length)];
+
+        await userNode.relateTo({
+          alias: 'LikesOccupation',
+          where: { name: selectedOccupation },
+        });
+
       }
 
       const randomEducation =
