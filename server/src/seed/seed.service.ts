@@ -42,7 +42,7 @@ export class SeedDataService {
       __dirname,
       '..',
       'assets',
-      'professions_with_category.csv',
+      'professions_filtered.csv',
     );
 
     const headers = ['Profession', 'Category'];
@@ -126,28 +126,47 @@ export class SeedDataService {
       }),
     );
 
+    await Promise.all(relationshipPromises);
+
     // RELACIONAR Ciencias e Investigación -> Tecnología de la Información
+    const cienceNode =
+      await this.occupationCategoryClass.categoryModel.findOne({
+        where: {
+          name: 'Ciencias e Investigación',
+        },
+      });
+
+    if (!cienceNode) {
+      return;
+    }
+
+    await cienceNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Tecnología de la Información' },
+      properties: { Weight: 5 },
+    });
+    
     // RELACIONAR Transporte y Logística -> Manufactura y Producción
-    // EJEMPLO RELACION CON PESO
-    const transporteNode =
+    const transportNode =
       await this.occupationCategoryClass.categoryModel.findOne({
         where: {
           name: 'Transporte y Logística',
         },
       });
 
-    if (!transporteNode) {
+    if (!transportNode) {
       return;
     }
 
-    await transporteNode.relateTo({
+    await transportNode.relateTo({
       alias: 'Similar',
-      where: { name: 'Seguridad y Defensa' },
-      properties: { Weight: 1 },
+      where: { name: 'Manufactura y Producción' },
+      properties: { Weight: 5 },
     });
+    // EJEMPLO RELACION CON PESO
     // ----------------------------------------
 
-    await Promise.all(relationshipPromises);
+    
   }
 
   async populateUsers() {
