@@ -19,8 +19,8 @@ function App() {
     region: '',
     countryCode: '',
   });
-  const handleNextStep = () => {
-    setStep((prev) => prev + 1);
+  const handleNextStep = (step) => {
+    setStep(step);
   };
 
   return (
@@ -29,7 +29,7 @@ function App() {
         {step === 1 && <BasicForm nextStep={handleNextStep} />}
         {step === 2 && <ProfileInstructions nextStep={handleNextStep} />}
         {step === 3 && <ProfileFrom nextStep={handleNextStep} />}
-        {step === 4 && <ProfessionForm />}
+        {step === 4 && <ProfessionForm nextStep={handleNextStep} />}
       </div>
     </FormContext.Provider>
   );
