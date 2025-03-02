@@ -88,10 +88,10 @@ export default function ProfileFrom({ nextStep }) {
         handleDislike={handleDislike}
         handleSuperlike={handleSuperlike}
       >
-        {!isLoading ? <ProfileCard profile={profile} /> : <Loading />}
+        {!isLoading && profile !== null ? <ProfileCard profile={profile} /> : <Loading />}
       </MotionContainer>
       <SwipeArrows handleDislike={handleDislike} handleLike={handleLike} handleSuperlike={handleSuperlike} />
-      {likedProfiles.length >= 7 || superlikedProfiles >= 7 ? (
+      {(likedProfiles.length + superlikedProfiles.length) >= 7 ? (
         <>
           <Button onClick={() => nextStep(4)}>Continuar</Button>
         </>
