@@ -7,7 +7,6 @@ import {
 } from 'neogma';
 import { NEOGMA_CONNECTION } from 'src/neogma/neogma-config.interface';
 import { OccupationClass } from 'src/occupation/occupation.model';
-import { UserClass } from 'src/user/user.model';
 
 export type CategoryPropertiesI = {
   name: string;
@@ -22,6 +21,18 @@ export interface CategoryRelatedNodes {
   Has: ModelRelatedNodesI<
     OccupationCategoryClass['categoryModel'],
     CategoryInstance
+  >;
+  Similar: ModelRelatedNodesI<
+    {
+      createOne: OccupationCategoryClass['categoryModel']['createOne'];
+    },
+    CategoryInstance,
+    {
+      Weight: number;
+    },
+    {
+      weight: number;
+    }
   >;
 }
 
@@ -50,6 +61,20 @@ export class OccupationCategoryClass {
           model: this.occupationClass.occupationModel,
           direction: 'out',
           name: 'Has',
+        },
+        Similar: {
+          model: 'self',
+          direction: 'out',
+          name: 'Similar',
+          properties: {
+            Weight: {
+              property: 'weight',
+              schema: {
+                type: 'number',
+                required: true,
+              },
+            },
+          },
         },
       },
     },

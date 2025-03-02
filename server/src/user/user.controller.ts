@@ -1,12 +1,21 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Query,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ResponseUserDto } from './dto/response-user.dto';
+import { RequestInfoDto } from './dto/request-info.dto';
 
 @ApiTags('users')
 @Controller('users')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Get()
   @ApiOperation({ summary: 'Get all users' })
@@ -30,5 +39,16 @@ export class UserController {
     @Query('category') category: string,
   ): Promise<ResponseUserDto[]> {
     return this.userService.findByCategory(category);
+  }
+
+  @Post('generate')
+  @ApiOperation({ summary: 'Generate a profile' })
+  @ApiResponse({
+    status: 201,
+    description: 'Generate a profile',
+  })
+  @UsePipes(new ValidationPipe({ transform: true }))
+  generateProfile(@Body() body: RequestInfoDto) {
+    return this.userService.generateProfile(body);
   }
 }
