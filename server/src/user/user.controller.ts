@@ -15,7 +15,7 @@ import { RequestInfoDto } from './dto/request-info.dto';
 @ApiTags('users')
 @Controller('users')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Get()
   @ApiOperation({ summary: 'Get all users' })

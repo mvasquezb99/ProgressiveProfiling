@@ -27,7 +27,7 @@ export class SeedDataService {
     @Inject(LocationClass) private readonly locationClass: LocationClass,
     @Inject(EducationClass) private readonly educationClass: EducationClass,
     @Inject(WorkClass) private readonly workClass: WorkClass,
-  ) {}
+  ) { }
 
   /**
    * Seeds the database with initial user data.
@@ -42,7 +42,7 @@ export class SeedDataService {
       __dirname,
       '..',
       'assets',
-      'professions_with_category.csv',
+      'professions_filtered.csv',
     );
 
     const headers = ['Profession', 'Category'];
@@ -127,6 +127,93 @@ export class SeedDataService {
     );
 
     await Promise.all(relationshipPromises);
+
+    //--------Relate Ciencias e Investigación-------------
+
+    const cienceNode = await this.occupationCategoryClass.categoryModel.findOne(
+      {
+        where: {
+          name: 'Ciencias e Investigación',
+        },
+      },
+    );
+
+    if (!cienceNode) {
+      return;
+    }
+
+    //With Tecnología de la Información
+    await cienceNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Tecnología de la Información' },
+      properties: { Weight: 1 },
+    });
+
+    //With Transporte y Logística
+
+    await cienceNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Transporte y Logística' },
+      properties: { Weight: 9 },
+    });
+
+    //With Manufactura y Producción
+
+    await cienceNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Manufactura y Producción' },
+      properties: { Weight: 9 },
+    });
+
+    //--------Relate Tecnología de la Información-------------
+
+    const tecnologiaNode =
+      await this.occupationCategoryClass.categoryModel.findOne({
+        where: {
+          name: 'Tecnología de la Información',
+        },
+      });
+
+    if (!tecnologiaNode) {
+      return;
+    }
+
+    //With Transporte y Logística
+
+    await tecnologiaNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Transporte y Logística' },
+      properties: { Weight: 9 },
+    });
+
+    //With Manufactura y Producción
+
+    await tecnologiaNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Manufactura y Producción' },
+      properties: { Weight: 9 },
+    });
+
+    //--------Relate Transporte y Logística-------------
+
+    const transporteNode =
+      await this.occupationCategoryClass.categoryModel.findOne({
+        where: {
+          name: 'Transporte y Logística',
+        },
+      });
+
+    if (!transporteNode) {
+      return;
+    }
+
+    //With Manufactura y Producción
+
+    await transporteNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Manufactura y Producción' },
+      properties: { Weight: 1 },
+    });
   }
 
   async populateUsers() {
@@ -137,77 +224,11 @@ export class SeedDataService {
         'Logística',
         'Mantenimiento de vehículos',
       ],
-      'Construcción e Infraestructura': [
-        'Carpintería',
-        'Electricidad',
-        'Albañilería',
-        'Dibujo técnico',
-      ],
-      'Seguridad y Defensa': [
-        'Vigilancia',
-        'Protección personal',
-        'Control de accesos',
-        'Investigación',
-      ],
-      'Fuerzas Armadas': [
-        'Estrategia militar',
-        'Entrenamiento físico',
-        'Manejo de armas',
-        'Operaciones tácticas',
-      ],
-      'Comunicación y Marketing': [
-        'Redacción',
-        'SEO',
-        'Marketing digital',
-        'Gestión de redes sociales',
-      ],
-      'Turismo y Hostelería': [
-        'Atención al cliente',
-        'Gestión hotelera',
-        'Gastronomía',
-        'Guía turístico',
-      ],
-      'Arte, Cultura y Entretenimiento': [
-        'Dibujo',
-        'Música',
-        'Actuación',
-        'Diseño gráfico',
-      ],
-      'Administración Pública y Gobierno': [
-        'Legislación',
-        'Políticas públicas',
-        'Gestión de proyectos',
-        'Negociación',
-      ],
-      'Finanzas, Contabilidad y Negocios': [
-        'Contabilidad',
-        'Análisis financiero',
-        'Gestión de riesgos',
-        'Inversiones',
-      ],
       'Tecnología de la Información': [
         'Desarrollo web',
         'Bases de datos',
         'Ciberseguridad',
         'Administración de sistemas',
-      ],
-      'Educación y Formación': [
-        'Pedagogía',
-        'Didáctica',
-        'Planificación educativa',
-        'Psicología educativa',
-      ],
-      'Salud y Medicina': [
-        'Medicina general',
-        'Enfermería',
-        'Farmacología',
-        'Terapia física',
-      ],
-      'Energía y Minería': [
-        'Ingeniería petrolera',
-        'Energía renovable',
-        'Minería',
-        'Geología',
       ],
       'Manufactura y Producción': [
         'Automatización',
@@ -215,60 +236,18 @@ export class SeedDataService {
         'Mantenimiento industrial',
         'Producción en línea',
       ],
-      Otros: [
-        'Habilidades blandas',
-        'Trabajo en equipo',
-        'Creatividad',
-        'Resolución de problemas',
-      ],
-      'Agricultura y Desarrollo Rural': [
-        'Agrotecnología',
-        'Irrigación',
-        'Cultivo',
-        'Ganadería',
-      ],
-      'Matemáticas y Estadística': [
-        'Cálculo',
-        'Probabilidad',
-        'Análisis de datos',
-        'Modelado matemático',
-      ],
-      'Ciencias Naturales y Medio Ambiente': [
-        'Biología',
-        'Ecología',
-        'Gestión ambiental',
-        'Cambio climático',
-      ],
       'Ciencias e Investigación': [
         'Metodología científica',
         'Escritura académica',
         'Experimentación',
         'Análisis de resultados',
       ],
-      'Gerencia y Administración de Propiedades': [
-        'Gestión inmobiliaria',
-        'Administración de edificios',
-        'Tasación',
-        'Mantenimiento',
-      ],
-      'Atención al Cliente y Ventas': [
-        'Negociación',
-        'Empatía',
-        'Resolución de conflictos',
-        'Técnicas de venta',
-      ],
-      'Liderazgo y Organizaciones Sociales': [
-        'Gestión de equipos',
-        'Mediación',
-        'Planificación estratégica',
-        'Empoderamiento comunitario',
-      ],
     };
 
     const allSkills = Object.values(categoriesSkillsMap).flat();
 
     faker.seed(123);
-    const users = Array.from({ length: 20 }, () => ({
+    const users = Array.from({ length: 50 }, () => ({
       type: Type.SAMPLE,
       name: faker.person.fullName(),
       email: faker.internet.email(),
@@ -330,21 +309,21 @@ export class SeedDataService {
     const locationsNodes = await this.locationClass.locationModel.findMany();
     const educationsNodes = await this.educationClass.educationModel.findMany();
     const worksNodes = await this.workClass.workModel.findMany();
-    let relationOccupation = '';
+    let relationCategory = '';
 
     for (const userNode of usersNodes) {
       const userSkills = userNode.skills.split(', ');
 
       for (const userSkill of userSkills) {
-        for (const occupationSkill of Object.keys(categoriesSkillsMap)) {
-          if (categoriesSkillsMap[occupationSkill].includes(userSkill)) {
-            relationOccupation = occupationSkill;
+        for (const categorySkill of Object.keys(categoriesSkillsMap)) {
+          if (categoriesSkillsMap[categorySkill].includes(userSkill)) {
+            relationCategory = categorySkill;
           }
         }
 
         const category =
           await this.occupationCategoryClass.categoryModel.findOne({
-            where: { name: relationOccupation },
+            where: { name: relationCategory },
           });
 
         if (!category) {
@@ -355,16 +334,34 @@ export class SeedDataService {
           alias: 'LikesCategory',
           where: {
             relationship: {},
-            target: { name: relationOccupation },
+            target: { name: relationCategory },
           },
         });
 
         if (relationships.length === 0) {
           await userNode.relateTo({
             alias: 'LikesCategory',
-            where: { name: relationOccupation },
+            where: { name: relationCategory },
           });
         }
+
+        //Relate user with occupation from the specific category
+        const categoryRelatedOccupations = await category.findRelationships({
+          alias: 'Has',
+        });
+
+        const categoryRelatedOccupationsMap = categoryRelatedOccupations.map(
+          (item) => item.target.dataValues.name,
+        );
+        const selectedOccupation =
+          categoryRelatedOccupationsMap[
+          Math.floor(Math.random() * categoryRelatedOccupationsMap.length)
+          ];
+
+        await userNode.relateTo({
+          alias: 'LikesOccupation',
+          where: { name: selectedOccupation },
+        });
       }
 
       const randomEducation =
