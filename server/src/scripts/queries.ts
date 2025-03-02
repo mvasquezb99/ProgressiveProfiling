@@ -6,10 +6,6 @@ export type QueryNode = {
   properties: Record<string, unknown>;
 };
 
-/**
- *
- * @param userName
- */
 export const queryRelationships = (userName: string): Promise<QueryResult> => {
   return new QueryBuilder()
     .match({
@@ -32,12 +28,30 @@ export const queryRelationships = (userName: string): Promise<QueryResult> => {
     .run();
 };
 
-/**
- *
- * @param category
- */
-export const queryUsers = (category: string): Promise<QueryResult> => {
+export const queryUsersWithCategoryAndSimilar = (
+  category: string,
+  similarWeight: number = 5,
+): Promise<QueryResult> => {
   return new QueryBuilder()
+    .match({
+      related: [
+        {
+          identifier: 'c',
+          label: 'Category',
+          where: { name: category },
+        },
+        {
+          identifier: 's',
+          direction: 'out',
+          name: 'Similar',
+        },
+        {
+          identifier: 'c2',
+          label: 'Category',
+        },
+      ],
+    })
+    .where('s.weight < ' + similarWeight)
     .match({
       related: [
         {
@@ -50,12 +64,12 @@ export const queryUsers = (category: string): Promise<QueryResult> => {
           name: 'LikesCategory',
         },
         {
-          identifier: 'c',
+          identifier: 'c3',
           label: 'Category',
-          where: { name: category },
         },
       ],
     })
-    .return('u')
+    .where('c3.name = c.name OR c3.name = c2.name')
+    .return('DISTINCT u')
     .run();
 };

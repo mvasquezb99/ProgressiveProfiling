@@ -12,7 +12,6 @@ import { LocationClass } from 'src/user/user-location.model';
 import { WorkClass } from 'src/user/user-work.model';
 import { faker } from '@faker-js/faker';
 import { v4 as uuidv4 } from 'uuid';
-import chalk from 'chalk';
 interface ExtendedCastingContext extends CastingContext {
   column: string;
 }
@@ -131,17 +130,17 @@ export class SeedDataService {
 
     //--------Relate Ciencias e Investigación-------------
 
-    const cienceNode =
-      await this.occupationCategoryClass.categoryModel.findOne({
+    const cienceNode = await this.occupationCategoryClass.categoryModel.findOne(
+      {
         where: {
           name: 'Ciencias e Investigación',
         },
-      });
+      },
+    );
 
     if (!cienceNode) {
       return;
     }
-
 
     //With Tecnología de la Información
     await cienceNode.relateTo({
@@ -165,7 +164,6 @@ export class SeedDataService {
       where: { name: 'Manufactura y Producción' },
       properties: { Weight: 9 },
     });
-
 
     //--------Relate Tecnología de la Información-------------
 
@@ -216,7 +214,6 @@ export class SeedDataService {
       where: { name: 'Manufactura y Producción' },
       properties: { Weight: 1 },
     });
-
   }
 
   async populateUsers() {
@@ -353,15 +350,18 @@ export class SeedDataService {
           alias: 'Has',
         });
 
-
-        const categoryRelatedOccupationsMap = categoryRelatedOccupations.map(item => item.target.dataValues.name);
-        const selectedOccupation = categoryRelatedOccupationsMap[Math.floor(Math.random() * categoryRelatedOccupationsMap.length)];
+        const categoryRelatedOccupationsMap = categoryRelatedOccupations.map(
+          (item) => item.target.dataValues.name,
+        );
+        const selectedOccupation =
+          categoryRelatedOccupationsMap[
+          Math.floor(Math.random() * categoryRelatedOccupationsMap.length)
+          ];
 
         await userNode.relateTo({
           alias: 'LikesOccupation',
           where: { name: selectedOccupation },
         });
-
       }
 
       const randomEducation =

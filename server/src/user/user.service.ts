@@ -1,10 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { UserClass, UserPropertiesI } from './user.model';
 import { ResponseUserDto } from './dto/response-user.dto';
-import { QueryNode, queryRelationships, queryUsers } from 'src/scripts/queries';
+import {
+  QueryNode,
+  queryRelationships,
+  queryUsersWithCategoryAndSimilar,
+} from 'src/scripts/queries';
+
 @Injectable()
 export class UserService {
-  constructor(private readonly userClass: UserClass) {}
+  constructor(private readonly userClass: UserClass) { }
 
   async findAll(): Promise<ResponseUserDto[]> {
     const dtoData: Record<string, QueryNode[]> = {};
@@ -24,8 +29,7 @@ export class UserService {
 
   async findByCategory(category: string): Promise<ResponseUserDto[]> {
     const dtoData: Record<string, QueryNode[]> = {};
-
-    const userNodes = await queryUsers(category);
+    const userNodes = await queryUsersWithCategoryAndSimilar(category);
     const users = userNodes.records.map((r) => r.get('u') as QueryNode);
     const usersProp = users.map((u) => u.properties as UserPropertiesI);
     await Promise.all(

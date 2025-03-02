@@ -11,6 +11,7 @@ import { QueryNode } from 'src/scripts/queries';
 import { LocationPropertiesI } from '../user-location.model';
 import { EducationPropertiesI } from '../user-education.model';
 import { WorkPropertiesI } from '../user-work.model';
+import { ResponseOccupationDto } from 'src/occupation/dto/response-occupation.dto';
 
 export class ResponseUserDto {
   @ApiProperty({
@@ -56,12 +57,17 @@ export class ResponseUserDto {
   })
   work: ResponseWorkDto;
 
+  @ApiProperty({
+    example: '[{name: "Operations Manager"}, {name: "Software Developer}]',
+    description: 'User occupations',
+  })
+  occupations: ResponseOccupationDto[];
+
   static apply(
     user: UserPropertiesI,
     relationships: QueryNode[] = [],
   ): ResponseUserDto {
     const userDto = UserMapper.apply(user);
-    console.log(userDto);
 
     for (let i = 0; i < relationships.length; i++) {
       const element: QueryNode = relationships[i];
