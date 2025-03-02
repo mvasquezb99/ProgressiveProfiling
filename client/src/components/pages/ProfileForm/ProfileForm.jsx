@@ -8,6 +8,8 @@ import SwipeArrows from './SwipeArrows';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Loading from '../../common/Loading';
+import BackButton from '../../common/BackButton';
+import CardTitle from '../../common/CardTitle';
 
 export default function ProfileFrom({ nextStep }) {
   const [likedProfiles, setLikedProfiles] = useState([]);
@@ -25,6 +27,13 @@ export default function ProfileFrom({ nextStep }) {
   const handleLike = () => {
     setLikedProfiles((prev) => [...prev, profile]);
     getRandomProfile(categoryProfiles);
+  };
+
+  const resetProfiles = () => {
+    setLikedProfiles([]);
+    setDislikedProfiles([]);
+    setSuperlikedProfiles([]);
+    setCategoryProfiles(null);
   };
 
   const handleDislike = () => {
@@ -66,8 +75,19 @@ export default function ProfileFrom({ nextStep }) {
   }, [getRandomProfile]);
 
   return (
-    <Card step={2}>
-      <MotionContainer handleLike={handleLike} handleDislike={handleDislike} handleSuperlike={handleSuperlike}>
+    <Card step={2} rem={25}>
+      <BackButton
+        onClick={() => {
+          nextStep(1);
+          resetProfiles();
+        }}
+      />
+
+      <MotionContainer
+        handleLike={handleLike}
+        handleDislike={handleDislike}
+        handleSuperlike={handleSuperlike}
+      >
         {!isLoading ? <ProfileCard profile={profile} /> : <Loading />}
       </MotionContainer>
       <SwipeArrows handleDislike={handleDislike} handleLike={handleLike} handleSuperlike={handleSuperlike} />

@@ -2,7 +2,7 @@ import { inputStyles, labelStyles } from '../../constants/styles';
 
 import PropTypes from 'prop-types';
 
-export default function Input({ label, handleChange, type, inputId }) {
+export default function Input({ label, handleChange, type, inputId, ...props }) {
   return (
     <div className="flex flex-col">
       <label className={labelStyles} htmlFor="name">
@@ -14,6 +14,7 @@ export default function Input({ label, handleChange, type, inputId }) {
         type={type}
         name={inputId}
         id={inputId}
+        {...props}
       />
     </div>
   );
