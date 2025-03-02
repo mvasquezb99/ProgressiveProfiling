@@ -1,6 +1,7 @@
 import '../../../../index.css';
 import React from 'react';
-import BasicForm from '../BasicForm'
+import BasicForm from '../BasicForm';
+import { FormContext } from '../../../../context/context';
 
 export default {
   title: 'Componentes/pages/BasicForm/BasicForm',
@@ -10,7 +11,7 @@ export default {
     docs: {
       description: {
         component:
-          'The first form of the app that collects user data such as name, birthdate, education and location',
+          'The first form of the app that collects user data such as name, birthdate, education, and location',
       },
     },
   },
@@ -22,7 +23,11 @@ export default {
   },
 };
 
-export const BasicFormStory = (args) => <BasicForm {...args} />;
+export const BasicFormStory = (args) => (
+  <FormContext.Provider value={[{}, () => {}]}>
+    <BasicForm {...args} />
+  </FormContext.Provider>
+);
 
 BasicFormStory.args = {
   nextStep: () => {},

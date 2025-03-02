@@ -12,6 +12,7 @@ import { OccupationCategoryService } from './occupation-category/occupation-cate
 import { OccupationCategoryController } from './occupation-category/occupation-category.controller';
 import { UserService } from './user/user.service';
 import { UserController } from './user/user.controller';
+import { ProfilerModule } from './profiler/profiler.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { UserController } from './user/user.controller';
     UserModule,
     OccupationModule,
     OccupationCategoryModule,
+    ProfilerModule,
   ],
   controllers: [
     AppController,

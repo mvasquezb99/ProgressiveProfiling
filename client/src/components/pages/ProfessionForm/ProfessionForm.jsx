@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { professions } from '../../../constants/professions';
-
+import PropTypes from 'prop-types';
 import CardTitle from '../../common/CardTitle';
 import Card from '../../layout/Card';
 import ProfessionItem from './ProfessionItem';
 import Button from '../../common/Button';
+import BackButton from '../../common/BackButton';
 
-export default function ProfessionForm() {
+export default function ProfessionForm({ nextStep }) {
   const [selectedProfessions, setSelectedProfessions] = useState([]);
 
   const submit = () => {
@@ -21,8 +22,18 @@ export default function ProfessionForm() {
     }
   };
 
+  const resetProfessions = () => {
+    setSelectedProfessions([]);
+  };
+
   return (
     <Card rem={30} step={3}>
+      <BackButton
+        onClick={() => {
+          nextStep(3);
+          resetProfessions();
+        }}
+      />
       <CardTitle
         title="Un ultimo paso"
         subtitle="Selecciona al menos 3 ocupaciones que se relacionen contigo"
@@ -41,3 +52,7 @@ export default function ProfessionForm() {
     </Card>
   );
 }
+
+ProfessionForm.propTypes = {
+  nextStep: PropTypes.func,
+};

@@ -19,6 +19,10 @@ export default {
             control: 'function',
             description: 'The function to handle the dislike of a profile by pressing the button',
           },
+        handleSuperLike: {
+            control: 'function',
+            description: 'The function to handle the dislike of a profile by pressing the button',
+          },
     },
 };
 
@@ -28,4 +32,5 @@ export const Primary = Template.bind({});
 Primary.args = {
     handleLike: () => {}, 
     handleDislike: () => {}, 
+    handleSuperLike: () => {},
 };

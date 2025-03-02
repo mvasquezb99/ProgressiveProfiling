@@ -15,4 +15,4 @@ import { UserModule } from 'src/user/user.module';
   ],
   providers: [SeedDataService],
 })
-export class SeedModule {}
+export class SeedModule { }

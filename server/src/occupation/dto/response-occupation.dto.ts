@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class ResponseOccupationDto {
-  @ApiProperty({ example: 'Abogados', description: 'Occupation name' })
+  @ApiProperty({ example: 'Web Developer', description: 'Occupation name' })
   name: string;
 }
