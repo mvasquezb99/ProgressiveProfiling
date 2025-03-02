@@ -1,10 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { UserClass, UserPropertiesI } from './user.model';
 import { ResponseUserDto } from './dto/response-user.dto';
 import { QueryNode, queryRelationships, queryUsers } from 'src/scripts/queries';
+import { ProfilerService } from 'src/profiler/profiler.service';
+import { RequestInfoDto } from './dto/request-info.dto';
 @Injectable()
 export class UserService {
-  constructor(private readonly userClass: UserClass) {}
+  constructor(
+    private readonly userClass: UserClass,
+    @Inject(ProfilerService) private readonly profilerService: ProfilerService,
+  ) {}
 
   async findAll(): Promise<ResponseUserDto[]> {
     const dtoData: Record<string, QueryNode[]> = {};
@@ -40,5 +45,9 @@ export class UserService {
     return usersProp.map((user) =>
       ResponseUserDto.apply(user, dtoData[user.name]),
     );
+  }
+
+  generateProfile(body: RequestInfoDto) {
+    return this.profilerService.profilingAlgorithm(body);
   }
 }
