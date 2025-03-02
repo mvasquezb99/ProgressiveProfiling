@@ -82,9 +82,9 @@ export default function BasicForm({ nextStep }) {
         />
 
         <div>
-          <Input label="Nombre" handleChange={handleChange} type="text" inputId="name" />
+          <Input label="Nombre" handleChange={handleChange} type="text" inputId="name" value={enteredData.name} />
           {error.name && <ErrorMessage message="!Por favor ingresa tu nombre!" />}
-          <Input label="Fecha de Nacimiento" handleChange={handleChange} type="date" inputId="birthdate" />
+          <Input label="Fecha de Nacimiento" handleChange={handleChange} type="date" inputId="birthdate" value={enteredData.birthdate}/>
           {error.birthdate && <ErrorMessage message="!Por favor ingresa tu fecha de nacimiento!" />}
 
           <Dropdown
