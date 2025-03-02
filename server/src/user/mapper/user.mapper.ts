@@ -12,7 +12,8 @@ export class UserMapper {
     userDto.birthdate = user.birthdate;
     userDto.skills = user.skills;
     userDto.languages = user.languages;
-    userDto.category = [];
+    userDto.categories = [];
+    userDto.occupations = [];
 
     return userDto;
   }

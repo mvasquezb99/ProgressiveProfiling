@@ -11,7 +11,7 @@ export class ProfilerService {
     category: {},
   };
 
-  constructor() {}
+  constructor() { }
 
   weighLikedUsers = (likedUsers: RequestUserDto[], value: number) => {
     likedUsers.forEach((user) => {
