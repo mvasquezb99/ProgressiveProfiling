@@ -71,5 +71,6 @@ export const queryUsersWithCategoryAndSimilar = (
     })
     .where('c3.name = c.name OR c3.name = c2.name')
     .return('DISTINCT u')
+    .limit(10)
     .run();
 };

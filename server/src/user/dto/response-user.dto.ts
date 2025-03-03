@@ -72,7 +72,13 @@ export class ResponseUserDto {
     example: '[{ name: "Tecnology" }, { name: "Business" }]',
     description: 'User occupation category',
   })
-  category: ResponseOccupationCategoryDto[];
+  categories: ResponseOccupationCategoryDto[];
+
+  @ApiProperty({
+    example: '[{ name: "Operations Manager" }, { name: "Software Developer" }]',
+    description: 'User occupation',
+  })
+  occupations: ResponseOccupationCategoryDto[];
 
   static apply(
     user: UserPropertiesI,
@@ -99,7 +105,14 @@ export class ResponseUserDto {
           );
           break;
         case 'Category':
-          userDto.category.push(
+          userDto.categories.push(
+            OccupationCategoryMapper.apply(
+              element.properties as CategoryPropertiesI,
+            ),
+          );
+          break;
+        case 'Occupation':
+          userDto.occupations.push(
             OccupationCategoryMapper.apply(
               element.properties as CategoryPropertiesI,
             ),
