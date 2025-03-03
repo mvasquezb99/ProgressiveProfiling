@@ -1,7 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { UserClass, UserPropertiesI } from './user.model';
 import { ResponseUserDto } from './dto/response-user.dto';
-import { QueryNode, queryRelationships, queryUsersWithCategoryAndSimilar } from 'src/scripts/queries';
+import {
+  QueryNode,
+  queryRelationships,
+  queryUsersWithCategoryAndSimilar,
+} from 'src/scripts/queries';
 import { ProfilerService } from 'src/profiler/profiler.service';
 import { RequestInfoDto } from './dto/request-info.dto';
 @Injectable()
@@ -9,7 +13,7 @@ export class UserService {
   constructor(
     private readonly userClass: UserClass,
     @Inject(ProfilerService) private readonly profilerService: ProfilerService,
-  ) {}
+  ) { }
 
   async findAll(): Promise<ResponseUserDto[]> {
     const dtoData: Record<string, QueryNode[]> = {};

@@ -10,6 +10,7 @@ import { RequestLocationDto } from './request-location.dto';
 import { RequestWorkDto } from './request-work.dto';
 import { RequestOccupationCategoryDto } from 'src/occupation-category/dto/request-occupation-category.dto';
 import { Type } from 'class-transformer';
+import { RequestOccupationDto } from 'src/occupation/dto/request-occupation.dto';
 
 export class RequestUserDto {
   @ApiProperty({ example: 'John Doe', description: 'User name' })
@@ -63,5 +64,12 @@ export class RequestUserDto {
     description: 'User occupation category',
   })
   @IsInstance(Array<RequestOccupationCategoryDto>)
-  category: RequestOccupationCategoryDto[];
+  categories: RequestOccupationCategoryDto[];
+
+  @ApiProperty({
+    example: '[{ name: "Operations Manager" }, { name: "Software Developer" }]',
+    description: 'User occupation',
+  })
+  @IsInstance(Array<RequestOccupationDto>)
+  occupations: RequestOccupationDto[];
 }
