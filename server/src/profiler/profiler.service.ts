@@ -64,6 +64,6 @@ export class ProfilerService {
     this.weighLikedUsers(body.superLikedUsers, 10);
     this.weighLikedUsers(body.dislikedUsers, -1);
 
-    console.log(this.userWeighed);
+    return this.userWeighed;
   }
 }

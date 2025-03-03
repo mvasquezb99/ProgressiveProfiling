@@ -11,7 +11,7 @@ function App() {
   const [enteredData, setEnteredData] = useState({
     name: '',
     birthdate: '',
-    occupationCategory: '',
+    category: '',
     city: '',
     country: '',
     address: '',

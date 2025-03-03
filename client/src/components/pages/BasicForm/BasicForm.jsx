@@ -12,19 +12,19 @@ import ErrorMessage from '../../common/ErrorMessage';
 
 export default function BasicForm({ nextStep }) {
   const [enteredData, setEnteredData] = useContext(FormContext);
-  const [error, setError] = useState({ name: false, birthdate: false, occupationCategory: false });
+  const [error, setError] = useState({ name: false, birthdate: false, category: false });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const errors = {
       name: enteredData.name.trim() === '',
       birthdate: enteredData.birthdate.trim() === '',
-      occupationCategory: enteredData.occupationCategory.trim() === '',
+      category: enteredData.category.trim() === '',
     };
 
     setError(errors);
 
-    if (!errors.name && !errors.birthdate && !errors.occupationCategory) {
+    if (!errors.name && !errors.birthdate && !errors.category) {
       nextStep(2);
       console.log(enteredData);
     }
@@ -92,10 +92,10 @@ export default function BasicForm({ nextStep }) {
             label={'Categoría de ocupación'}
             placeholder="-- Seleccione una Categoría de ocupación --"
             name="select"
-            onChange={(e) => handleChange('occupationCategory', e.target.value)}
-            value={enteredData.occupationCategory}
+            onChange={(e) => handleChange('category', e.target.value)}
+            value={enteredData.category}
           />
-          {error.occupationCategory && (
+          {error.category && (
             <ErrorMessage message="!Por favor ingresa tu categoría de ocupación!" />
           )}
 

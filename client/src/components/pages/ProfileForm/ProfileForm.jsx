@@ -54,11 +54,28 @@ export default function ProfileFrom({ nextStep }) {
     setProfile(array[randomIndex]);
   }, []);
 
+  const handleSubmit = async () => {
+    const requestData = {
+      ...enteredData,
+      'category': {
+        'name': enteredData.category,
+      },
+      'likedUsers': likedProfiles,
+      'dislikedUsers': dislikedProfiles,
+      'superLikedUsers': superlikedProfiles,
+    }
+    console.log(requestData);
+    const response = await axios.post('http://localhost:3000/users/generate', requestData);
+    console.log(response.data);
+
+    nextStep(4)
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/users/categories?category=${enteredData.occupationCategory}`
+          `http://localhost:3000/users/categories?category=${enteredData.category}`
         );
         setCategoryProfiles(response.data);
 
@@ -93,7 +110,7 @@ export default function ProfileFrom({ nextStep }) {
       <SwipeArrows handleDislike={handleDislike} handleLike={handleLike} handleSuperlike={handleSuperlike} />
       {(likedProfiles.length + superlikedProfiles.length) >= 7 ? (
         <>
-          <Button onClick={() => nextStep(4)}>Continuar</Button>
+          <Button onClick={handleSubmit}>Continuar</Button>
         </>
       ) : (
         ''
