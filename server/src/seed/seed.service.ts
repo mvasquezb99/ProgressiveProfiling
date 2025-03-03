@@ -178,6 +178,13 @@ export class SeedDataService {
       return;
     }
 
+    //With Ciencias e Investigación
+    await tecnologiaNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Ciencias e Investigación' },
+      properties: { Weight: 1 },
+    });
+
     //With Transporte y Logística
 
     await tecnologiaNode.relateTo({
@@ -213,6 +220,54 @@ export class SeedDataService {
       alias: 'Similar',
       where: { name: 'Manufactura y Producción' },
       properties: { Weight: 1 },
+    });
+
+    //With Tecnología de la Información
+    await transporteNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Tecnología de la Información' },
+      properties: { Weight: 9 },
+    });
+
+    //With Ciencias e Investigación
+    await transporteNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Ciencias e Investigación' },
+      properties: { Weight: 9 },
+    });
+
+    //--------Relate Manufactura y Producción-------------
+
+    const manufacturaNode =
+      await this.occupationCategoryClass.categoryModel.findOne({
+        where: {
+          name: 'Manufactura y Producción',
+        },
+      });
+
+    if (!manufacturaNode) {
+      return;
+    }
+
+    //With Transporte y Logística
+    await manufacturaNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Transporte y Logística' },
+      properties: { Weight: 1 },
+    });
+
+    //With Tecnología de la Información
+    await manufacturaNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Tecnología de la Información' },
+      properties: { Weight: 9 },
+    });
+
+    //With Ciencias e Investigación
+    await manufacturaNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Ciencias e Investigación' },
+      properties: { Weight: 9 },
     });
   }
 
