@@ -50,7 +50,12 @@ export class UserService {
     );
   }
 
+
   generateProfile(body: RequestInfoDto) {
+    // 1. Profiling algo (Ponderar y elegir mayores) 
+    // 2. Devolver resultados
     return this.profilerService.profilingAlgorithm(body);
   }
+
+  // Crear otra ruta para recibir usuario entero y guardar usuario.
 }

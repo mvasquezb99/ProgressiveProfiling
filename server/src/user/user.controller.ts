@@ -40,7 +40,7 @@ export class UserController {
   ): Promise<ResponseUserDto[]> {
     return this.userService.findByCategory(category);
   }
-
+  
   @Post('generate')
   @ApiOperation({ summary: 'Generate a profile' })
   @ApiResponse({

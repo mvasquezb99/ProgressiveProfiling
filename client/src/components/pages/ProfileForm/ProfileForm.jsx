@@ -15,13 +15,13 @@ export default function ProfileFrom({ nextStep }) {
   const [likedProfiles, setLikedProfiles] = useState([]);
   const [dislikedProfiles, setDislikedProfiles] = useState([]);
   const [superlikedProfiles, setSuperlikedProfiles] = useState([]);
-  const [categoryProfiles, setCategoryProfiles] = useState(null);
 
+  const [categoryProfiles, setCategoryProfiles] = useState(null);
   const [profile, setProfile] = useState(null);
 
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
+  
   const [enteredData, setEnteredData] = useContext(FormContext);
 
   const handleLike = () => {
@@ -65,6 +65,7 @@ export default function ProfileFrom({ nextStep }) {
       'superLikedUsers': superlikedProfiles,
     }
     console.log(requestData);
+    // Devuelve usuario ponderado entero y pasar a el siguiente form.
     const response = await axios.post('http://localhost:3000/users/generate', requestData);
     console.log(response.data);
 

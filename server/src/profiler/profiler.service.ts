@@ -25,6 +25,7 @@ export class ProfilerService {
   weighLikedUsers = (listUsers: RequestUserDto[], value: number) => {
     listUsers.forEach((user) => {
       user.languages.split(',').forEach((currLanguage) => {
+        currLanguage = currLanguage.trim();
         this.userWeighed.languages[currLanguage] = this.userWeighed.languages[
           currLanguage
         ]
