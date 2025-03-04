@@ -263,7 +263,7 @@ export class SeedDataService {
         })
         .join(', '),
       languages: faker.helpers
-        .arrayElements(['English', 'Español', 'Frances'], {
+        .arrayElements(['Inglés', 'Español', 'Francés', 'Portugués', 'Alemán'], {
           min: 1,
           max: 3,
         })
