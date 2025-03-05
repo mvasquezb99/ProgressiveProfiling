@@ -3,7 +3,7 @@ import prop from '../../../assets/prop.jpg'
 import PropTypes from 'prop-types';
 
 export default function ProfileCard({ profile }) {
-    const { name, image, skills, education, work, categories, occupations, languages} = profile;
+    const { name, image, education, categories, occupations, languages} = profile;
     return (
         <div className="h-full w-full max-w-80 bg-white rounded-2xl text-black flex flex-col shadow-md">
             <div className="h-1/2 w-full rounded-t-2xl ">
@@ -22,7 +22,7 @@ export default function ProfileCard({ profile }) {
                         <ul>
                             {
                                 occupations.map((o) => (
-                                    <li>- {o.name}.</li>
+                                    <li className='text-sm text-gray-700 leading-snug' key={o.name}>- {o.name}.</li>
                                 ))
                             }
                         </ul>

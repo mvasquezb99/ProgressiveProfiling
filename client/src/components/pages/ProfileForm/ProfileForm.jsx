@@ -67,6 +67,7 @@ export default function ProfileFrom({ nextStep }) {
     console.log(requestData);
     // Devuelve usuario ponderado entero y pasar a el siguiente form.
     const response = await axios.post('http://localhost:3000/users/generate', requestData);
+    // Recibo todas las ponderaciones y guardo en context
     console.log(response.data);
 
     nextStep(4)
