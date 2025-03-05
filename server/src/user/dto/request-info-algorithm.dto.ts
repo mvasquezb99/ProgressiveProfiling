@@ -10,7 +10,7 @@ import { RequestOccupationCategoryDto } from 'src/occupation-category/dto/reques
 import { RequestUserDto } from './request-user.dto';
 import { RequestLocationDto } from './request-location.dto';
 
-export class RequestInfoDto {
+export class RequestInfoAlgorithmDto {
   @ApiProperty({ example: 'John Doe', description: 'User name' })
   @IsString()
   name: string;

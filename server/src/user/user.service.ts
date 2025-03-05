@@ -7,13 +7,14 @@ import {
   queryUsersWithCategoryAndSimilar,
 } from 'src/scripts/queries';
 import { ProfilerService } from 'src/profiler/profiler.service';
-import { RequestInfoDto } from './dto/request-info.dto';
+import { RequestInfoAlgorithmDto } from './dto/request-info-algorithm.dto';
+import { RequestFinalUserDto } from './dto/request-final-user.dto';
 @Injectable()
 export class UserService {
   constructor(
     private readonly userClass: UserClass,
     @Inject(ProfilerService) private readonly profilerService: ProfilerService,
-  ) { }
+  ) {}
 
   async findAll(): Promise<ResponseUserDto[]> {
     const dtoData: Record<string, QueryNode[]> = {};
@@ -50,12 +51,12 @@ export class UserService {
     );
   }
 
-
-  generateProfile(body: RequestInfoDto) {
-    // 1. Profiling algo (Ponderar y elegir mayores) 
-    // 2. Devolver resultados
+  generateProfile(body: RequestInfoAlgorithmDto) {
     return this.profilerService.profilingAlgorithm(body);
   }
 
-  // Crear otra ruta para recibir usuario entero y guardar usuario.
+  saveUser(user: RequestFinalUserDto) {
+    return user;
+    //TODO: Save user
+  }
 }
