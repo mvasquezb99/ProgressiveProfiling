@@ -148,6 +148,11 @@ export class ProfilerService {
     return new Map([...map].filter(([, value]) => value > threshold));
   }
 
+  private getMaxElement<T>(map: Map<T, number>): Map<T, number> {
+    const max = Math.max(...map.values());
+    return new Map([...map].filter(([, value]) => value === max));
+  }
+
   public profilingAlgorithm(
     body: RequestInfoAlgorithmDto,
   ): ResponseProfilerDto {
@@ -156,8 +161,8 @@ export class ProfilerService {
     this.weighLikedUsers(body.dislikedUsers, -1);
     const filteredUserWeighed = {
       languages: this.filterMap(this.userWeighed.languages, 5),
-      education: this.filterMap(this.userWeighed.education, 5),
-      work: this.filterMap(this.userWeighed.work, 5),
+      education: this.getMaxElement(this.userWeighed.education),
+      work: this.getMaxElement(this.userWeighed.work),
       categories: this.filterMap(this.userWeighed.categories, 5),
       occupations: this.filterMap(this.userWeighed.occupations, 5),
     };

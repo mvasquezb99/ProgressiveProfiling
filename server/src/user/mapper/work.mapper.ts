@@ -1,5 +1,6 @@
 import { ResponseWorkDto } from '../dto/response-work.dto';
 import { WorkPropertiesI } from '../user-work.model';
+import { v4 as uuidv4 } from 'uuid';
 
 export class WorkMapper {
   static apply(work: WorkPropertiesI): ResponseWorkDto {
@@ -9,5 +10,14 @@ export class WorkMapper {
     workDto.position = work.position;
 
     return workDto;
+  }
+
+  public static toProperties(work: ResponseWorkDto): WorkPropertiesI {
+    const workProp: WorkPropertiesI = {
+      uuid: uuidv4(),
+      organization: work.organization,
+      position: work.position,
+    };
+    return workProp;
   }
 }

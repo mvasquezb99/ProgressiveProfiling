@@ -12,7 +12,7 @@ export class ResponseProfilerDto {
     example: '[{ degree: "Bachelor", institution: "MIT", area: "Biology" }, ]',
     description: 'User education',
   })
-  eaducation: ResponseEducationDto[];
+  education: ResponseEducationDto[];
 
   @ApiProperty({
     example: '{ position: "Software Engineer", organization: "Google" }',
