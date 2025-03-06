@@ -13,9 +13,19 @@ import { OccupationCategoryController } from './occupation-category/occupation-c
 import { UserService } from './user/user.service';
 import { UserController } from './user/user.controller';
 import { ProfilerModule } from './profiler/profiler.module';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
+    ThrottlerModule.forRoot({
+      throttlers: [
+        {
+          ttl: 60000,
+          limit: 10,
+        },
+      ],
+    }),
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
     NeogmaModule.forRoot(),
     UserModule,
@@ -30,10 +40,14 @@ import { ProfilerModule } from './profiler/profiler.module';
     UserController,
   ],
   providers: [
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
     AppService,
     OccupationService,
     OccupationCategoryService,
     UserService,
   ],
 })
-export class AppModule {}
+export class AppModule { }

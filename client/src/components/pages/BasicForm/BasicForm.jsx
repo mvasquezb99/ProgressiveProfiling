@@ -12,21 +12,20 @@ import ErrorMessage from '../../common/ErrorMessage';
 
 export default function BasicForm({ nextStep }) {
   const [enteredData, setEnteredData] = useContext(FormContext);
-  const [error, setError] = useState({ name: false, birthdate: false, occupationCategory: false });
+  const [error, setError] = useState({ name: false, birthdate: false, category: false });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const errors = {
       name: enteredData.name.trim() === '',
       birthdate: enteredData.birthdate.trim() === '',
-      occupationCategory: enteredData.occupationCategory.trim() === '',
+      category: enteredData.category.trim() === '',
     };
 
     setError(errors);
 
-    if (!errors.name && !errors.birthdate && !errors.occupationCategory) {
+    if (!errors.name && !errors.birthdate && !errors.category) {
       nextStep(2);
-      console.log(enteredData);
     }
   };
 
@@ -43,7 +42,7 @@ export default function BasicForm({ nextStep }) {
   };
 
   const getLocationData = async (position) => {
-    const { city, country, address, postcode, region, countryCode } = await getLocation(
+    const { city, country, postalCode, region } = await getLocation(
       position.coords.latitude,
       position.coords.longitude
     );
@@ -51,12 +50,12 @@ export default function BasicForm({ nextStep }) {
     setEnteredData((prevData) => {
       return {
         ...prevData,
-        city,
-        country,
-        address,
-        postcode,
-        region,
-        countryCode,
+        location: {
+          city,
+          country,
+          postalCode,
+          region,
+        },
       };
     });
   };
@@ -82,9 +81,21 @@ export default function BasicForm({ nextStep }) {
         />
 
         <div>
-          <Input label="Nombre" handleChange={handleChange} type="text" inputId="name" value={enteredData.name} />
+          <Input
+            label="Nombre"
+            handleChange={handleChange}
+            type="text"
+            inputId="name"
+            value={enteredData.name}
+          />
           {error.name && <ErrorMessage message="!Por favor ingresa tu nombre!" />}
-          <Input label="Fecha de Nacimiento" handleChange={handleChange} type="date" inputId="birthdate" value={enteredData.birthdate}/>
+          <Input
+            label="Fecha de Nacimiento"
+            handleChange={handleChange}
+            type="date"
+            inputId="birthdate"
+            value={enteredData.birthdate}
+          />
           {error.birthdate && <ErrorMessage message="!Por favor ingresa tu fecha de nacimiento!" />}
 
           <Dropdown
@@ -92,12 +103,10 @@ export default function BasicForm({ nextStep }) {
             label={'Categoría de ocupación'}
             placeholder="-- Seleccione una Categoría de ocupación --"
             name="select"
-            onChange={(e) => handleChange('occupationCategory', e.target.value)}
-            value={enteredData.occupationCategory}
+            onChange={(e) => handleChange('category', e.target.value)}
+            value={enteredData.category}
           />
-          {error.occupationCategory && (
-            <ErrorMessage message="!Por favor ingresa tu categoría de ocupación!" />
-          )}
+          {error.category && <ErrorMessage message="!Por favor ingresa tu categoría de ocupación!" />}
 
           <div className="flex w-full">
             <Button onClick={handleSubmit}>Continuar</Button>

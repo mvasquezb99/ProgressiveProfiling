@@ -1,4 +1,4 @@
-import ProgressTracker from "../common/ProgressTracker";
+import ProgressTracker from '../common/ProgressTracker';
 import PropTypes from 'prop-types';
 
 export default function Card({ rem, children, step }) {
@@ -10,14 +10,13 @@ export default function Card({ rem, children, step }) {
       >
         {children}
       </div>
-      <ProgressTracker step={step} />
+      {step && <ProgressTracker step={step} />}
     </div>
   );
 }
-
 
 Card.propTypes = {
   rem: PropTypes.number,
   children: PropTypes.node.isRequired,
   step: PropTypes.number.isRequired,
-}
+};

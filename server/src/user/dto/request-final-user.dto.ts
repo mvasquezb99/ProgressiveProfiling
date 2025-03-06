@@ -7,10 +7,12 @@ import {
   IsInstance,
 } from 'class-validator';
 import { RequestOccupationCategoryDto } from 'src/occupation-category/dto/request-occupation-category.dto';
-import { RequestUserDto } from './request-user.dto';
 import { RequestLocationDto } from './request-location.dto';
+import { RequestOccupationDto } from 'src/occupation/dto/request-occupation.dto';
+import { RequestEducationDto } from './request-education.dto';
+import { RequestWorkDto } from './request-work.dto';
 
-export class RequestInfoDto {
+export class RequestFinalUserDto {
   @ApiProperty({ example: 'John Doe', description: 'User name' })
   @IsString()
   name: string;
@@ -20,11 +22,31 @@ export class RequestInfoDto {
   birthdate: string;
 
   @ApiProperty({
+    example: 'Spanish, English',
+    description: 'User languages',
+  })
+  languages: string;
+
+  @ApiProperty({
+    example: '{ degree: "Bachelor", institution: "MIT", area: "Biology" }',
+    description: 'User education',
+  })
+  @ValidateNested()
+  @Type(() => RequestEducationDto)
+  @IsNotEmptyObject()
+  education: RequestEducationDto;
+
+  @ApiProperty({
     example:
       '{ postalCode: "89472-3818", city: "San Francisco", country: "United States", region: "California" }',
     description: 'User location',
   })
   location: RequestLocationDto;
+
+  @ValidateNested()
+  @Type(() => RequestWorkDto)
+  @IsNotEmptyObject()
+  work: RequestWorkDto;
 
   @ApiProperty({
     example: '[{ name: "Tecnology" }, { name: "Business" }]',
@@ -35,12 +57,10 @@ export class RequestInfoDto {
   @IsNotEmptyObject()
   category: RequestOccupationCategoryDto;
 
-  @IsInstance(Array<RequestUserDto>)
-  likedUsers: RequestUserDto[];
-
-  @IsInstance(Array<RequestUserDto>)
-  dislikedUsers: RequestUserDto[];
-
-  @IsInstance(Array<RequestUserDto>)
-  superLikedUsers: RequestUserDto[];
+  @ApiProperty({
+    example: '[{ name: "Operations Manager" }, { name: "Software Developer" }]',
+    description: 'User occupation',
+  })
+  @IsInstance(Array<RequestOccupationDto>)
+  occupations: RequestOccupationDto[];
 }

@@ -8,12 +8,10 @@ export const getLocation = async (lat, lon) => {
     if (response.data && response.data.address) {
       const city = response.data.address.city || response.data.address.town || response.data.address.village;
       const country = response.data.address.country;
-      const address = response.data.address.road;
-      const postcode = response.data.address.postcode;
+      const postalCode = response.data.address.postcode;
       const region = response.data.address.state || response.data.address.county;
-      const countryCode = response.data.address.country_code;
 
-      return { city, country, address, postcode, region, countryCode };
+      return { city, country, postalCode, region };
     } else {
       throw new Error('No se encontraron datos de ubicación');
     }

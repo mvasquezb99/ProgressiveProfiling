@@ -5,31 +5,37 @@ import ProfileFrom from './components/pages/ProfileForm';
 import ProfessionForm from './components/pages/ProfessionForm';
 import { FormContext } from './context/context.jsx';
 import { useState } from 'react';
+import FinalPage from './components/pages/FinalPage/FinalPage.jsx';
 
 function App() {
   const [step, setStep] = useState(1);
-  const [enteredData, setEnteredData] = useState({
+  const [userData, setUserData] = useState({
     name: '',
     birthdate: '',
-    occupationCategory: '',
-    city: '',
-    country: '',
-    address: '',
-    postcode: '',
-    region: '',
-    countryCode: '',
+    category: '',
+    location: {
+      city: '',
+      country: '',
+      postcode: '',
+      region: '',
+    },
+    education: [],
+    languages: [],
+    occupations: [],
+    work: [],
   });
   const handleNextStep = (step) => {
     setStep(step);
   };
 
   return (
-    <FormContext.Provider value={[enteredData, setEnteredData]}>
+    <FormContext.Provider value={[userData, setUserData]}>
       <div className="flex items-center justify-center h-screen w-screen ">
         {step === 1 && <BasicForm nextStep={handleNextStep} />}
         {step === 2 && <ProfileInstructions nextStep={handleNextStep} />}
         {step === 3 && <ProfileFrom nextStep={handleNextStep} />}
         {step === 4 && <ProfessionForm nextStep={handleNextStep} />}
+        {step === 5 && <FinalPage />}
       </div>
     </FormContext.Provider>
   );

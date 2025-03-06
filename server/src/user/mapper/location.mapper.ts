@@ -1,5 +1,6 @@
 import { ResponseLocationDto } from '../dto/response-location.dto';
 import { LocationPropertiesI } from '../user-location.model';
+import { v4 as uuidv4 } from 'uuid';
 
 export class LocationMapper {
   static apply(location: LocationPropertiesI): ResponseLocationDto {
@@ -11,5 +12,18 @@ export class LocationMapper {
     locationDto.region = location.region;
 
     return locationDto;
+  }
+
+  public static toProperties(
+    location: ResponseLocationDto,
+  ): LocationPropertiesI {
+    const locationProp: LocationPropertiesI = {
+      uuid: uuidv4(),
+      city: location.city,
+      country: location.country,
+      postalCode: location.postalCode,
+      region: location.region,
+    };
+    return locationProp;
   }
 }
