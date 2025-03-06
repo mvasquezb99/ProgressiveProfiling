@@ -58,11 +58,11 @@ export default function ProfileFrom({ nextStep }) {
     setUserData((prevData) => {
       return {
         ...prevData,
-        category: response.categories,
-        education: response.education,
+        category: response.categories[0],
+        education: response.education[0],
         languages: response.languages.join(','),
         occupations: response.occupations,
-        work: response.work,
+        work: response.work[0],
       };
     });
   };

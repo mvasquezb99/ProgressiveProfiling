@@ -14,8 +14,8 @@ export default function FinalPage() {
     const fetchData = async () => {
       try {
         const requestData = userData;
-        console.log(requestData);
-        // const response = await axios.post('http://localhost:3000/users/save', requestData);
+        console.log(JSON.stringify(requestData));
+        const response = await axios.post('http://localhost:3000/users/save', requestData);
       } catch (err) {
         setError(err.message);
       } finally {
