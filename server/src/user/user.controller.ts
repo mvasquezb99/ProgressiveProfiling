@@ -71,8 +71,7 @@ export class UserController {
     description: 'Return all of the regular users',
   })
   @UsePipes(new ValidationPipe({ transform: true }))
-  findAllRegular(){
+  findAllRegular() {
     return this.userService.findAllRegular();
   }
-
 }

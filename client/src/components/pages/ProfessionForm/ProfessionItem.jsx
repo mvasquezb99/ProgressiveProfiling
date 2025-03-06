@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import PropTypes from 'prop-types';
 
-export default function ProfessionItem({ id, profession, handleClick }) {
+export default function ProfessionItem({ profession, handleClick }) {
   const [isClicked, setIsClicked] = useState(false);
 
   const itemClass =
@@ -21,7 +21,7 @@ export default function ProfessionItem({ id, profession, handleClick }) {
       className={isClicked ? itemClass : itemClass + 'bg-gray-70' + ' bg-white hover:bg-gray-50'}
       onClick={() => {
         toggleClass();
-        handleClick(id);
+        handleClick(profession);
       }}
     >
       <p className={labelStyles}>{profession}</p>

@@ -21,8 +21,8 @@ export default function ProfileCard({ profile }) {
                         <p className="text-base text-gray-700 leading-snug">Me desempeño en:</p>
                         <ul>
                             {
-                                occupations.map((o) => (
-                                    <li className='text-sm text-gray-700 leading-snug' key={o.name}>- {o.name}.</li>
+                                occupations.map((o, index) => (
+                                    <li className='text-sm text-gray-700 leading-snug' key={index}>- {o.name}.</li>
                                 ))
                             }
                         </ul>

@@ -21,8 +21,8 @@ export default function ProfileFrom({ nextStep }) {
 
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  
-  const [enteredData, setEnteredData] = useContext(FormContext);
+
+  const [userData, setUserData] = useContext(FormContext);
 
   const handleLike = () => {
     setLikedProfiles((prev) => [...prev, profile]);
@@ -54,30 +54,42 @@ export default function ProfileFrom({ nextStep }) {
     setProfile(array[randomIndex]);
   }, []);
 
+  const fillUserData = (response) => {
+    setUserData((prevData) => {
+      return {
+        ...prevData,
+        category: response.categories,
+        education: response.education,
+        languages: response.languages.join(','),
+        occupations: response.occupations,
+        work: response.work,
+      };
+    });
+  };
+
   const handleSubmit = async () => {
     const requestData = {
-      ...enteredData,
-      'category': {
-        'name': enteredData.category,
+      ...userData,
+      category: {
+        name: userData.category,
       },
-      'likedUsers': likedProfiles,
-      'dislikedUsers': dislikedProfiles,
-      'superLikedUsers': superlikedProfiles,
-    }
-    console.log(requestData);
+      likedUsers: likedProfiles,
+      dislikedUsers: dislikedProfiles,
+      superLikedUsers: superlikedProfiles,
+    };
     // Devuelve usuario ponderado entero y pasar a el siguiente form.
     const response = await axios.post('http://localhost:3000/users/generate', requestData);
+    fillUserData(response.data);
     // Recibo todas las ponderaciones y guardo en context
-    console.log(response.data);
 
-    nextStep(4)
-  }
+    nextStep(4);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/users/categories?category=${enteredData.category}`
+          `http://localhost:3000/users/categories?category=${userData.category}`
         );
         setCategoryProfiles(response.data);
 
@@ -110,7 +122,7 @@ export default function ProfileFrom({ nextStep }) {
         {!isLoading && profile !== null ? <ProfileCard profile={profile} /> : <Loading />}
       </MotionContainer>
       <SwipeArrows handleDislike={handleDislike} handleLike={handleLike} handleSuperlike={handleSuperlike} />
-      {(likedProfiles.length + superlikedProfiles.length) >= 7 ? (
+      {likedProfiles.length + superlikedProfiles.length >= 7 ? (
         <>
           <Button onClick={handleSubmit}>Continuar</Button>
         </>
