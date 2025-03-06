@@ -28,6 +28,7 @@ export const queryRelationships = (userName: string): Promise<QueryResult> => {
     .run();
 };
 
+
 export const queryUsersWithCategoryAndSimilar = (
   category: string,
   similarWeight: number = 5,

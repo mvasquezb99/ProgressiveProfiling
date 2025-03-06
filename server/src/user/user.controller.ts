@@ -63,4 +63,16 @@ export class UserController {
   saveUser(@Body() body: RequestFinalUserDto) {
     return this.userService.saveUser(body);
   }
+
+  @Get('regular')
+  @ApiOperation({ summary: 'Return all of the regular users' })
+  @ApiResponse({
+    status: 201,
+    description: 'Return all of the regular users',
+  })
+  @UsePipes(new ValidationPipe({ transform: true }))
+  findAllRegular(){
+    return this.userService.findAllRegular();
+  }
+
 }

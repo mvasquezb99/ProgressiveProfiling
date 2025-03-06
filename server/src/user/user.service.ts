@@ -25,7 +25,7 @@ export class UserService {
     @Inject(EducationClass) private readonly educationClass: EducationClass,
     @Inject(WorkClass) private readonly workClass: WorkClass,
     @Inject(LocationClass) private readonly locationClass: LocationClass,
-  ) {}
+  ) { }
 
   async findAll(): Promise<ResponseUserDto[]> {
     const dtoData: Record<string, QueryNode[]> = {};
@@ -64,6 +64,26 @@ export class UserService {
 
   generateProfile(body: RequestInfoAlgorithmDto) {
     return this.profilerService.profilingAlgorithm(body);
+  }
+
+  async findAllRegular() {
+    const dtoData: Record<string, QueryNode[]> = {};
+    const users = await this.userClass.userModel.findMany({
+      where: {
+        type: 'regular'
+      }
+    })
+
+    await Promise.all(
+      users.map(async (user) => {
+        const relationsNodes = await queryRelationships(user.name);
+        dtoData[user.name] = relationsNodes.records.map(
+          (r) => r.get('n') as QueryNode,
+        );
+      }),
+    );
+
+    return users.map((user) => ResponseUserDto.apply(user, dtoData[user.name]));
   }
 
   async saveUser(user: RequestFinalUserDto) {
