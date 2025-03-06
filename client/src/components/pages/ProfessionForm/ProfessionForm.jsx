@@ -49,7 +49,7 @@ export default function ProfessionForm({ nextStep }) {
       />
       <div className="grid grid-cols-3 gap-2 overflow-auto h-[23rem] no-scrollbar pt-5">
         {userData.occupations.map((profession, index) => (
-          <ProfessionItem key={index} profession={profession.name} handleClick={handleClick} />
+          <ProfessionItem key={index} profession={profession} handleClick={handleClick} />
         ))}
       </div>
       <Button onClick={submit}>Finalizar</Button>

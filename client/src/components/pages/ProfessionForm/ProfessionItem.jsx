@@ -24,7 +24,7 @@ export default function ProfessionItem({ profession, handleClick }) {
         handleClick(profession);
       }}
     >
-      <p className={labelStyles}>{profession}</p>
+      <p className={labelStyles}>{profession.name}</p>
     </div>
   );
 }
@@ -33,4 +33,4 @@ ProfessionItem.propTypes = {
   id: PropTypes.string,
   profession: PropTypes.string,
   handleClick: PropTypes.func,
-}
+};
