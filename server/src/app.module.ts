@@ -15,6 +15,7 @@ import { UserController } from './user/user.controller';
 import { ProfilerModule } from './profiler/profiler.module';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
+import configuration from './config/configuration';
 
 @Module({
   imports: [
@@ -26,7 +27,11 @@ import { APP_GUARD } from '@nestjs/core';
         },
       ],
     }),
-    ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+      load: [configuration],
+    }),
     NeogmaModule.forRoot(),
     UserModule,
     OccupationModule,
@@ -50,4 +55,4 @@ import { APP_GUARD } from '@nestjs/core';
     UserService,
   ],
 })
-export class AppModule { }
+export class AppModule {}

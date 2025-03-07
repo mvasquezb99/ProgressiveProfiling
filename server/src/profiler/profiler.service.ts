@@ -7,6 +7,7 @@ import { RequestUserDto } from 'src/user/dto/request-user.dto';
 import { RequestWorkDto } from 'src/user/dto/request-work.dto';
 import { ResponseProfilerDto } from './dto/response-profiler.dto';
 import { ProfilerMapper } from './mapper/profiler.mapper';
+import { ConfigService } from '@nestjs/config';
 
 export type UserWeighed = {
   languages: Map<string, number>;
@@ -25,6 +26,8 @@ export class ProfilerService {
     categories: new Map(),
     occupations: new Map(),
   };
+
+  constructor(private readonly configService: ConfigService) {}
 
   private weighLikedUsers(listUsers: RequestUserDto[], value: number): void {
     listUsers.forEach((user) => {
@@ -156,15 +159,33 @@ export class ProfilerService {
   public profilingAlgorithm(
     body: RequestInfoAlgorithmDto,
   ): ResponseProfilerDto {
-    this.weighLikedUsers(body.likedUsers, 1);
-    this.weighLikedUsers(body.superLikedUsers, 10);
-    this.weighLikedUsers(body.dislikedUsers, -1);
+    this.weighLikedUsers(
+      body.likedUsers,
+      this.configService.get<number>('algorithm.likeWeight') || 1,
+    );
+    this.weighLikedUsers(
+      body.superLikedUsers,
+      this.configService.get<number>('algorithm.superlikeWeight') || 10,
+    );
+    this.weighLikedUsers(
+      body.dislikedUsers,
+      this.configService.get<number>('algorithm.dislikeWeight') || -1,
+    );
     const filteredUserWeighed = {
-      languages: this.filterMap(this.userWeighed.languages, 5),
+      languages: this.filterMap(
+        this.userWeighed.languages,
+        this.configService.get<number>('algorithm.minLimit') || 5,
+      ),
       education: this.getMaxElement(this.userWeighed.education),
       work: this.getMaxElement(this.userWeighed.work),
-      categories: this.filterMap(this.userWeighed.categories, 5),
-      occupations: this.filterMap(this.userWeighed.occupations, 5),
+      categories: this.filterMap(
+        this.userWeighed.categories,
+        this.configService.get<number>('algorithm.minLimit') || 5,
+      ),
+      occupations: this.filterMap(
+        this.userWeighed.occupations,
+        this.configService.get<number>('algorithm.minLimit') || 5,
+      ),
     };
     return ProfilerMapper.apply(filteredUserWeighed);
   }
