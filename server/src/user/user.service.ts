@@ -16,6 +16,7 @@ import { LocationClass } from './user-location.model';
 import { EducationMapper } from './mapper/education.mapper';
 import { WorkMapper } from './mapper/work.mapper';
 import { LocationMapper } from './mapper/location.mapper';
+import { ResponseProfilerDto } from 'src/profiler/dto/response-profiler.dto';
 
 @Injectable()
 export class UserService {
@@ -25,9 +26,9 @@ export class UserService {
     @Inject(EducationClass) private readonly educationClass: EducationClass,
     @Inject(WorkClass) private readonly workClass: WorkClass,
     @Inject(LocationClass) private readonly locationClass: LocationClass,
-  ) { }
+  ) {}
 
-  async findAll(): Promise<ResponseUserDto[]> {
+  public async findAll(): Promise<ResponseUserDto[]> {
     const dtoData: Record<string, QueryNode[]> = {};
     const users = await this.userClass.userModel.findMany();
 
@@ -43,7 +44,7 @@ export class UserService {
     return users.map((user) => ResponseUserDto.apply(user, dtoData[user.name]));
   }
 
-  async findByCategory(category: string): Promise<ResponseUserDto[]> {
+  public async findByCategory(category: string): Promise<ResponseUserDto[]> {
     const dtoData: Record<string, QueryNode[]> = {};
     const userNodes = await queryUsersWithCategoryAndSimilar(category);
     const users = userNodes.records.map((r) => r.get('u') as QueryNode);
@@ -62,17 +63,17 @@ export class UserService {
     );
   }
 
-  generateProfile(body: RequestInfoAlgorithmDto) {
+  public generateProfile(body: RequestInfoAlgorithmDto): ResponseProfilerDto {
     return this.profilerService.profilingAlgorithm(body);
   }
 
-  async findAllRegular() {
+  public async findAllRegular(): Promise<ResponseUserDto[]> {
     const dtoData: Record<string, QueryNode[]> = {};
     const users = await this.userClass.userModel.findMany({
       where: {
-        type: 'regular'
-      }
-    })
+        type: 'regular',
+      },
+    });
 
     await Promise.all(
       users.map(async (user) => {
@@ -86,7 +87,7 @@ export class UserService {
     return users.map((user) => ResponseUserDto.apply(user, dtoData[user.name]));
   }
 
-  async saveUser(user: RequestFinalUserDto) {
+  public async saveUser(user: RequestFinalUserDto): Promise<void> {
     const userProp = UserMapper.toProperties(user);
 
     let educationNode = await this.educationClass.educationModel.findOne({

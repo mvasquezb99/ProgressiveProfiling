@@ -15,4 +15,4 @@ import { ProfilerModule } from 'src/profiler/profiler.module';
   exports: [UserClass, LocationClass, EducationClass, WorkClass],
   controllers: [UserController],
 })
-export class UserModule { }
+export class UserModule {}

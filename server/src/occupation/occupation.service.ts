@@ -6,14 +6,14 @@ import { ResponseOccupationDto } from './dto/response-occupation.dto';
 export class OccupationService {
   constructor(private readonly occupationClass: OccupationClass) {}
 
-  async findAll(): Promise<ResponseOccupationDto[]> {
+  public async findAll(): Promise<ResponseOccupationDto[]> {
     const occupations = await this.occupationClass.occupationModel.findMany();
     return occupations.map((occupation) => ({
       name: occupation.name,
     }));
   }
 
-  async findByName(name: string): Promise<ResponseOccupationDto> {
+  public async findByName(name: string): Promise<ResponseOccupationDto> {
     const occupation = await this.occupationClass.occupationModel.findOne({
       where: { name: name },
     });

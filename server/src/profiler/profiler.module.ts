@@ -6,4 +6,4 @@ import { ProfilerService } from './profiler.service';
   providers: [ProfilerService],
   exports: [ProfilerService],
 })
-export class ProfilerModule { }
+export class ProfilerModule {}

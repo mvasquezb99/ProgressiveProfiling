@@ -15,7 +15,7 @@ export class OccupationController {
     description: 'Return all occupations',
     type: [ResponseOccupationDto],
   })
-  findAll(): Promise<ResponseOccupationDto[]> {
+  public findAll(): Promise<ResponseOccupationDto[]> {
     return this.occupationService.findAll();
   }
 
@@ -26,7 +26,9 @@ export class OccupationController {
     description: 'Return occupation by name',
     type: ResponseOccupationDto,
   })
-  findByName(@Query('name') name: string): Promise<ResponseOccupationDto> {
+  public findByName(
+    @Query('name') name: string,
+  ): Promise<ResponseOccupationDto> {
     return this.occupationService.findByName(name);
   }
 }
