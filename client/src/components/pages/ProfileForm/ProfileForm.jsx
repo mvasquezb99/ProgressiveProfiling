@@ -24,11 +24,11 @@ export default function ProfileFrom({ nextStep }) {
   const [userData, setUserData] = useContext(FormContext);
 
   const removeProfile = (profile) => {
-    setCategoryProfiles((prev) => prev.filter((p) => p.name !== profile.name))
+    setCategoryProfiles((prev) => prev.filter((p) => p.name !== profile.name));
     if (categoryProfiles.length === 0) {
       setIsLoading(true);
     }
-  }
+  };
 
   const handleLike = () => {
     setLikedProfiles((prev) => [...prev, profile]);
@@ -60,7 +60,7 @@ export default function ProfileFrom({ nextStep }) {
     setUserData((prevData) => {
       return {
         ...prevData,
-        category: response.categories[0],
+        category: response.categories[0] ,
         education: response.education[0],
         languages: response.languages.join(','),
         occupations: response.occupations,
@@ -73,7 +73,7 @@ export default function ProfileFrom({ nextStep }) {
     const requestData = {
       ...userData,
       category: {
-        name: userData.category,
+        name: userData.category.name,
       },
       likedUsers: likedProfiles,
       dislikedUsers: dislikedProfiles,
@@ -96,7 +96,7 @@ export default function ProfileFrom({ nextStep }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/users/categories?category=${userData.category}`
+          `http://localhost:3000/users/categories?category=${userData.category.name}`
         );
         setCategoryProfiles(response.data);
 
@@ -112,7 +112,6 @@ export default function ProfileFrom({ nextStep }) {
     fetchData();
   }, [getRandomProfile]);
 
-
   return (
     <Card step={2} rem={25}>
       <div className="flex align-left w-full">
@@ -122,7 +121,7 @@ export default function ProfileFrom({ nextStep }) {
             resetProfiles();
           }}
         />
-        <p className='text-xs font-bold text-gray-700 leading-snug flex justify-center items-center w-[68%]'>
+        <p className="text-xs font-bold text-gray-700 leading-snug flex justify-center items-center w-[68%]">
           Haz click y desliza!
         </p>
       </div>
@@ -132,7 +131,11 @@ export default function ProfileFrom({ nextStep }) {
         handleDislike={handleDislike}
         handleSuperlike={handleSuperlike}
       >
-        {!isLoading && profile !== null ? <ProfileCard profile={profile} /> : <Loading message={'Buscando perfiles'} />}
+        {!isLoading && profile !== null ? (
+          <ProfileCard profile={profile} />
+        ) : (
+          <Loading message={'Buscando perfiles'} />
+        )}
       </MotionContainer>
       <SwipeArrows handleDislike={handleDislike} handleLike={handleLike} handleSuperlike={handleSuperlike} />
       {likedProfiles.length + superlikedProfiles.length >= 7 ? (

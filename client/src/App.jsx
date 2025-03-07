@@ -12,7 +12,7 @@ function App() {
   const [userData, setUserData] = useState({
     name: '',
     birthdate: '',
-    category: '',
+    category: {name: ''},
     location: {
       city: '',
       country: '',
