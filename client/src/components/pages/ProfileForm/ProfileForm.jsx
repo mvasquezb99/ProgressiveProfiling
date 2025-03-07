@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Loading from '../../common/Loading';
 import BackButton from '../../common/BackButton';
-import CardTitle from '../../common/CardTitle';
 
 export default function ProfileFrom({ nextStep }) {
   const [likedProfiles, setLikedProfiles] = useState([]);
@@ -24,25 +23,28 @@ export default function ProfileFrom({ nextStep }) {
 
   const [userData, setUserData] = useContext(FormContext);
 
+  const removeProfile = (profile) => {
+    setCategoryProfiles((prev) => prev.filter((p) => p.name !== profile.name))
+    if (categoryProfiles.length === 0) {
+      setIsLoading(true);
+    }
+  }
+
   const handleLike = () => {
     setLikedProfiles((prev) => [...prev, profile]);
+    removeProfile(profile);
     getRandomProfile(categoryProfiles);
-  };
-
-  const resetProfiles = () => {
-    setLikedProfiles([]);
-    setDislikedProfiles([]);
-    setSuperlikedProfiles([]);
-    setCategoryProfiles(null);
   };
 
   const handleDislike = () => {
     setDislikedProfiles((prev) => [...prev, profile]);
+    removeProfile(profile);
     getRandomProfile(categoryProfiles);
   };
 
   const handleSuperlike = () => {
     setSuperlikedProfiles((prev) => [...prev, profile]);
+    removeProfile(profile);
     getRandomProfile(categoryProfiles);
   };
 
@@ -77,12 +79,17 @@ export default function ProfileFrom({ nextStep }) {
       dislikedUsers: dislikedProfiles,
       superLikedUsers: superlikedProfiles,
     };
-    // Devuelve usuario ponderado entero y pasar a el siguiente form.
+
     const response = await axios.post('http://localhost:3000/users/generate', requestData);
     fillUserData(response.data);
-    // Recibo todas las ponderaciones y guardo en context
-
     nextStep(4);
+  };
+
+  const resetProfiles = () => {
+    setLikedProfiles([]);
+    setDislikedProfiles([]);
+    setSuperlikedProfiles([]);
+    setCategoryProfiles(null);
   };
 
   useEffect(() => {
@@ -105,21 +112,27 @@ export default function ProfileFrom({ nextStep }) {
     fetchData();
   }, [getRandomProfile]);
 
+
   return (
     <Card step={2} rem={25}>
-      <BackButton
-        onClick={() => {
-          nextStep(1);
-          resetProfiles();
-        }}
-      />
+      <div className="flex align-left w-full">
+        <BackButton
+          onClick={() => {
+            nextStep(1);
+            resetProfiles();
+          }}
+        />
+        <p className='text-xs font-bold text-gray-700 leading-snug flex justify-center items-center w-[68%]'>
+          Haz click y desliza!
+        </p>
+      </div>
 
       <MotionContainer
         handleLike={handleLike}
         handleDislike={handleDislike}
         handleSuperlike={handleSuperlike}
       >
-        {!isLoading && profile !== null ? <ProfileCard profile={profile} /> : <Loading />}
+        {!isLoading && profile !== null ? <ProfileCard profile={profile} /> : <Loading message={'Buscando perfiles'} />}
       </MotionContainer>
       <SwipeArrows handleDislike={handleDislike} handleLike={handleLike} handleSuperlike={handleSuperlike} />
       {likedProfiles.length + superlikedProfiles.length >= 7 ? (

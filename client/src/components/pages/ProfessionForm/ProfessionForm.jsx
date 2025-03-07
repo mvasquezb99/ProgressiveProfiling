@@ -37,12 +37,14 @@ export default function ProfessionForm({ nextStep }) {
 
   return (
     <Card rem={30} step={3}>
-      <BackButton
-        onClick={() => {
-          nextStep(3);
-          resetProfessions();
-        }}
-      />
+      <div className="flex align-left w-full">
+        <BackButton
+          onClick={() => {
+            nextStep(3);
+            resetProfessions();
+          }}
+        />
+      </div>
       <CardTitle
         title="Un ultimo paso"
         subtitle="Selecciona al menos 3 ocupaciones que se relacionen contigo"
