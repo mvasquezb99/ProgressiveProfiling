@@ -12,7 +12,6 @@ import { LocationClass } from 'src/user/user-location.model';
 import { WorkClass } from 'src/user/user-work.model';
 import { faker } from '@faker-js/faker';
 import { v4 as uuidv4 } from 'uuid';
-import chalk from 'chalk';
 interface ExtendedCastingContext extends CastingContext {
   column: string;
 }
@@ -28,7 +27,7 @@ export class SeedDataService {
     @Inject(LocationClass) private readonly locationClass: LocationClass,
     @Inject(EducationClass) private readonly educationClass: EducationClass,
     @Inject(WorkClass) private readonly workClass: WorkClass,
-  ) { }
+  ) {}
 
   /**
    * Seeds the database with initial user data.
@@ -131,17 +130,17 @@ export class SeedDataService {
 
     //--------Relate Ciencias e Investigación-------------
 
-    const cienceNode =
-      await this.occupationCategoryClass.categoryModel.findOne({
+    const cienceNode = await this.occupationCategoryClass.categoryModel.findOne(
+      {
         where: {
           name: 'Ciencias e Investigación',
         },
-      });
+      },
+    );
 
     if (!cienceNode) {
       return;
     }
-
 
     //With Tecnología de la Información
     await cienceNode.relateTo({
@@ -166,7 +165,6 @@ export class SeedDataService {
       properties: { Weight: 9 },
     });
 
-
     //--------Relate Tecnología de la Información-------------
 
     const tecnologiaNode =
@@ -179,6 +177,13 @@ export class SeedDataService {
     if (!tecnologiaNode) {
       return;
     }
+
+    //With Ciencias e Investigación
+    await tecnologiaNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Ciencias e Investigación' },
+      properties: { Weight: 1 },
+    });
 
     //With Transporte y Logística
 
@@ -217,6 +222,53 @@ export class SeedDataService {
       properties: { Weight: 1 },
     });
 
+    //With Tecnología de la Información
+    await transporteNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Tecnología de la Información' },
+      properties: { Weight: 9 },
+    });
+
+    //With Ciencias e Investigación
+    await transporteNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Ciencias e Investigación' },
+      properties: { Weight: 9 },
+    });
+
+    //--------Relate Manufactura y Producción-------------
+
+    const manufacturaNode =
+      await this.occupationCategoryClass.categoryModel.findOne({
+        where: {
+          name: 'Manufactura y Producción',
+        },
+      });
+
+    if (!manufacturaNode) {
+      return;
+    }
+
+    //With Transporte y Logística
+    await manufacturaNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Transporte y Logística' },
+      properties: { Weight: 1 },
+    });
+
+    //With Tecnología de la Información
+    await manufacturaNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Tecnología de la Información' },
+      properties: { Weight: 9 },
+    });
+
+    //With Ciencias e Investigación
+    await manufacturaNode.relateTo({
+      alias: 'Similar',
+      where: { name: 'Ciencias e Investigación' },
+      properties: { Weight: 9 },
+    });
   }
 
   async populateUsers() {
@@ -263,10 +315,13 @@ export class SeedDataService {
         })
         .join(', '),
       languages: faker.helpers
-        .arrayElements(['Inglés', 'Español', 'Francés', 'Portugués', 'Alemán'], {
-          min: 1,
-          max: 3,
-        })
+        .arrayElements(
+          ['Inglés', 'Español', 'Francés', 'Portugués', 'Alemán'],
+          {
+            min: 1,
+            max: 3,
+          },
+        )
         .join(', '),
     }));
 
@@ -316,7 +371,8 @@ export class SeedDataService {
 
     for (const userNode of usersNodes) {
       const userSkills = userNode.skills.split(', ');
-      const randomUserSkill = userSkills[Math.floor(Math.random() * relationCategory.length)];
+      const randomUserSkill =
+        userSkills[Math.floor(Math.random() * relationCategory.length)];
 
       for (const categorySkill of Object.keys(categoriesSkillsMap)) {
         if (categoriesSkillsMap[categorySkill].includes(randomUserSkill)) {
@@ -324,10 +380,11 @@ export class SeedDataService {
         }
       }
 
-      const category =
-        await this.occupationCategoryClass.categoryModel.findOne({
+      const category = await this.occupationCategoryClass.categoryModel.findOne(
+        {
           where: { name: relationCategory },
-        });
+        },
+      );
 
       if (!category) {
         return;
@@ -353,10 +410,15 @@ export class SeedDataService {
         alias: 'Has',
       });
 
-      const categoryRelatedOccupationsMap = categoryRelatedOccupations.map(item => item.target.dataValues.name);
+      const categoryRelatedOccupationsMap = categoryRelatedOccupations.map(
+        (item) => item.target.dataValues.name,
+      );
 
       for (let i = 0; i < 3; i++) {
-        const selectedOccupation = categoryRelatedOccupationsMap[Math.floor(Math.random() * categoryRelatedOccupationsMap.length)];
+        const selectedOccupation =
+          categoryRelatedOccupationsMap[
+            Math.floor(Math.random() * categoryRelatedOccupationsMap.length)
+          ];
         await userNode.relateTo({
           alias: 'LikesOccupation',
           where: { name: selectedOccupation },
