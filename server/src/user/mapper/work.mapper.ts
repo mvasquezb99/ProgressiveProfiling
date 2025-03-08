@@ -1,9 +1,11 @@
+import { Injectable } from '@nestjs/common';
 import { ResponseWorkDto } from '../dto/response-work.dto';
 import { WorkPropertiesI } from '../user-work.model';
 import { v4 as uuidv4 } from 'uuid';
 
+@Injectable()
 export class WorkMapper {
-  static apply(work: WorkPropertiesI): ResponseWorkDto {
+  public toResponse(work: WorkPropertiesI): ResponseWorkDto {
     const workDto = new ResponseWorkDto();
 
     workDto.organization = work.organization;
@@ -12,7 +14,7 @@ export class WorkMapper {
     return workDto;
   }
 
-  public static toProperties(work: ResponseWorkDto): WorkPropertiesI {
+  public toProperties(work: ResponseWorkDto): WorkPropertiesI {
     const workProp: WorkPropertiesI = {
       uuid: uuidv4(),
       organization: work.organization,

@@ -8,10 +8,32 @@ import { LocationClass } from './user-location.model';
 import { WorkClass } from './user-work.model';
 import { OccupationCategoryModule } from 'src/occupation-category/occupation-category.module';
 import { ProfilerModule } from 'src/profiler/profiler.module';
+import { UserMapper } from './mapper/user.mapper';
+import { LocationMapper } from './mapper/location.mapper';
+import { EducationMapper } from './mapper/education.mapper';
+import { WorkMapper } from './mapper/work.mapper';
+import { ResponseUserDto } from './dto/response-user.dto';
+import { QueryModule } from 'src/query/query.module';
 
 @Module({
-  imports: [OccupationModule, OccupationCategoryModule, ProfilerModule],
-  providers: [UserClass, UserService, EducationClass, LocationClass, WorkClass],
+  imports: [
+    OccupationModule,
+    OccupationCategoryModule,
+    ProfilerModule,
+    QueryModule,
+  ],
+  providers: [
+    UserClass,
+    UserService,
+    EducationClass,
+    LocationClass,
+    WorkClass,
+    UserMapper,
+    LocationMapper,
+    EducationMapper,
+    WorkMapper,
+    ResponseUserDto,
+  ],
   exports: [UserClass, LocationClass, EducationClass, WorkClass],
   controllers: [UserController],
 })

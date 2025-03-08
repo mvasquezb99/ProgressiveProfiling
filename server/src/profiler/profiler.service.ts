@@ -27,7 +27,10 @@ export class ProfilerService {
     occupations: new Map(),
   };
 
-  constructor(private readonly configService: ConfigService) {}
+  constructor(
+    private readonly configService: ConfigService,
+    private readonly profilerMapper: ProfilerMapper,
+  ) { }
 
   private weighLikedUsers(listUsers: RequestUserDto[], value: number): void {
     listUsers.forEach((user) => {
@@ -187,6 +190,6 @@ export class ProfilerService {
         this.configService.get<number>('algorithm.minLimit') || 5,
       ),
     };
-    return ProfilerMapper.apply(filteredUserWeighed);
+    return this.profilerMapper.toResponse(filteredUserWeighed);
   }
 }
