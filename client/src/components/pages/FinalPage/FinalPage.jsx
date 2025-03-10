@@ -14,8 +14,8 @@ export default function FinalPage() {
     const fetchData = async () => {
       try {
         const requestData = userData;
-        console.log(JSON.stringify(requestData));
-        const response = await axios.post('http://localhost:3000/users/save', requestData);
+        await axios.post('http://localhost:3000/users/save', requestData);
+        window.open('https://www.magneto365.com/es', '_blank');
       } catch (err) {
         setError(err.message);
       } finally {
@@ -28,7 +28,7 @@ export default function FinalPage() {
   return (
     <Card>
       {isLoading ? (
-        <Loading />
+        <Loading message={'Generando tu perfil'} />
       ) : (
         <CardTitle title="Perfil creado con éxito" subtitle="Haz finalizado con el proceso" />
       )}

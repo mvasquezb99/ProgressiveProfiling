@@ -19,7 +19,7 @@ export default function BasicForm({ nextStep }) {
     const errors = {
       name: enteredData.name.trim() === '',
       birthdate: enteredData.birthdate.trim() === '',
-      category: enteredData.category.trim() === '',
+      category: enteredData.category.name.trim() === '',
     };
 
     setError(errors);
@@ -80,7 +80,7 @@ export default function BasicForm({ nextStep }) {
           subtitle={'Para empezar tu búsqueda de empleo necesitamos algunos datos'}
         />
 
-        <div>
+        <section>
           <Input
             label="Nombre"
             handleChange={handleChange}
@@ -103,15 +103,15 @@ export default function BasicForm({ nextStep }) {
             label={'Categoría de ocupación'}
             placeholder="-- Seleccione una Categoría de ocupación --"
             name="select"
-            onChange={(e) => handleChange('category', e.target.value)}
-            value={enteredData.category}
+            onChange={(e) => handleChange('category', { name: e.target.value })}
+            value={enteredData.category.name}
           />
           {error.category && <ErrorMessage message="!Por favor ingresa tu categoría de ocupación!" />}
 
           <div className="flex w-full">
             <Button onClick={handleSubmit}>Continuar</Button>
           </div>
-        </div>
+        </section>
       </form>
     </Card>
   );

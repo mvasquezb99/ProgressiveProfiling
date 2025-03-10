@@ -12,7 +12,7 @@ function App() {
   const [userData, setUserData] = useState({
     name: '',
     birthdate: '',
-    category: '',
+    category: {name: ''},
     location: {
       city: '',
       country: '',
@@ -30,13 +30,13 @@ function App() {
 
   return (
     <FormContext.Provider value={[userData, setUserData]}>
-      <div className="flex items-center justify-center h-screen w-screen ">
+      <main className="flex items-center justify-center h-screen w-screen ">
         {step === 1 && <BasicForm nextStep={handleNextStep} />}
         {step === 2 && <ProfileInstructions nextStep={handleNextStep} />}
         {step === 3 && <ProfileFrom nextStep={handleNextStep} />}
         {step === 4 && <ProfessionForm nextStep={handleNextStep} />}
         {step === 5 && <FinalPage />}
-      </div>
+      </main>
     </FormContext.Provider>
   );
 }

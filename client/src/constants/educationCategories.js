@@ -1,6 +1,6 @@
 export const categories = [
   'Transporte y Logística',
-  'Construcción e Infraestructura',
+  'Manufactura y Producción',
   'Tecnología de la Información',
   'Ciencias e Investigación',
 ];
