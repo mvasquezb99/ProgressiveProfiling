@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 export default function ProfileInstructions({nextStep}) {
     return (
         <Card step={1}>
-            <div className="flex flex-col justify-between h-[30rem]">
+            <section className="flex flex-col justify-between h-[30rem]">
                 <div className="w-[20rem] h-fit text-black">
                     <CardTitle title={"¡Descubre tu perfil ideal! 🎯"} />
                     <p className="text-base text-gray-700 leading-snug mt-2">
@@ -24,7 +24,7 @@ export default function ProfileInstructions({nextStep}) {
                         Iniciar
                     </Button>
                 </div>
-            </div>
+            </section>
         </Card>
     )
 }

@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useState, useContext } from 'react';
 import { FormContext } from '../../../context/context';
+import { getRandomInt } from '../../../utils/getRandom';
+import { useFetch } from '../../../hooks/useFetch';
+
 import Card from '../../layout/Card';
 import MotionContainer from '../../layout/MotionContainer';
 import ProfileCard from './ProfileCard';
@@ -14,44 +17,40 @@ export default function ProfileFrom({ nextStep }) {
   const [likedProfiles, setLikedProfiles] = useState([]);
   const [dislikedProfiles, setDislikedProfiles] = useState([]);
   const [superlikedProfiles, setSuperlikedProfiles] = useState([]);
-
-  const [categoryProfiles, setCategoryProfiles] = useState(null);
+  const [uri, setUri] = useState(null);
   const [profile, setProfile] = useState(null);
-
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
   const [userData, setUserData] = useContext(FormContext);
 
-  const removeProfile = (profile) => {
-    setCategoryProfiles((prev) => prev.filter((p) => p.name !== profile.name));
-    if (categoryProfiles.length === 0) {
-      setIsLoading(true);
+  const { data: categoryProfiles, isLoading, error, setData: setCategoryProfiles} = useFetch(uri);
+
+  const removeProfile = () => {
+    if (categoryProfiles.length === 1) {
+      setCategoryProfiles((prev) => prev.filter((p) => p.name !== profile.name))
+      handleSubmit();
+    } else {
+      setCategoryProfiles((prev) => prev.filter((p) => p.name !== profile.name))
     }
   };
 
   const handleLike = () => {
     setLikedProfiles((prev) => [...prev, profile]);
-    removeProfile(profile);
-    getRandomProfile(categoryProfiles);
+    removeProfile();
+    setRandomProfile(categoryProfiles);
   };
 
   const handleDislike = () => {
     setDislikedProfiles((prev) => [...prev, profile]);
-    removeProfile(profile);
-    getRandomProfile(categoryProfiles);
+    removeProfile();
+    setRandomProfile(categoryProfiles);
   };
 
   const handleSuperlike = () => {
     setSuperlikedProfiles((prev) => [...prev, profile]);
-    removeProfile(profile);
-    getRandomProfile(categoryProfiles);
+    removeProfile();
+    setRandomProfile(categoryProfiles);
   };
 
-  const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-  // UseCallback caches the definition of a function between re-renders.
-  const getRandomProfile = useCallback((array) => {
+  const setRandomProfile = useCallback((array) => {
     const randomIndex = getRandomInt(0, array.length - 1);
     setProfile(array[randomIndex]);
   }, []);
@@ -60,7 +59,7 @@ export default function ProfileFrom({ nextStep }) {
     setUserData((prevData) => {
       return {
         ...prevData,
-        category: response.categories[0] ,
+        category: response.categories[0],
         education: response.education[0],
         languages: response.languages.join(','),
         occupations: response.occupations,
@@ -93,28 +92,20 @@ export default function ProfileFrom({ nextStep }) {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/users/categories?category=${userData.category.name}`
-        );
-        setCategoryProfiles(response.data);
+    if (userData.category.name) {
+      setUri(`http://localhost:3000/users/categories?category=${userData.category.name}`);
+    }
+  }, [userData.category.name]);
 
-        if (response.data.length >= 1) {
-          getRandomProfile(response.data);
-        }
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, [getRandomProfile]);
+  useEffect(() => {
+    if (categoryProfiles && categoryProfiles.length >= 1) {
+      setRandomProfile(categoryProfiles);
+    }
+  }, [categoryProfiles])
 
   return (
     <Card step={2} rem={25}>
-      <div className="flex align-left w-full">
+      <nav className="flex align-left w-full">
         <BackButton
           onClick={() => {
             nextStep(1);
@@ -124,7 +115,10 @@ export default function ProfileFrom({ nextStep }) {
         <p className="text-xs font-bold text-gray-700 leading-snug flex justify-center items-center w-[68%]">
           Haz click y desliza!
         </p>
-      </div>
+        <p className="text-base font-bold text-gray-700 leading-snug flex justify-center items-center flex-grow">
+          {likedProfiles.length + superlikedProfiles.length}
+        </p>
+      </nav>
 
       <MotionContainer
         handleLike={handleLike}

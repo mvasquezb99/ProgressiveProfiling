@@ -80,7 +80,7 @@ export default function BasicForm({ nextStep }) {
           subtitle={'Para empezar tu búsqueda de empleo necesitamos algunos datos'}
         />
 
-        <div>
+        <section>
           <Input
             label="Nombre"
             handleChange={handleChange}
@@ -111,7 +111,7 @@ export default function BasicForm({ nextStep }) {
           <div className="flex w-full">
             <Button onClick={handleSubmit}>Continuar</Button>
           </div>
-        </div>
+        </section>
       </form>
     </Card>
   );

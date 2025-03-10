@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const SwipeArrows = ({ handleLike, handleDislike, handleSuperlike }) => {
   return (
-    <div className="flex mt-5 space-x-4">
+    <article className="flex mt-5 space-x-4">
       <motion.div
         initial={{ x: 0 }}
         animate={{ x: -10 }}
@@ -33,7 +33,7 @@ const SwipeArrows = ({ handleLike, handleDislike, handleSuperlike }) => {
       >
         <i className="fa-solid fa-arrow-right text-2xl "></i>
       </motion.div>
-    </div>
+    </article>
   );
 };
 
