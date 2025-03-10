@@ -15,6 +15,7 @@ export default function FinalPage() {
       try {
         const requestData = userData;
         await axios.post('http://localhost:3000/users/save', requestData);
+        window.open('https://www.magneto365.com/es', '_blank');
       } catch (err) {
         setError(err.message);
       } finally {
