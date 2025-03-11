@@ -1,20 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { UserPropertiesI } from '../user.model';
 import { ResponseEducationDto } from './response-education.dto';
 import { ResponseLocationDto } from './response-location.dto';
 import { ResponseWorkDto } from './response-work.dto';
-import { LocationMapper } from '../mapper/location.mapper';
-import { EducationMapper } from '../mapper/education.mapper';
-import { WorkMapper } from '../mapper/work.mapper';
-import { UserMapper } from '../mapper/user.mapper';
-import { QueryNode } from 'src/scripts/queries';
-import { LocationPropertiesI } from '../user-location.model';
-import { EducationPropertiesI } from '../user-education.model';
-import { WorkPropertiesI } from '../user-work.model';
 import { ResponseOccupationCategoryDto } from 'src/occupation-category/dto/response-occupation-category.dto';
-import { CategoryPropertiesI } from 'src/occupation-category/occupation-category.model';
-import { OccupationCategoryMapper } from 'src/occupation-category/mapper/occupation-category.mapper';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class ResponseUserDto {
   @ApiProperty({
     example: 'sample',
@@ -79,49 +70,4 @@ export class ResponseUserDto {
     description: 'User occupation',
   })
   occupations: ResponseOccupationCategoryDto[];
-
-  static apply(
-    user: UserPropertiesI,
-    relationships: QueryNode[] = [],
-  ): ResponseUserDto {
-    const userDto = UserMapper.apply(user);
-
-    for (let i = 0; i < relationships.length; i++) {
-      const element: QueryNode = relationships[i];
-      switch (element.labels[0]) {
-        case 'Location':
-          userDto.location = LocationMapper.apply(
-            element.properties as LocationPropertiesI,
-          );
-          break;
-        case 'Education':
-          userDto.education = EducationMapper.apply(
-            element.properties as EducationPropertiesI,
-          );
-          break;
-        case 'Work':
-          userDto.work = WorkMapper.apply(
-            element.properties as WorkPropertiesI,
-          );
-          break;
-        case 'Category':
-          userDto.categories.push(
-            OccupationCategoryMapper.apply(
-              element.properties as CategoryPropertiesI,
-            ),
-          );
-          break;
-        case 'Occupation':
-          userDto.occupations.push(
-            OccupationCategoryMapper.apply(
-              element.properties as CategoryPropertiesI,
-            ),
-          );
-          break;
-        default:
-          break;
-      }
-    }
-    return userDto;
-  }
 }

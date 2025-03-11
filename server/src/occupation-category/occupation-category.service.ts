@@ -8,7 +8,7 @@ export class OccupationCategoryService {
     private readonly occupationCategoryClass: OccupationCategoryClass,
   ) {}
 
-  async findAll(): Promise<ResponseOccupationCategoryDto[]> {
+  public async findAll(): Promise<ResponseOccupationCategoryDto[]> {
     const occupationCategory =
       await this.occupationCategoryClass.categoryModel.findMany();
 
@@ -17,7 +17,9 @@ export class OccupationCategoryService {
     }));
   }
 
-  async findByName(name: string): Promise<ResponseOccupationCategoryDto> {
+  public async findByName(
+    name: string,
+  ): Promise<ResponseOccupationCategoryDto> {
     const occupationCategory =
       await this.occupationCategoryClass.categoryModel.findOne({
         where: { name: name },

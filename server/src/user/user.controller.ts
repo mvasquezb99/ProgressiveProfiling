@@ -25,7 +25,7 @@ export class UserController {
     description: 'Return all users',
     type: [ResponseUserDto],
   })
-  findAll(): Promise<ResponseUserDto[]> {
+  public findAll(): Promise<ResponseUserDto[]> {
     return this.userService.findAll();
   }
 
@@ -36,7 +36,7 @@ export class UserController {
     description: 'Return all users that like a certain category ',
     type: [ResponseUserDto],
   })
-  findAllByOccupation(
+  public findAllByOccupation(
     @Query('category') category: string,
   ): Promise<ResponseUserDto[]> {
     return this.userService.findByCategory(category);
@@ -45,11 +45,11 @@ export class UserController {
   @Post('generate')
   @ApiOperation({ summary: 'Generate a profile' })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Generate a profile',
   })
   @UsePipes(new ValidationPipe({ transform: true }))
-  generateProfile(@Body() body: RequestInfoAlgorithmDto) {
+  public generateProfile(@Body() body: RequestInfoAlgorithmDto) {
     return this.userService.generateProfile(body);
   }
 
@@ -60,18 +60,18 @@ export class UserController {
     description: 'Save a user',
   })
   @UsePipes(new ValidationPipe({ transform: true }))
-  saveUser(@Body() body: RequestFinalUserDto) {
+  public saveUser(@Body() body: RequestFinalUserDto) {
     return this.userService.saveUser(body);
   }
 
   @Get('regular')
   @ApiOperation({ summary: 'Return all of the regular users' })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Return all of the regular users',
   })
   @UsePipes(new ValidationPipe({ transform: true }))
-  findAllRegular() {
+  public findAllRegular() {
     return this.userService.findAllRegular();
   }
 }

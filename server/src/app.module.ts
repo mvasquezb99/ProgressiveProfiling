@@ -15,6 +15,15 @@ import { UserController } from './user/user.controller';
 import { ProfilerModule } from './profiler/profiler.module';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
+import configuration from './config/configuration';
+import { ProfilerService } from './profiler/profiler.service';
+import { UserMapper } from './user/mapper/user.mapper';
+import { LocationMapper } from './user/mapper/location.mapper';
+import { EducationMapper } from './user/mapper/education.mapper';
+import { WorkMapper } from './user/mapper/work.mapper';
+import { OccupationCategoryMapper } from './occupation-category/mapper/occupation-category.mapper';
+import { ProfilerMapper } from './profiler/mapper/profiler.mapper';
+import { QueryModule } from './query/query.module';
 
 @Module({
   imports: [
@@ -26,12 +35,17 @@ import { APP_GUARD } from '@nestjs/core';
         },
       ],
     }),
-    ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+      load: [configuration],
+    }),
     NeogmaModule.forRoot(),
     UserModule,
     OccupationModule,
     OccupationCategoryModule,
     ProfilerModule,
+    QueryModule,
   ],
   controllers: [
     AppController,
@@ -48,6 +62,13 @@ import { APP_GUARD } from '@nestjs/core';
     OccupationService,
     OccupationCategoryService,
     UserService,
+    ProfilerService,
+    UserMapper,
+    LocationMapper,
+    EducationMapper,
+    WorkMapper,
+    OccupationCategoryMapper,
+    ProfilerMapper,
   ],
 })
-export class AppModule { }
+export class AppModule {}

@@ -87,6 +87,7 @@ export class SeedDataService {
                 .then(() => console.log('User seeded successfully.'))
                 .catch(console.error);
             })
+            .then(() => console.log('Database seeding completed.'))
             .catch(console.error);
         }
       },

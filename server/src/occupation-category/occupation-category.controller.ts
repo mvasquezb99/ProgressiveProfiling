@@ -17,7 +17,7 @@ export class OccupationCategoryController {
     description: 'Return all occupation categories',
     type: [ResponseOccupationCategoryDto],
   })
-  findAll(): Promise<ResponseOccupationCategoryDto[]> {
+  public findAll(): Promise<ResponseOccupationCategoryDto[]> {
     return this.occupationCategoryService.findAll();
   }
 
@@ -28,7 +28,7 @@ export class OccupationCategoryController {
     description: 'Return an occupation category by name',
     type: ResponseOccupationCategoryDto,
   })
-  findByName(
+  public findByName(
     @Query('name') name: string,
   ): Promise<ResponseOccupationCategoryDto> {
     return this.occupationCategoryService.findByName(name);

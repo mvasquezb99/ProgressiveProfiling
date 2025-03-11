@@ -1,8 +1,10 @@
+import { Injectable } from '@nestjs/common';
 import { ResponseProfilerDto } from '../dto/response-profiler.dto';
 import { UserWeighed } from '../profiler.service';
 
+@Injectable()
 export class ProfilerMapper {
-  public static apply(profiler: UserWeighed): ResponseProfilerDto {
+  public toResponse(profiler: UserWeighed): ResponseProfilerDto {
     const profilerDto = new ResponseProfilerDto();
     profilerDto.languages = Array.from(profiler.languages.keys());
     profilerDto.education = Array.from(profiler.education.keys());
