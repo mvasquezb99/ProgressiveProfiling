@@ -30,7 +30,7 @@ export class ProfilerService {
   constructor(
     private readonly configService: ConfigService,
     private readonly profilerMapper: ProfilerMapper,
-  ) { }
+  ) {}
 
   private weighLikedUsers(listUsers: RequestUserDto[], value: number): void {
     listUsers.forEach((user) => {

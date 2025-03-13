@@ -1,0 +1,37 @@
+name: Lint and Format Check Client
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-format:
+    name: Run Prettier and ESLint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22 # Adjust this to your Node.js version
+          cache: npm
+
+      - name: Install Dependencies
+        run: |
+          cd client
+          npm install
+
+      - name: Run Prettier
+        run: |
+          cd client
+          npm run format -- --check
+
+      - name: Run ESLint
+        run: |
+          cd client
+          npm run lint

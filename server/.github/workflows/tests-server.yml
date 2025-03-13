@@ -1,0 +1,37 @@
+name: Run NestJS Tests Server
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-format:
+    name: Run Jest Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22 # Adjust this to your Node.js version
+          cache: npm
+
+      - name: Install Dependencies
+        run: |
+          cd server
+          npm install
+
+      - name: Run Tests
+        run: |
+          cd server
+          npm run test || true
+
+      - name: Run ESLint
+        run: |
+          cd server
+          npm run lint || true

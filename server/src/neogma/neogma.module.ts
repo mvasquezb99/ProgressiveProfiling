@@ -42,6 +42,7 @@ export class NeogmaModule {
               console.log('Connected to Neo4j');
               return neogma;
             } catch (error) {
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
               throw new ConnectionError(error);
             }
           },
