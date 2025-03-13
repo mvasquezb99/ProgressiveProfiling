@@ -7,4 +7,4 @@ import { ProfilerMapper } from './mapper/profiler.mapper';
   providers: [ProfilerService, ProfilerMapper],
   exports: [ProfilerService],
 })
-export class ProfilerModule { }
+export class ProfilerModule {}
