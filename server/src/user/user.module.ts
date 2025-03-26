@@ -14,6 +14,7 @@ import { EducationMapper } from './mapper/education.mapper';
 import { WorkMapper } from './mapper/work.mapper';
 import { ResponseUserDto } from './dto/response-user.dto';
 import { QueryModule } from 'src/query/query.module';
+import { NeogmaModule } from 'src/neogma/neogma.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { QueryModule } from 'src/query/query.module';
     OccupationCategoryModule,
     ProfilerModule,
     QueryModule,
+    NeogmaModule,
   ],
   providers: [
     UserClass,

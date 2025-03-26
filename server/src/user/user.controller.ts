@@ -36,7 +36,7 @@ export class UserController {
     description: 'Return all users that like a certain category ',
     type: [ResponseUserDto],
   })
-  public findAllByOccupation(
+  public findAllByCategory(
     @Query('category') category: string,
   ): Promise<ResponseUserDto[]> {
     return this.userService.findByCategory(category);
