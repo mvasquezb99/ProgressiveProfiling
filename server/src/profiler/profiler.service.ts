@@ -32,7 +32,7 @@ export class ProfilerService {
     private readonly profilerMapper: ProfilerMapper,
   ) {}
 
-  private weighLikedUsers(listUsers: RequestUserDto[], value: number): void {
+  public weighLikedUsers(listUsers: RequestUserDto[], value: number): void {
     listUsers.forEach((user) => {
       user.languages.split(',').forEach((currLanguage) => {
         currLanguage = currLanguage.trim();
