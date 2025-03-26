@@ -15,4 +15,4 @@ import { OccupationCategoryMapper } from './mapper/occupation-category.mapper';
   exports: [OccupationCategoryClass, OccupationCategoryMapper],
   controllers: [OccupationCategoryController],
 })
-export class OccupationCategoryModule {}
+export class OccupationCategoryModule { }
