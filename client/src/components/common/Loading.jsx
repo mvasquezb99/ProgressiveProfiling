@@ -1,6 +1,6 @@
 
 import PropTypes from 'prop-types';
-
+import React from 'react';
 export default function Loading({ message }) {
     return (
         <div className="h-full w-full flex flex-col justify-center items-center text-[#090467] ">

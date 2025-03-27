@@ -2,7 +2,7 @@ import Card from "../../layout/Card";
 import CardTitle from "../../common/CardTitle";
 import Button from "../../common/Button";
 import PropTypes from 'prop-types';
-
+import React from "react";
 export default function ProfileInstructions({nextStep}) {
     return (
         <Card step={1}>

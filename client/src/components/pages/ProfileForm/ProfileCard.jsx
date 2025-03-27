@@ -32,9 +32,6 @@ export default function ProfileCard({ profile }) {
 }
 
 
-/**
- * Expand in propTypes when the connection to the db is established
- */
 ProfileCard.propTypes = {
     profile: PropTypes.object.isRequired,
 }
