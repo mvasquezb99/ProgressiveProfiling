@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-
+import React from 'react';
 export default function ProfileCard({ profile }) {
     const { name, image, education, categories, occupations, languages} = profile;
     return (
