@@ -6,17 +6,18 @@ import ProfessionForm from './components/pages/ProfessionForm';
 import { FormContext } from './context/context.jsx';
 import { useState } from 'react';
 import FinalPage from './components/pages/FinalPage/FinalPage.jsx';
+import EditingPanel from './components/pages/EditingPanel';
 
 function App() {
   const [step, setStep] = useState(1);
   const [userData, setUserData] = useState({
     name: '',
     birthdate: '',
-    category: {name: ''},
+    category: { name: '' },
     location: {
       city: '',
       country: '',
-      postcode: '',
+      postalCode: '',
       region: '',
     },
     education: [],
@@ -35,7 +36,8 @@ function App() {
         {step === 2 && <ProfileInstructions nextStep={handleNextStep} />}
         {step === 3 && <ProfileFrom nextStep={handleNextStep} />}
         {step === 4 && <ProfessionForm nextStep={handleNextStep} />}
-        {step === 5 && <FinalPage />}
+        {step === 5 && <EditingPanel nextStep={handleNextStep} />}
+        {step === 6 && <FinalPage />}
       </main>
     </FormContext.Provider>
   );
