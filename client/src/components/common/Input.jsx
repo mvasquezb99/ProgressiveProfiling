@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 export default function Input({ label, handleChange, type, inputId, ...props }) {
   return (
     <div className="flex flex-col">
-      <label className={labelStyles} htmlFor="name">
+      <label className={labelStyles} htmlFor={inputId}>
         {label}
       </label>
       <input

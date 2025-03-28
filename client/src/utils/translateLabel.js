@@ -1,0 +1,32 @@
+export const translateLabel = (location) => {
+  switch (location) {
+    case 'city':
+      return 'Ciudad';
+    case 'country':
+      return 'País';
+    case 'postalCode':
+      return 'Código Postal';
+    case 'region':
+      return 'Región';
+    case 'area':
+      return 'Area (Educación)';
+    case 'degree':
+      return 'Diploma (Educación)';
+    case 'institution':
+      return 'Institución (Educación)';
+    case 'organization':
+      return 'Organización (Trabajo)';
+    case 'position':
+      return 'Posición (Trabajo)';
+    default:
+      return location;
+  }
+};
+
+export const getKey = (key) => {
+  return key === 'country' || key === 'region' || key === 'city' || key === 'postalCode'
+    ? 'location'
+    : key === 'degree' || key === 'institution' || key === 'area'
+    ? 'education'
+    : 'work';
+};
