@@ -12,6 +12,12 @@ import { RequestOccupationDto } from 'src/occupation/dto/request-occupation.dto'
 import { RequestEducationDto } from './request-education.dto';
 import { RequestWorkDto } from './request-work.dto';
 
+export class RequestFinalUserArrayDto {
+  @ValidateNested({ each: true })
+  @Type(() => RequestFinalUserDto)
+  users: RequestFinalUserDto[];
+}
+
 export class RequestFinalUserDto {
   @ApiProperty({ example: 'John Doe', description: 'User name' })
   @IsString()

@@ -1,29 +1,33 @@
 import {
+  Body,
   Controller,
   Delete,
   Post,
   Put,
+  Query,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ResponseUserDto } from 'src/user/dto/response-user.dto';
 import { AdminUserService } from './admin-user.service';
+import {
+  RequestFinalUserArrayDto,
+  RequestFinalUserDto,
+} from 'src/user/dto/request-final-user.dto';
+import { UpdateRelationshipsDto } from './dto/request-update-relationships.dto';
 
 @ApiTags('admin/users')
 @Controller('admin/users')
 export class AdminUserController {
   // TODO:
-  // 1. Create users from a JSON with a list of users with all info
-  // 2. Create a single user from a JSON with all the info
-  // 3. Create a user without relationships
-  // 4. Relate a existing user with a relationship
-  // 5. Delete a existing user without relationships
-  // 6. Update a existing user
+  // 1. Create users from a JSON with a list of users with all info DONE
+  // 2. Create a single user from a JSON with all the info DONE
+  // 3. Relate a existing user with a relationship
+  // 4. Delete a existing user without relationships
+  // 5. Update a existing user
 
-  public constructor(
-    private readonly adminUserService: AdminUserService = new AdminUserService(),
-  ) { }
+  public constructor(private readonly adminUserService: AdminUserService) { }
 
   @Post()
   @ApiOperation({
@@ -32,10 +36,11 @@ export class AdminUserController {
   @ApiResponse({
     status: 200,
     description: 'List of users created',
-    type: [ResponseUserDto],
   })
   @UsePipes(new ValidationPipe({ transform: true }))
-  public saveUsers() { }
+  public async saveUsers(@Body() body: RequestFinalUserArrayDto) {
+    await this.adminUserService.saveUsers(body);
+  }
 
   @Post('single')
   @ApiOperation({
@@ -44,36 +49,29 @@ export class AdminUserController {
   @ApiResponse({
     status: 200,
     description: 'User created',
-    type: ResponseUserDto,
   })
   @UsePipes(new ValidationPipe({ transform: true }))
-  public saveUser() { }
+  public async saveUser(@Body() body: RequestFinalUserDto) {
+    await this.adminUserService.saveUser(body);
+  }
 
-  @Post('single-no-relationships')
-  @ApiOperation({
-    summary: 'Create a single user from a JSON with no relationships',
-  })
-  @ApiResponse({
-    status: 200,
-    description: 'User with no relationships created',
-    type: ResponseUserDto,
-  })
-  @UsePipes(new ValidationPipe({ transform: true }))
-  public saveUserNoRelationships() { }
-
-  @Post('relate/{id}')
+  @Post('relate')
   @ApiOperation({
     summary: 'Relate an existing user with a relationship from a JSON',
   })
   @ApiResponse({
     status: 200,
     description: 'User related with some relationship',
-    type: ResponseUserDto,
   })
   @UsePipes(new ValidationPipe({ transform: true }))
-  public relateUser() { }
+  public async relateUser(
+    @Query('name') name: string,
+    @Body() body: UpdateRelationshipsDto,
+  ) {
+    await this.adminUserService.relateUser(name, body);
+  }
 
-  @Delete('/{id}')
+  @Delete()
   @ApiOperation({
     summary: 'Delete an existing user without the relationships',
   })
@@ -85,7 +83,7 @@ export class AdminUserController {
   @UsePipes(new ValidationPipe({ transform: true }))
   public deleteUser() { }
 
-  @Put('/{id}')
+  @Put()
   @ApiOperation({
     summary: 'Update an existing user given JSON information',
   })

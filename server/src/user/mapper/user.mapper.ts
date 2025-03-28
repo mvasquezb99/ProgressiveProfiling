@@ -20,7 +20,7 @@ export class UserMapper {
     private readonly workMapper: WorkMapper,
     @Inject(OccupationCategoryMapper)
     private readonly occupationCategoryMapper: OccupationCategoryMapper,
-  ) {}
+  ) { }
 
   public apply(
     user: UserPropertiesI,

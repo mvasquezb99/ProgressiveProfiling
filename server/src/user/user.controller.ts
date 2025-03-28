@@ -16,7 +16,7 @@ import { RequestFinalUserDto } from './dto/request-final-user.dto';
 @ApiTags('users')
 @Controller('users')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Get()
   @ApiOperation({ summary: 'Get all users' })
