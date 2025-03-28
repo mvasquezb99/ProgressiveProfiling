@@ -7,6 +7,26 @@ export const profiles = [
     birthdate: "1959-03-02T17:46:43.155Z",
     skills: "Técnicas de venta, Música, Mantenimiento de vehículos, Tasación",
     languages: "English, Español",
+    categories: [
+      {
+        "name": "Ciencias e Investigación"
+      },
+      {
+        "name": "Tecnología de la Información"
+      },
+
+    ],
+    occupations: [
+      {
+        "name": "Programadores de aplicaciones"
+      },
+      {
+        "name": "Conductores de motocicletas"
+      },
+      {
+        "name": "Controladores de instalaciones de procesamiento de productos químicos"
+      }
+    ],
     location: {
       city: "Walshport",
       country: "Guinea",
