@@ -7,4 +7,4 @@ import { ConfigModule } from '@nestjs/config';
   providers: [QueryService],
   exports: [QueryService],
 })
-export class QueryModule { }
+export class QueryModule {}
