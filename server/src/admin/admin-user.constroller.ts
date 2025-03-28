@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   Post,
   Put,
   Query,
@@ -14,20 +15,25 @@ import { AdminUserService } from './admin-user.service';
 import {
   RequestFinalUserArrayDto,
   RequestFinalUserDto,
+  RequestFinalUserUpdateDto,
 } from 'src/user/dto/request-final-user.dto';
 import { UpdateRelationshipsDto } from './dto/request-update-relationships.dto';
 
 @ApiTags('admin/users')
 @Controller('admin/users')
 export class AdminUserController {
-  // TODO:
-  // 1. Create users from a JSON with a list of users with all info DONE
-  // 2. Create a single user from a JSON with all the info DONE
-  // 3. Relate a existing user with a relationship
-  // 4. Delete a existing user without relationships
-  // 5. Update a existing user
+  public constructor(private readonly adminUserService: AdminUserService) {}
 
-  public constructor(private readonly adminUserService: AdminUserService) { }
+  @Get()
+  @ApiOperation({ summary: 'Get a user given the name' })
+  @ApiResponse({
+    status: 200,
+    description: 'User found',
+    type: ResponseUserDto,
+  })
+  public async getUserByName(@Query('name') name: string) {
+    return await this.adminUserService.getUserByName(name);
+  }
 
   @Post()
   @ApiOperation({
@@ -62,13 +68,14 @@ export class AdminUserController {
   @ApiResponse({
     status: 200,
     description: 'User related with some relationship',
+    type: ResponseUserDto,
   })
   @UsePipes(new ValidationPipe({ transform: true }))
   public async relateUser(
     @Query('name') name: string,
     @Body() body: UpdateRelationshipsDto,
   ) {
-    await this.adminUserService.relateUser(name, body);
+    return await this.adminUserService.relateUser(name, body);
   }
 
   @Delete()
@@ -80,8 +87,9 @@ export class AdminUserController {
     description: 'User Deleted',
     type: ResponseUserDto,
   })
-  @UsePipes(new ValidationPipe({ transform: true }))
-  public deleteUser() { }
+  public async deleteUser(@Query('name') name: string) {
+    return await this.adminUserService.deleteUserByName(name);
+  }
 
   @Put()
   @ApiOperation({
@@ -93,5 +101,7 @@ export class AdminUserController {
     type: ResponseUserDto,
   })
   @UsePipes(new ValidationPipe({ transform: true }))
-  public updateUser() { }
+  public async updateUser(@Body() body: RequestFinalUserUpdateDto) {
+    return await this.adminUserService.updateUserByName(body);
+  }
 }
