@@ -16,7 +16,7 @@ export const getLocation = async (lat, lon) => {
       throw new Error('No se encontraron datos de ubicación');
     }
   } catch (error) {
-    console.error('Error obteniendo la ubicación:', error);
+    console.error('Error obteniendo la ubicación:');
     return null;
   }
 };

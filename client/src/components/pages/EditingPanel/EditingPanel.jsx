@@ -1,4 +1,4 @@
-import { useRef, useContext } from 'react';
+import { useRef, useContext, useState } from 'react';
 import { FormContext } from '../../../context/context';
 import Card from '../../layout/Card';
 import CardTitle from '../../common/CardTitle';
@@ -7,14 +7,31 @@ import BackButton from '../../common/BackButton';
 import Dropdown from '../../common/Dropdown';
 import { categories } from '../../../constants/educationCategories';
 import { labelStyles, inputStyles } from '../../../constants/styles';
-import { getKey, translateLabel } from '../../../utils/translateLabel';
+import { getKey, translateLabel, translateField } from '../../../utils/translateLabel';
 import Modal from './Modal';
 import Button from '../../common/Button';
+import ErrorMessage from '../../common/ErrorMessage';
 
 export default function EditingPanel({ nextStep }) {
   const [userData, setUserData] = useContext(FormContext);
+  const [error, setError] = useState({
+    name: false,
+    birthdate: false,
+    category: false,
+    location: false,
+    education: false,
+    languages: false,
+    occupations: false,
+    work: false,
+  });
   const modal = useRef();
   const handleChangeInput = (inputId, value) => {
+    setError((prevError) => {
+      return {
+        ...prevError,
+        [inputId]: false,
+      };
+    });
     setUserData((prevUserData) => ({
       ...prevUserData,
       [inputId]: value,
@@ -22,6 +39,13 @@ export default function EditingPanel({ nextStep }) {
   };
   const handleChangeObjects = (inputId, value) => {
     const key = getKey(inputId);
+    setError((prevError) => {
+      return {
+        ...prevError,
+        [key]: false,
+      };
+    });
+
     setUserData((prevUserData) => ({
       ...prevUserData,
       [key]: {
@@ -29,6 +53,44 @@ export default function EditingPanel({ nextStep }) {
         [inputId]: value,
       },
     }));
+  };
+  const handleSubmit = () => {
+    const errors = {
+      name: userData.name.trim() === '',
+      birthdate: userData.birthdate.trim() === '',
+      category: userData.category.name.trim() === '',
+      location:
+        userData.location.city.trim() === '' ||
+        userData.location.country.trim() === '' ||
+        userData.location.postalCode.trim() === '' ||
+        userData.location.region.trim() === ''
+          ? true
+          : false,
+      education:
+        userData.education.degree.trim() === '' ||
+        userData.education.institution.trim() === '' ||
+        userData.education.area.trim() === ''
+          ? true
+          : false,
+      languages: userData.languages.trim() === '',
+      occupations: userData.occupations.length === 0,
+      work: userData.work.organization.trim() === '' || userData.work.position.trim() === '' ? true : false,
+    };
+    setError(errors);
+
+    if (
+      errors.name ||
+      errors.birthdate ||
+      errors.category ||
+      errors.location ||
+      errors.education ||
+      errors.occupations ||
+      errors.work
+    ) {
+      return;
+    }
+
+    nextStep(6);
   };
 
   const handleChangeLanguages = (language, operation) => {
@@ -55,6 +117,18 @@ export default function EditingPanel({ nextStep }) {
     }));
   };
 
+  const getErrors = () => {
+    let errorFields = '';
+
+    Object.keys(error).forEach((key) => {
+      if (error[key]) {
+        errorFields += `${translateField(key)}, `;
+      }
+    });
+
+    return errorFields.substring(0, errorFields.length - 2);
+  };
+
   return (
     <Card step={3}>
       <Modal
@@ -75,6 +149,12 @@ export default function EditingPanel({ nextStep }) {
         title="Información personal"
         subtitle="Verifica si la información es correcta y editala si es necesario"
       />
+      {(error.name ||
+        error.birthdate ||
+        error.category ||
+        error.location ||
+        error.education ||
+        error.work) && <ErrorMessage message={`Por favor ingresa tu ${getErrors()}`} />}
       <div className="grid grid-cols-2 gap-2 overflow-auto h-[30rem] pr-2">
         <Input
           label="Nombre"
@@ -178,7 +258,7 @@ export default function EditingPanel({ nextStep }) {
           </div>
         </div>
       </div>
-      <Button onClick={() => nextStep(6)}>Confirmar</Button>
+      <Button onClick={handleSubmit}>Confirmar</Button>
     </Card>
   );
 }

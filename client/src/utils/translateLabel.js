@@ -30,3 +30,22 @@ export const getKey = (key) => {
     ? 'education'
     : 'work';
 };
+
+export const translateField = (field) => {
+  switch (field) {
+    case 'name':
+      return 'nombre';
+    case 'birthdate':
+      return 'fecha de nacimiento';
+    case 'category':
+      return 'categoría';
+    case 'education':
+      return 'educación';
+    case 'work':
+      return 'trabajo';
+    case 'location':
+      return 'ubicación';
+    default:
+      return field;
+  }
+};
