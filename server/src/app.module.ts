@@ -24,6 +24,7 @@ import { WorkMapper } from './user/mapper/work.mapper';
 import { OccupationCategoryMapper } from './occupation-category/mapper/occupation-category.mapper';
 import { ProfilerMapper } from './profiler/mapper/profiler.mapper';
 import { QueryModule } from './query/query.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { QueryModule } from './query/query.module';
     OccupationCategoryModule,
     ProfilerModule,
     QueryModule,
+    AdminModule,
   ],
   controllers: [
     AppController,
