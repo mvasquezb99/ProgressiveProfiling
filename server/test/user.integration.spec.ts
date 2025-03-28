@@ -9,10 +9,6 @@ import { ResponseProfilerDto } from 'src/profiler/dto/response-profiler.dto';
 import { StartedNeo4jContainer, Neo4jContainer } from '@testcontainers/neo4j';
 import { setupDBEnv } from './utils/setupDBEnv';
 import { NeogmaModule } from 'src/neogma/neogma.module';
-import { RequestInfoAlgorithmDto } from 'src/user/dto/request-info-algorithm.dto';
-import { RequestFinalUserDto } from 'src/user/dto/request-final-user.dto';
-import { RequestOccupationCategoryDto } from 'src/occupation-category/dto/request-occupation-category.dto';
-import { RequestLocationDto } from 'src/user/dto/request-location.dto';
 
 jest.setTimeout(20000);
 

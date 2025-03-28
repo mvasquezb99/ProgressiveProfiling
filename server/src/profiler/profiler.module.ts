@@ -8,4 +8,4 @@ import { ConfigModule } from '@nestjs/config';
   providers: [ProfilerService, ProfilerMapper],
   exports: [ProfilerService],
 })
-export class ProfilerModule { }
+export class ProfilerModule {}
