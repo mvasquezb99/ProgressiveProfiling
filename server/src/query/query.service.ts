@@ -10,7 +10,7 @@ export type QueryNode = {
 
 @Injectable()
 export class QueryService {
-  constructor(private readonly configService: ConfigService) {}
+  constructor(private readonly configService: ConfigService) { }
 
   public queryRelationships(userName: string): Promise<QueryResult> {
     return new QueryBuilder()
@@ -81,6 +81,64 @@ export class QueryService {
       .where('c3.name = c.name OR c3.name = c2.name')
       .return('DISTINCT u')
       .limit(limit)
+      .run();
+  }
+
+  public deleteUserRelationshipEducation(
+    username: string,
+  ): Promise<QueryResult> {
+    return new QueryBuilder()
+      .raw(
+        "MATCH (u:User {name: '" +
+        username +
+        "'})-[r:HasEducation]->(e:Education) DELETE r",
+      )
+      .run();
+  }
+
+  public deleteUserRelationshipWork(username: string): Promise<QueryResult> {
+    return new QueryBuilder()
+      .raw(
+        "MATCH (u:User {name: '" +
+        username +
+        "'})-[r:WorkExperience]->(w:Work) DELETE r",
+      )
+      .run();
+  }
+
+  public deleteUserRelationshipLocation(
+    username: string,
+  ): Promise<QueryResult> {
+    return new QueryBuilder()
+      .raw(
+        "MATCH (u:User {name: '" +
+        username +
+        "'})-[r:HasLocation]->(l:Location) DELETE r",
+      )
+      .run();
+  }
+
+  public deleteUserRelationshipCategory(
+    username: string,
+  ): Promise<QueryResult> {
+    return new QueryBuilder()
+      .raw(
+        "MATCH (u:User {name: '" +
+        username +
+        "'})-[c:LikesCategory]->(c:Category) DELETE r",
+      )
+      .run();
+  }
+
+  public deleteUserRelationshipOccupations(
+    username: string,
+  ): Promise<QueryResult> {
+    return new QueryBuilder()
+      .raw(
+        "MATCH (u:User {name: '" +
+        username +
+        "'})-[r:LikesOccupation]->(o:Occupation) DELETE r",
+      )
       .run();
   }
 }
