@@ -1,45 +1,18 @@
 import './App.css';
-import BasicForm from './components/pages/BasicForm';
-import ProfileInstructions from './components/pages/ProfileInstructions';
-import ProfileFrom from './components/pages/ProfileForm';
-import ProfessionForm from './components/pages/ProfessionForm';
-import { FormContext } from './context/context.jsx';
-import { useState } from 'react';
-import FinalPage from './components/pages/FinalPage/FinalPage.jsx';
-import EditingPanel from './components/pages/EditingPanel';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AdminPanel from './components/pages/AdminPanel/AdminPanel.jsx';
+import AppWrapper from './components/wrapper/AppWrapper.jsx';
 
 function App() {
-  const [step, setStep] = useState(1);
-  const [userData, setUserData] = useState({
-    name: '',
-    birthdate: '',
-    category: { name: '' },
-    location: {
-      city: '',
-      country: '',
-      postalCode: '',
-      region: '',
-    },
-    education: [],
-    languages: [],
-    occupations: [],
-    work: [],
-  });
-  const handleNextStep = (step) => {
-    setStep(step);
-  };
-
   return (
-    <FormContext.Provider value={[userData, setUserData]}>
-      <main className="flex items-center justify-center h-screen w-screen ">
-        {step === 1 && <BasicForm nextStep={handleNextStep} />}
-        {step === 2 && <ProfileInstructions nextStep={handleNextStep} />}
-        {step === 3 && <ProfileFrom nextStep={handleNextStep} />}
-        {step === 4 && <ProfessionForm nextStep={handleNextStep} />}
-        {step === 5 && <EditingPanel nextStep={handleNextStep} />}
-        {step === 6 && <FinalPage />}
-      </main>
-    </FormContext.Provider>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<AppWrapper />} />
+          <Route path="/admin" element={<AdminPanel />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
