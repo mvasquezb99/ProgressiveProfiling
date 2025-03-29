@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import { useContext } from 'react';
+import { FormContext } from '../../../context/context';
+
+import React from 'react';
 import PropTypes from 'prop-types';
 import CardTitle from '../../common/CardTitle';
 import Card from '../../layout/Card';
@@ -6,8 +10,6 @@ import ProfessionItem from './ProfessionItem';
 import Button from '../../common/Button';
 import BackButton from '../../common/BackButton';
 import ErrorMessage from '../../common/ErrorMessage';
-import { useContext } from 'react';
-import { FormContext } from '../../../context/context';
 
 export default function ProfessionForm({ nextStep }) {
   const [selectedProfessions, setSelectedProfessions] = useState([]);
@@ -15,7 +17,6 @@ export default function ProfessionForm({ nextStep }) {
   const [userData, setUserData] = useContext(FormContext);
 
   const submit = () => {
-    console.log(selectedProfessions.length);
     if (selectedProfessions.length === 0) {
       setError(true);
       return;
