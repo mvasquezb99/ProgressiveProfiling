@@ -17,7 +17,7 @@ describe(ProfessionItem, () => {
     })
     
     it('Renders the profession correctly', () => {
-        const { getByTestId } = render(<ProfessionItem profession={mockProfession} handleClick={mockHandleClick} />)
+        render(<ProfessionItem profession={mockProfession} handleClick={mockHandleClick} />)
         const professionName = screen.getByText(mockProfession.name)
         expect(professionName).toBeInTheDocument();
     })

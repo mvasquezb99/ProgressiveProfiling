@@ -34,7 +34,7 @@ describe(ProfessionForm, () => {
     })
 
     it('Check if when no professions have been selected, the finalizar button triggers an error correctly', () => {
-        const { getAllByTestId, getByRole } = render(
+        const { getByRole } = render(
             <FormContext.Provider value={[mockUserData, setMockUserData]}>
                 <ProfessionForm nextStep={mockNextStep} />
             </FormContext.Provider>
