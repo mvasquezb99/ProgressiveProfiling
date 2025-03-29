@@ -27,7 +27,7 @@ export class SeedDataService {
     @Inject(LocationClass) private readonly locationClass: LocationClass,
     @Inject(EducationClass) private readonly educationClass: EducationClass,
     @Inject(WorkClass) private readonly workClass: WorkClass,
-  ) {}
+  ) { }
 
   /**
    * Seeds the database with initial user data.
@@ -159,7 +159,6 @@ export class SeedDataService {
     });
 
     //With Manufactura y Producción
-
     await cienceNode.relateTo({
       alias: 'Similar',
       where: { name: 'Manufactura y Producción' },
@@ -418,7 +417,7 @@ export class SeedDataService {
       for (let i = 0; i < 3; i++) {
         const selectedOccupation =
           categoryRelatedOccupationsMap[
-            Math.floor(Math.random() * categoryRelatedOccupationsMap.length)
+          Math.floor(Math.random() * categoryRelatedOccupationsMap.length)
           ];
         await userNode.relateTo({
           alias: 'LikesOccupation',
