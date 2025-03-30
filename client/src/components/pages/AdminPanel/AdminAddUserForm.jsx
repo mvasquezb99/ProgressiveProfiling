@@ -8,11 +8,11 @@ import Dropdown from '../../common/Dropdown';
 import { categories } from '../../../constants/educationCategories';
 import { labelStyles, inputStyles } from '../../../constants/styles';
 import { getKey, translateLabel, translateField } from '../../../utils/translateLabel';
-import Modal from './Modal';
+import Modal from '../EditingPanel/Modal';
 import Button from '../../common/Button';
 import ErrorMessage from '../../common/ErrorMessage';
 
-export default function EditingPanel({ nextStep }) {
+export default function AdminAddUserForm({ setJsonInput }) {
   const [userData, setUserData] = useContext(FormContext);
   const [error, setError] = useState({
     name: false,
@@ -32,8 +32,7 @@ export default function EditingPanel({ nextStep }) {
         [inputId]: false,
       };
     });
-    setUserData((prevUserData) => ({
-      ...prevUserData,
+    setUserData(() => ({
       [inputId]: value,
     }));
   };
@@ -90,7 +89,6 @@ export default function EditingPanel({ nextStep }) {
       return;
     }
 
-    nextStep(6);
   };
 
   const handleChangeLanguages = (language, operation) => {
@@ -141,7 +139,6 @@ export default function EditingPanel({ nextStep }) {
       <nav className="flex align-left w-full">
         <BackButton
           onClick={() => {
-            nextStep(4);
           }}
         />
       </nav>

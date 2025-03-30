@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { JsonEditor } from 'json-edit-react';
+import AdminAddUserForm from "./AdminAddUserForm";
 
 
 export default function AdminPanel() {
@@ -10,6 +11,7 @@ export default function AdminPanel() {
   const [queryParams, setQueryParams] = useState([]);
   const [endpoint, setEndpoint] = useState("/users");
   const [status, setStatus] = useState(null);
+  const [inputMode, setInputMode] = useState("json");
 
   const endpoints = {
     "[GET] Get all users": "/users",
@@ -128,7 +130,26 @@ export default function AdminPanel() {
                 </button>
               </div>
               <div className="w-full flex-grow bg-gray-600 text-white p-2 rounded-lg">
-                <JsonEditor data={jsonInput} setData={setJsonInput} />
+                {endpoint === "/admin/users/single" ? (
+                  <div>
+                    <select
+                      className="mb-4 p-2 rounded-lg bg-gray-600 text-white"
+                      value={inputMode}
+                      onChange={(e) => setInputMode(e.target.value)}
+                    >
+                      <option value="json">JSON Editor</option>
+                      <option value="form">User Form</option>
+                    </select>
+                    {inputMode === "json" ? (
+                      <JsonEditor data={jsonInput} setData={setJsonInput} />
+                    ) : (
+                      <AdminAddUserForm setJsonInput={setJsonInput} />
+                    )}
+                  </div>
+                ) : (
+                  <JsonEditor data={jsonInput} setData={setJsonInput} />
+                )}
+                <div />
               </div>
               <button
                 className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg"
