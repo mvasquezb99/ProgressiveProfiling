@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Loading from '../../common/Loading';
 import BackButton from '../../common/BackButton';
+import React from 'react';
 
 export default function ProfileFrom({ nextStep }) {
   const [likedProfiles, setLikedProfiles] = useState([]);

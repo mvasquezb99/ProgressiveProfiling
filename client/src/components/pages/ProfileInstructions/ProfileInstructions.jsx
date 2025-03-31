@@ -3,9 +3,9 @@ import CardTitle from "../../common/CardTitle";
 import Button from "../../common/Button";
 import PropTypes from 'prop-types';
 import { useState, useEffect } from "react";
+import React from "react";
 
-
-export default function ProfileInstructions({nextStep}) {
+export default function ProfileInstructions({ nextStep }) {
     const [buttonDisabled, setButtonDisabled] = useState(true);
 
 
@@ -14,7 +14,7 @@ export default function ProfileInstructions({nextStep}) {
             setButtonDisabled(false);
         }, 5000);
 
-        return () => clearTimeout(timer); 
+        return () => clearTimeout(timer);
     }, []);
     return (
         <Card step={1}>
@@ -36,5 +36,5 @@ export default function ProfileInstructions({nextStep}) {
 
 
 ProfileInstructions.propTypes = {
-  nextStep: PropTypes.func,
+    nextStep: PropTypes.func,
 }

@@ -9,6 +9,7 @@ import CardTitle from '../../common/CardTitle';
 import Button from '../../common/Button';
 import PropTypes from 'prop-types';
 import ErrorMessage from '../../common/ErrorMessage';
+import React from 'react';
 
 export default function BasicForm({ nextStep }) {
   const [enteredData, setEnteredData] = useContext(FormContext);

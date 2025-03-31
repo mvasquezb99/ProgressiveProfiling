@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-
+import React from 'react';
 export default function ProgressTracker({ step }) {
     return (
         <div className="flex w-full h-2.5 rounded-b-xl space-x-1 justify-center mt-1.5">

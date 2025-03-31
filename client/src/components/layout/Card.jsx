@@ -1,6 +1,6 @@
 import ProgressTracker from '../common/ProgressTracker';
 import PropTypes from 'prop-types';
-
+import React from 'react';
 export default function Card({ rem, children, step }) {
   return (
     <section className="flex flex-col">
