@@ -2,14 +2,10 @@ import Card from "../../layout/Card";
 import CardTitle from "../../common/CardTitle";
 import Button from "../../common/Button";
 import PropTypes from 'prop-types';
-<<<<<<< HEAD
-import React from "react";
-export default function ProfileInstructions({ nextStep }) {
-=======
 import { useState, useEffect } from "react";
+import React from "react";
 
-
-export default function ProfileInstructions({nextStep}) {
+export default function ProfileInstructions({ nextStep }) {
     const [buttonDisabled, setButtonDisabled] = useState(true);
 
 
@@ -18,9 +14,8 @@ export default function ProfileInstructions({nextStep}) {
             setButtonDisabled(false);
         }, 5000);
 
-        return () => clearTimeout(timer); 
+        return () => clearTimeout(timer);
     }, []);
->>>>>>> origin/main
     return (
         <Card step={1}>
             <section className="flex flex-col justify-between h-[38rem]">
@@ -41,10 +36,5 @@ export default function ProfileInstructions({nextStep}) {
 
 
 ProfileInstructions.propTypes = {
-<<<<<<< HEAD
     nextStep: PropTypes.func,
 }
-=======
-  nextStep: PropTypes.func,
-}
->>>>>>> origin/main
