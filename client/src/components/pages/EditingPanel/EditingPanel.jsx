@@ -1,4 +1,4 @@
-import { useRef, useContext, useState } from 'react';
+import { useRef, useContext, useState, useEffect } from 'react';
 import { FormContext } from '../../../context/context';
 import Card from '../../layout/Card';
 import CardTitle from '../../common/CardTitle';
@@ -11,8 +11,11 @@ import { getKey, translateLabel, translateField } from '../../../utils/translate
 import Modal from './Modal';
 import Button from '../../common/Button';
 import ErrorMessage from '../../common/ErrorMessage';
+import AsyncSelect from 'react-select/async';
+import Axios from 'axios';
 
 export default function EditingPanel({ nextStep }) {
+  const [cachedOptions, setCachedOptions] = useState([]);
   const [userData, setUserData] = useContext(FormContext);
   const [error, setError] = useState({
     name: false,
@@ -54,6 +57,33 @@ export default function EditingPanel({ nextStep }) {
       },
     }));
   };
+
+  useEffect(() => {
+    const fetchOptions = async () => {
+      try {
+        const response = await Axios.get('http://localhost:3000/occupation/');
+        const formattedOptions = response.data.map((occupation) => ({
+          value: { name: occupation.name },
+          label: occupation.name,
+        }));
+        setCachedOptions(formattedOptions);
+      } catch (error) {
+        console.error('Error fetching options:', error);
+      }
+    };
+    fetchOptions();
+  }, []);
+
+  const removeAccents = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+  const loadOptions = (inputValue, callback) => {
+    const normalizedInput = removeAccents(inputValue.toLowerCase());
+    const filteredOptions = cachedOptions.filter((option) =>
+      removeAccents(option.label.toLowerCase()).includes(normalizedInput)
+    );
+    callback(filteredOptions);
+  };
+
   const handleSubmit = () => {
     const errors = {
       name: userData.name.trim() === '',
@@ -61,15 +91,15 @@ export default function EditingPanel({ nextStep }) {
       category: userData.category.name.trim() === '',
       location:
         userData.location.city.trim() === '' ||
-          userData.location.country.trim() === '' ||
-          userData.location.postalCode.trim() === '' ||
-          userData.location.region.trim() === ''
+        userData.location.country.trim() === '' ||
+        userData.location.postalCode.trim() === '' ||
+        userData.location.region.trim() === ''
           ? true
           : false,
       education:
         userData.education.degree.trim() === '' ||
-          userData.education.institution.trim() === '' ||
-          userData.education.area.trim() === ''
+        userData.education.institution.trim() === '' ||
+        userData.education.area.trim() === ''
           ? true
           : false,
       languages: userData.languages.trim() === '',
@@ -128,6 +158,12 @@ export default function EditingPanel({ nextStep }) {
 
     return errorFields.substring(0, errorFields.length - 2);
   };
+  const handleChangeOccupations = (value) => {
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      occupations: value.map((currOccupation) => currOccupation.value),
+    }));
+  };
 
   return (
     <Card step={3}>
@@ -155,7 +191,7 @@ export default function EditingPanel({ nextStep }) {
         error.location ||
         error.education ||
         error.work) && <ErrorMessage message={`Por favor ingresa tu ${getErrors()}`} />}
-      <div className="grid grid-cols-2 gap-2 overflow-auto h-[30rem] pr-2">
+      <div className="grid grid-cols-2 gap-2 overflow-auto h-[30rem] pr-2 max-w-150">
         <Input
           label="Nombre"
           type="text"
@@ -239,23 +275,25 @@ export default function EditingPanel({ nextStep }) {
           <div className="flex justify-between">
             <p className={labelStyles}>Ocupaciones</p>
           </div>
-          <div className="max-h-30 overflow-y-auto pr-1">
-            <ul className="grid grid-cols-2 gap-1">
-              {userData.occupations.map((occupation, index) => (
-                <li key={index} className={`flex justify-between text-xs ${inputStyles} items-center`}>
-                  <p className="max-w-10 items-center" key={index}>
-                    {occupation.name}
-                  </p>
-                  {userData.occupations.length > 1 && (
-                    <i
-                      onClick={() => removeOccupation(occupation.name)}
-                      className="fa-solid fa-x  hover:cursor-pointer text-red-900 hover:text-red-500"
-                    ></i>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <AsyncSelect
+            cacheOptions
+            isMulti
+            defaultValue={userData.occupations.map((occupation) => ({
+              value: { name: occupation.name },
+              label: occupation.name,
+            }))}
+            loadOptions={loadOptions}
+            defaultOptions={cachedOptions}
+            styles={{
+              option: (provided) => ({
+                ...provided,
+                color: 'gray',
+              }),
+            }}
+            className="basic-multi-select"
+            classNamePrefix="select"
+            onChange={(e) => handleChangeOccupations(e)}
+          />
         </div>
       </div>
       <Button onClick={handleSubmit}>Confirmar</Button>

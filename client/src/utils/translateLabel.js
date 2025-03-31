@@ -45,6 +45,8 @@ export const translateField = (field) => {
       return 'trabajo';
     case 'location':
       return 'ubicación';
+    case 'occupations':
+      return 'ocupaciones';
     default:
       return field;
   }

@@ -1,7 +1,5 @@
-import { useRef, useContext, useState } from 'react';
-import { FormContext } from '../../../context/context';
+import { useRef, useState, useEffect } from 'react';
 import Card from '../../layout/Card';
-import CardTitle from '../../common/CardTitle';
 import Input from '../../common/Input';
 import BackButton from '../../common/BackButton';
 import Dropdown from '../../common/Dropdown';
@@ -9,11 +7,29 @@ import { categories } from '../../../constants/educationCategories';
 import { labelStyles, inputStyles } from '../../../constants/styles';
 import { getKey, translateLabel, translateField } from '../../../utils/translateLabel';
 import Modal from '../EditingPanel/Modal';
-import Button from '../../common/Button';
 import ErrorMessage from '../../common/ErrorMessage';
+import AsyncSelect from 'react-select/async';
+import Axios from 'axios';
+import Button from '../../common/Button';
 
 export default function AdminAddUserForm({ setJsonInput }) {
-  const [userData, setUserData] = useContext(FormContext);
+  const [cachedOptions, setCachedOptions] = useState([]);
+  const [userData, setUserData] = useState({
+    name: '',
+    birthdate: '',
+    category: { name: '' },
+    location: {
+      city: '',
+      country: '',
+      postalCode: '',
+      region: '',
+    },
+    education: { area: '', degree: '', institution: '' },
+    languages: 'Español',
+    occupations: [],
+    work: { organization: '', position: '' },
+  });
+
   const [error, setError] = useState({
     name: false,
     birthdate: false,
@@ -32,7 +48,8 @@ export default function AdminAddUserForm({ setJsonInput }) {
         [inputId]: false,
       };
     });
-    setUserData(() => ({
+    setUserData((prevUserData) => ({
+      ...prevUserData,
       [inputId]: value,
     }));
   };
@@ -53,6 +70,14 @@ export default function AdminAddUserForm({ setJsonInput }) {
       },
     }));
   };
+
+  const handleChangeOccupations = (value) => {
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      occupations: value.map((currOccupation) => currOccupation.value),
+    }));
+  };
+
   const handleSubmit = () => {
     const errors = {
       name: userData.name.trim() === '',
@@ -60,15 +85,15 @@ export default function AdminAddUserForm({ setJsonInput }) {
       category: userData.category.name.trim() === '',
       location:
         userData.location.city.trim() === '' ||
-          userData.location.country.trim() === '' ||
-          userData.location.postalCode.trim() === '' ||
-          userData.location.region.trim() === ''
+        userData.location.country.trim() === '' ||
+        userData.location.postalCode.trim() === '' ||
+        userData.location.region.trim() === ''
           ? true
           : false,
       education:
         userData.education.degree.trim() === '' ||
-          userData.education.institution.trim() === '' ||
-          userData.education.area.trim() === ''
+        userData.education.institution.trim() === '' ||
+        userData.education.area.trim() === ''
           ? true
           : false,
       languages: userData.languages.trim() === '',
@@ -88,7 +113,33 @@ export default function AdminAddUserForm({ setJsonInput }) {
     ) {
       return;
     }
+    setJsonInput(JSON.stringify(userData));
+  };
 
+  useEffect(() => {
+    const fetchOptions = async () => {
+      try {
+        const response = await Axios.get('http://localhost:3000/occupation/');
+        const formattedOptions = response.data.map((occupation) => ({
+          value: { name: occupation.name },
+          label: occupation.name,
+        }));
+        setCachedOptions(formattedOptions);
+      } catch (error) {
+        console.error('Error fetching options:', error);
+      }
+    };
+    fetchOptions();
+  }, []);
+
+  const removeAccents = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+  const loadOptions = (inputValue, callback) => {
+    const normalizedInput = removeAccents(inputValue.toLowerCase());
+    const filteredOptions = cachedOptions.filter((option) =>
+      removeAccents(option.label.toLowerCase()).includes(normalizedInput)
+    );
+    callback(filteredOptions);
   };
 
   const handleChangeLanguages = (language, operation) => {
@@ -108,13 +159,6 @@ export default function AdminAddUserForm({ setJsonInput }) {
     }
   };
 
-  const removeOccupation = (occupation) => {
-    setUserData((prevUserData) => ({
-      ...prevUserData,
-      occupations: prevUserData.occupations.filter((currOccupation) => currOccupation.name != occupation),
-    }));
-  };
-
   const getErrors = () => {
     let errorFields = '';
 
@@ -128,7 +172,7 @@ export default function AdminAddUserForm({ setJsonInput }) {
   };
 
   return (
-    <Card step={3}>
+    <Card>
       <Modal
         ref={modal}
         handleClose={handleChangeLanguages}
@@ -136,23 +180,13 @@ export default function AdminAddUserForm({ setJsonInput }) {
         label="Lenguaje"
         inputId="language"
       />
-      <nav className="flex align-left w-full">
-        <BackButton
-          onClick={() => {
-          }}
-        />
-      </nav>
-      <CardTitle
-        title="Información personal"
-        subtitle="Verifica si la información es correcta y editala si es necesario"
-      />
       {(error.name ||
         error.birthdate ||
         error.category ||
         error.location ||
         error.education ||
         error.work) && <ErrorMessage message={`Por favor ingresa tu ${getErrors()}`} />}
-      <div className="grid grid-cols-2 gap-2 overflow-auto h-[30rem] pr-2">
+      <div className="grid grid-cols-2 gap-2 overflow-auto h-[37rem] pr-2 w-full">
         <Input
           label="Nombre"
           type="text"
@@ -170,7 +204,7 @@ export default function AdminAddUserForm({ setJsonInput }) {
         <Dropdown
           options={categories}
           label="Categoría de ocupación"
-          placeholder={userData.category.name}
+          placeholder={'----Seleccione----'}
           name="select"
           onChange={(e) => handleChangeInput('category', { name: e.target.value })}
           value={userData.category.name}
@@ -232,27 +266,25 @@ export default function AdminAddUserForm({ setJsonInput }) {
             </ul>
           </div>
         </div>
-        <div>
+        <div className="min-h-44">
           <div className="flex justify-between">
             <p className={labelStyles}>Ocupaciones</p>
           </div>
-          <div className="max-h-30 overflow-y-auto pr-1">
-            <ul className="grid grid-cols-2 gap-1">
-              {userData.occupations.map((occupation, index) => (
-                <li key={index} className={`flex justify-between text-xs ${inputStyles} items-center`}>
-                  <p className="max-w-10 items-center" key={index}>
-                    {occupation.name}
-                  </p>
-                  {userData.occupations.length > 1 && (
-                    <i
-                      onClick={() => removeOccupation(occupation.name)}
-                      className="fa-solid fa-x  hover:cursor-pointer text-red-900 hover:text-red-500"
-                    ></i>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <AsyncSelect
+            cacheOptions
+            isMulti
+            loadOptions={loadOptions}
+            defaultOptions={cachedOptions}
+            styles={{
+              option: (provided) => ({
+                ...provided,
+                color: 'gray',
+              }),
+            }}
+            className="basic-multi-select"
+            classNamePrefix="select"
+            onChange={(e) => handleChangeOccupations(e)}
+          />
         </div>
       </div>
       <Button onClick={handleSubmit}>Confirmar</Button>

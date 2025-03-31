@@ -1,65 +1,69 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState } from 'react';
+import axios from 'axios';
 import { JsonEditor } from 'json-edit-react';
-import AdminAddUserForm from "./AdminAddUserForm";
-
+import AdminAddUserForm from './AdminAddUserForm';
 
 export default function AdminPanel() {
-  const [jsonInput, setJsonInput] = useState("{}");
+  const [jsonInput, setJsonInput] = useState('{}');
   const [response, setResponse] = useState(null);
-  const [method, setMethod] = useState("GET");
+  const [method, setMethod] = useState('GET');
   const [queryParams, setQueryParams] = useState([]);
-  const [endpoint, setEndpoint] = useState("/users");
+  const [endpoint, setEndpoint] = useState('/users');
   const [status, setStatus] = useState(null);
-  const [inputMode, setInputMode] = useState("json");
+  const [inputMode, setInputMode] = useState('json');
 
   const endpoints = {
-    "[GET] Get all users": "/users",
-    "[GET] Get users by name": "/admin/users",
-    "[POST] Create many users": "/admin/users",
-    "[DELETE] Delete user by name": "/admin/users",
-    "[PUT] Update a user by name": "/admin/users",
-    "[POST] Create a single user": "/admin/users/single",
-    "[POST] Relate an existing user": "/admin/users/relate"
+    '[GET] Get all users': '/users',
+    '[GET] Get users by name': '/admin/users',
+    '[POST] Create many users': '/admin/users',
+    '[DELETE] Delete user by name': '/admin/users',
+    '[PUT] Update a user by name': '/admin/users',
+    '[POST] Create a single user': '/admin/users/single',
+    '[POST] Relate an existing user': '/admin/users/relate',
   };
 
-  const server_url = "http://localhost:3000";
+  const server_url = 'http://localhost:3000';
 
   const handleSendRequest = async () => {
     try {
       let parsedJson;
-      if (typeof jsonInput === typeof "") {
+      if (typeof jsonInput === typeof '') {
         parsedJson = JSON.parse(jsonInput);
       } else {
         parsedJson = jsonInput;
       }
       console.log(parsedJson);
       const queryString = queryParams
-        .filter(param => param.key && param.value)
-        .map(param => `${encodeURIComponent(param.key)}=${encodeURIComponent(param.value)}`)
-        .join("&");
+        .filter((param) => param.key && param.value)
+        .map((param) => `${encodeURIComponent(param.key)}=${encodeURIComponent(param.value)}`)
+        .join('&');
 
-      const url = `${server_url}${endpoint}${queryString ? `?${queryString}` : ""}`;
+      const url = `${server_url}${endpoint}${queryString ? `?${queryString}` : ''}`;
       const res = await axios({
         url,
         method,
-        headers: { "Content-Type": "application/json" },
-        data: method !== "GET" ? parsedJson : undefined,
+        headers: { 'Content-Type': 'application/json' },
+        data: method !== 'GET' ? parsedJson : undefined,
       });
       console.log(url);
       setStatus(res.status);
       setResponse(res.data);
     } catch (error) {
-      setStatus("Error");
-      setResponse({ error: "Invalid JSON or request failed" });
+      setStatus('Error');
+      setResponse({ error: 'Invalid JSON or request failed' });
     }
   };
 
+  const handleSubmitAddUser = async (userInput) => {
+    setJsonInput(userInput);
+    await handleSendRequest();
+  };
+
   const methodColors = {
-    GET: "bg-green-600",
-    POST: "bg-yellow-600",
-    PUT: "bg-blue-600",
-    DELETE: "bg-red-600",
+    GET: 'bg-green-600',
+    POST: 'bg-yellow-600',
+    PUT: 'bg-blue-600',
+    DELETE: 'bg-red-600',
   };
 
   return (
@@ -76,7 +80,9 @@ export default function AdminPanel() {
                 onChange={(e) => setEndpoint(e.target.value)}
               >
                 {Object.entries(endpoints).map(([name, url]) => (
-                  <option key={name} value={url}>{name}</option>
+                  <option key={name} value={url}>
+                    {name}
+                  </option>
                 ))}
               </select>
               <select
@@ -124,13 +130,13 @@ export default function AdminPanel() {
                 ))}
                 <button
                   className="bg-gray-500 text-white px-2 py-1 rounded-lg"
-                  onClick={() => setQueryParams([...queryParams, { key: "", value: "" }])}
+                  onClick={() => setQueryParams([...queryParams, { key: '', value: '' }])}
                 >
                   + Add Query Param
                 </button>
               </div>
               <div className="w-full flex-grow bg-gray-600 text-white p-2 rounded-lg">
-                {endpoint === "/admin/users/single" ? (
+                {endpoint === '/admin/users/single' ? (
                   <div>
                     <select
                       className="mb-4 p-2 rounded-lg bg-gray-600 text-white"
@@ -140,10 +146,10 @@ export default function AdminPanel() {
                       <option value="json">JSON Editor</option>
                       <option value="form">User Form</option>
                     </select>
-                    {inputMode === "json" ? (
+                    {inputMode === 'json' ? (
                       <JsonEditor data={jsonInput} setData={setJsonInput} />
                     ) : (
-                      <AdminAddUserForm setJsonInput={setJsonInput} />
+                      <AdminAddUserForm setJsonInput={handleSubmitAddUser} />
                     )}
                   </div>
                 ) : (
@@ -151,19 +157,29 @@ export default function AdminPanel() {
                 )}
                 <div />
               </div>
-              <button
-                className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg"
-                onClick={handleSendRequest}
-              >
-                Send
-              </button>
+              {inputMode === 'json' && (
+                <button
+                  className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg"
+                  onClick={handleSendRequest}
+                >
+                  Send
+                </button>
+              )}
             </div>
           </div>
 
           {/* Right Panel */}
           <div className="w-1/2 p-4 flex flex-col h-screen">
             <div className="bg-gray-700 p-4 rounded-lg shadow-md flex-grow flex flex-col overflow-auto">
-              <div className={`mb-2 text-lg font-bold rounded-lg bg-gray-600 p-2 ${status >= 200 && status < 300 ? "text-green-500" : "text-red-500"}`}> <span className="text-white">Status: </span>{status !== null ? status : "Waiting..."}</div>
+              <div
+                className={`mb-2 text-lg font-bold rounded-lg bg-gray-600 p-2 ${
+                  status >= 200 && status < 300 ? 'text-green-500' : 'text-red-500'
+                }`}
+              >
+                {' '}
+                <span className="text-white">Status: </span>
+                {status !== null ? status : 'Waiting...'}
+              </div>
               <div className="w-full flex-grow bg-gray-600 text-white p-2 rounded-lg">
                 <JsonEditor data={response || {}} viewOnly={true} />
               </div>
@@ -171,7 +187,6 @@ export default function AdminPanel() {
           </div>
         </div>
       </div>
-    </main >
+    </main>
   );
 }
-
