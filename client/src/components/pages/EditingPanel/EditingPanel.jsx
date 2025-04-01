@@ -13,20 +13,20 @@ import Button from '../../common/Button';
 import ErrorMessage from '../../common/ErrorMessage';
 import AsyncSelect from 'react-select/async';
 import Axios from 'axios';
+import {
+  userFormatError,
+  removeAccents,
+  checkErrors,
+  checkSubmit,
+  getErrors,
+} from '../../../utils/userFormats';
+
+const OCCUPATIONS_URL = 'http://localhost:3000/occupation/';
 
 export default function EditingPanel({ nextStep }) {
   const [cachedOptions, setCachedOptions] = useState([]);
   const [userData, setUserData] = useContext(FormContext);
-  const [error, setError] = useState({
-    name: false,
-    birthdate: false,
-    category: false,
-    location: false,
-    education: false,
-    languages: false,
-    occupations: false,
-    work: false,
-  });
+  const [error, setError] = useState(userFormatError);
   const modal = useRef();
   const handleChangeInput = (inputId, value) => {
     setError((prevError) => {
@@ -61,7 +61,7 @@ export default function EditingPanel({ nextStep }) {
   useEffect(() => {
     const fetchOptions = async () => {
       try {
-        const response = await Axios.get('http://localhost:3000/occupation/');
+        const response = await Axios.get(OCCUPATIONS_URL);
         const formattedOptions = response.data.map((occupation) => ({
           value: { name: occupation.name },
           label: occupation.name,
@@ -73,9 +73,6 @@ export default function EditingPanel({ nextStep }) {
     };
     fetchOptions();
   }, []);
-
-  const removeAccents = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-
   const loadOptions = (inputValue, callback) => {
     const normalizedInput = removeAccents(inputValue.toLowerCase());
     const filteredOptions = cachedOptions.filter((option) =>
@@ -85,41 +82,12 @@ export default function EditingPanel({ nextStep }) {
   };
 
   const handleSubmit = () => {
-    const errors = {
-      name: userData.name.trim() === '',
-      birthdate: userData.birthdate.trim() === '',
-      category: userData.category.name.trim() === '',
-      location:
-        userData.location.city.trim() === '' ||
-        userData.location.country.trim() === '' ||
-        userData.location.postalCode.trim() === '' ||
-        userData.location.region.trim() === ''
-          ? true
-          : false,
-      education:
-        userData.education.degree.trim() === '' ||
-        userData.education.institution.trim() === '' ||
-        userData.education.area.trim() === ''
-          ? true
-          : false,
-      languages: userData.languages.trim() === '',
-      occupations: userData.occupations.length === 0,
-      work: userData.work.organization.trim() === '' || userData.work.position.trim() === '' ? true : false,
-    };
+    const errors = checkSubmit(userData);
     setError(errors);
 
-    if (
-      errors.name ||
-      errors.birthdate ||
-      errors.category ||
-      errors.location ||
-      errors.education ||
-      errors.occupations ||
-      errors.work
-    ) {
+    if (checkErrors(errors)) {
       return;
     }
-
     nextStep(6);
   };
 
@@ -140,25 +108,13 @@ export default function EditingPanel({ nextStep }) {
     }
   };
 
-  const removeOccupation = (occupation) => {
-    setUserData((prevUserData) => ({
-      ...prevUserData,
-      occupations: prevUserData.occupations.filter((currOccupation) => currOccupation.name != occupation),
-    }));
-  };
-
-  const getErrors = () => {
-    let errorFields = '';
-
-    Object.keys(error).forEach((key) => {
-      if (error[key]) {
-        errorFields += `${translateField(key)}, `;
-      }
-    });
-
-    return errorFields.substring(0, errorFields.length - 2);
-  };
   const handleChangeOccupations = (value) => {
+    setError((prevError) => {
+      return {
+        ...prevError,
+        occupations: false,
+      };
+    });
     setUserData((prevUserData) => ({
       ...prevUserData,
       occupations: value.map((currOccupation) => currOccupation.value),
@@ -185,12 +141,7 @@ export default function EditingPanel({ nextStep }) {
         title="Información personal"
         subtitle="Verifica si la información es correcta y editala si es necesario"
       />
-      {(error.name ||
-        error.birthdate ||
-        error.category ||
-        error.location ||
-        error.education ||
-        error.work) && <ErrorMessage message={`Por favor ingresa tu ${getErrors()}`} />}
+      {checkErrors(error) && <ErrorMessage message={`Por favor ingresa tu ${getErrors(error)}`} />}
       <div className="grid grid-cols-2 gap-2 overflow-auto h-[30rem] pr-2 max-w-150">
         <Input
           label="Nombre"

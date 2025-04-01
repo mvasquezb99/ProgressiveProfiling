@@ -11,36 +11,23 @@ import ErrorMessage from '../../common/ErrorMessage';
 import AsyncSelect from 'react-select/async';
 import Axios from 'axios';
 import Button from '../../common/Button';
+import {
+  userFormat,
+  userFormatError,
+  removeAccents,
+  checkSubmit,
+  checkErrors,
+  getErrors,
+} from '../../../utils/userFormats';
+
+const OCCUPATIONS_URL = 'http://localhost:3000/occupation/';
 
 export default function AdminAddUserForm({ setJsonInput }) {
-  const [cachedOptions, setCachedOptions] = useState([]);
-  const [userData, setUserData] = useState({
-    name: '',
-    birthdate: '',
-    category: { name: '' },
-    location: {
-      city: '',
-      country: '',
-      postalCode: '',
-      region: '',
-    },
-    education: { area: '', degree: '', institution: '' },
-    languages: 'Español',
-    occupations: [],
-    work: { organization: '', position: '' },
-  });
-
-  const [error, setError] = useState({
-    name: false,
-    birthdate: false,
-    category: false,
-    location: false,
-    education: false,
-    languages: false,
-    occupations: false,
-    work: false,
-  });
   const modal = useRef();
+  const [cachedOptions, setCachedOptions] = useState([]);
+  const [userData, setUserData] = useState(userFormat);
+  const [error, setError] = useState(userFormatError);
+
   const handleChangeInput = (inputId, value) => {
     setError((prevError) => {
       return {
@@ -72,6 +59,12 @@ export default function AdminAddUserForm({ setJsonInput }) {
   };
 
   const handleChangeOccupations = (value) => {
+    setError((prevError) => {
+      return {
+        ...prevError,
+        occupations: false,
+      };
+    });
     setUserData((prevUserData) => ({
       ...prevUserData,
       occupations: value.map((currOccupation) => currOccupation.value),
@@ -79,38 +72,9 @@ export default function AdminAddUserForm({ setJsonInput }) {
   };
 
   const handleSubmit = () => {
-    const errors = {
-      name: userData.name.trim() === '',
-      birthdate: userData.birthdate.trim() === '',
-      category: userData.category.name.trim() === '',
-      location:
-        userData.location.city.trim() === '' ||
-        userData.location.country.trim() === '' ||
-        userData.location.postalCode.trim() === '' ||
-        userData.location.region.trim() === ''
-          ? true
-          : false,
-      education:
-        userData.education.degree.trim() === '' ||
-        userData.education.institution.trim() === '' ||
-        userData.education.area.trim() === ''
-          ? true
-          : false,
-      languages: userData.languages.trim() === '',
-      occupations: userData.occupations.length === 0,
-      work: userData.work.organization.trim() === '' || userData.work.position.trim() === '' ? true : false,
-    };
+    const errors = checkSubmit(userData);
     setError(errors);
-
-    if (
-      errors.name ||
-      errors.birthdate ||
-      errors.category ||
-      errors.location ||
-      errors.education ||
-      errors.occupations ||
-      errors.work
-    ) {
+    if (checkErrors(errors)) {
       return;
     }
     setJsonInput(JSON.stringify(userData));
@@ -119,7 +83,7 @@ export default function AdminAddUserForm({ setJsonInput }) {
   useEffect(() => {
     const fetchOptions = async () => {
       try {
-        const response = await Axios.get('http://localhost:3000/occupation/');
+        const response = await Axios.get(OCCUPATIONS_URL);
         const formattedOptions = response.data.map((occupation) => ({
           value: { name: occupation.name },
           label: occupation.name,
@@ -131,8 +95,6 @@ export default function AdminAddUserForm({ setJsonInput }) {
     };
     fetchOptions();
   }, []);
-
-  const removeAccents = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
   const loadOptions = (inputValue, callback) => {
     const normalizedInput = removeAccents(inputValue.toLowerCase());
@@ -159,18 +121,6 @@ export default function AdminAddUserForm({ setJsonInput }) {
     }
   };
 
-  const getErrors = () => {
-    let errorFields = '';
-
-    Object.keys(error).forEach((key) => {
-      if (error[key]) {
-        errorFields += `${translateField(key)}, `;
-      }
-    });
-
-    return errorFields.substring(0, errorFields.length - 2);
-  };
-
   return (
     <Card>
       <Modal
@@ -180,12 +130,7 @@ export default function AdminAddUserForm({ setJsonInput }) {
         label="Lenguaje"
         inputId="language"
       />
-      {(error.name ||
-        error.birthdate ||
-        error.category ||
-        error.location ||
-        error.education ||
-        error.work) && <ErrorMessage message={`Por favor ingresa tu ${getErrors()}`} />}
+      {checkErrors(error) && <ErrorMessage message={`Por favor ingresa tu ${getErrors(error)}`} />}
       <div className="grid grid-cols-2 gap-2 overflow-auto h-[37rem] pr-2 w-full">
         <Input
           label="Nombre"
