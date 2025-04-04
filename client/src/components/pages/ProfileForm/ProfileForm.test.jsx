@@ -1,6 +1,7 @@
 import React from "react";
 import ProfileFrom from "./ProfileForm";
-import { fireEvent, render } from '@testing-library/react';
+import axios from "axios";
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import { useFetch } from '../../../hooks/useFetch';
 import { profiles } from "../../../constants/profiles";
 import { FormContext } from "../../../context/context";
@@ -30,13 +31,14 @@ describe(ProfileFrom, () => {
             postalCode: '',
             region: '',
         },
-        education: [],
-        languages: [],
+        education: ['test_education'],
+        languages: ['test_language'],
         occupations: ['test', 'test_1', 'test_2'],
-        work: [],
+        work: ['test_work'],
     }
 
     beforeEach(() => {
+        mockCategoryProfiles = profiles
         useFetch.mockReturnValue({
             data: mockCategoryProfiles,
             isLoading: false,
@@ -47,6 +49,8 @@ describe(ProfileFrom, () => {
         getRandomInt.mockReturnValueOnce(1)
         getRandomInt.mockReturnValueOnce(2)
         getRandomInt.mockReturnValueOnce(3)
+        getRandomInt.mockReturnValueOnce(4)
+        getRandomInt.mockReturnValueOnce(5)
     })
 
     it('When a user clicks the right arrow, the star or the left arrow the profile is removed from categoryProfiles', () => {
@@ -77,13 +81,13 @@ describe(ProfileFrom, () => {
         const arrowUp = container.querySelector('#arrowUp');
         fireEvent.click(arrowUp);
         expect(setMockCategoryProfiles).toHaveBeenCalled();
-        
+
         lastCallIndex = setMockCategoryProfiles.mock.calls.length - 1;
         filterFunction = setMockCategoryProfiles.mock.calls[lastCallIndex][0];
         filtered = filterFunction(mockCategoryProfiles);
-        
+
         expect(filtered.length).toBe(mockCategoryProfiles.length - 1);
-        
+
         mockCategoryProfiles = filtered;
 
         /**
@@ -99,4 +103,41 @@ describe(ProfileFrom, () => {
 
         expect(filtered.length).toBe(mockCategoryProfiles.length - 1);
     })
+
+    it('The User should be able to continue when the liked users requirements are fulfilled', () => {
+        const { container, getByRole } = render(
+            <FormContext.Provider value={[mockUserData, setMockUserData]}>
+                <ProfileFrom nextStep={mockNextStep} />
+            </FormContext.Provider>
+        );
+
+        /**
+         * Right arrow test
+        */
+        const arrowRight = container.querySelector('#arrowRight');
+        const arrowUp = container.querySelector('#arrowUp');
+
+        for (let _ = 0; _ < 4; _++) {
+            fireEvent.click(arrowRight);
+            expect(setMockCategoryProfiles).toHaveBeenCalled();
+        }
+
+        for (let _ = 0; _ < 3; _++) {
+            fireEvent.click(arrowUp);
+            expect(setMockCategoryProfiles).toHaveBeenCalled();
+        }
+
+        const continueButton = getByRole('button', { name: /Continuar/i });
+        expect(continueButton).toBeInTheDocument();
+
+        axios.post.mockResolvedValueOnce({ data: mockUserData })
+
+        fireEvent.click(continueButton);
+
+        waitFor(() => {
+            expect(mockNextStep).toHaveBeenCalledWith(4);
+        })
+    });
+
+    
 })
