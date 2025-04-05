@@ -54,6 +54,16 @@ export default function AdminPanel() {
     }
   };
 
+  const handleChangeEndpoint = (endpoint) => {
+    const parsedEndpoint = JSON.parse(endpoint);
+    const endpointValue = Object.values(parsedEndpoint)[0];
+    setEndpoint(endpointValue);
+    setMethod(Object.keys(parsedEndpoint)[0].substring(1, Object.keys(parsedEndpoint)[0].indexOf(']')));
+    if (endpointValue !== '/admin/users/single') {
+      setInputMode('json');
+    }
+  };
+
   const handleSubmitAddUser = async (userInput) => {
     setJsonInput(userInput);
     await handleSendRequest();
@@ -76,24 +86,13 @@ export default function AdminPanel() {
               <a href={`${server_url}/api/docs`}>For more info visit the docs</a>
               <select
                 className="mb-4 p-2 rounded-lg text-white bg-gray-600"
-                value={endpoint}
-                onChange={(e) => setEndpoint(e.target.value)}
+                onChange={(e) => handleChangeEndpoint(e.target.value)}
               >
                 {Object.entries(endpoints).map(([name, url]) => (
-                  <option key={name} value={url}>
+                  <option key={name} value={JSON.stringify({ [name]: url })}>
                     {name}
                   </option>
                 ))}
-              </select>
-              <select
-                className={`mb-4 p-2 rounded-lg text-white ${methodColors[method]}`}
-                value={method}
-                onChange={(e) => setMethod(e.target.value)}
-              >
-                <option value="GET">GET</option>
-                <option value="POST">POST</option>
-                <option value="PUT">PUT</option>
-                <option value="DELETE">DELETE</option>
               </select>
               <div className="mb-4">
                 {queryParams.map((param, index) => (
