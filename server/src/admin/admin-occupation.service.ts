@@ -56,4 +56,14 @@ export class AdminOccupationService {
       await this.occupationClass.occupationModel.createOne(body);
     return new ResponseOccupationDto(newOccupation.name);
   }
+
+  public async deleteOccupation(name: string): Promise<ResponseOccupationDto> {
+    const occupationDeleted = await this.occupationClass.occupationModel.delete(
+      { where: { name: name } },
+    );
+    if (occupationDeleted <= 0) {
+      throw new Error('Occupation not found');
+    }
+    return new ResponseOccupationDto(name);
+  }
 }

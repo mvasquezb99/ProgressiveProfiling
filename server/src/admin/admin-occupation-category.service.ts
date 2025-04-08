@@ -137,4 +137,18 @@ export class AdminOccupationCategoryService {
       occupationsProp,
     );
   }
+
+  public async deleteCategory(
+    name: string,
+  ): Promise<ResponseOccupationCategoryDto> {
+    const categoryDeleted = await this.occupationClass.occupationModel.delete({
+      where: { name: name },
+    });
+    if (categoryDeleted <= 0) {
+      throw new Error('Category not found');
+    }
+    const categoryResponse = new ResponseOccupationCategoryDto();
+    categoryResponse.name = name;
+    return categoryResponse;
+  }
 }

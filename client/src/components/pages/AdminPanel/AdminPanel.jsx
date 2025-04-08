@@ -29,6 +29,8 @@ export default function AdminPanel() {
     '[POST] Relate a category with a occupation': '/admin/categories/relate',
     '[PUT] Update a user by name': '/admin/users',
     '[DELETE] Delete user by name': '/admin/users',
+    '[DELETE] Delete occupation by name': '/admin/occupations',
+    '[DELETE] Delete category by name': '/admin/categories',
   };
 
   const server_url = 'http://localhost:3000';

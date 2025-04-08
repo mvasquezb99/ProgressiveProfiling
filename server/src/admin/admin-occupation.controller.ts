@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Post,
   Query,
@@ -14,6 +15,7 @@ import {
   RequestOccupationArrayDto,
   RequestOccupationDto,
 } from 'src/occupation/dto/request-occupation.dto';
+import { ResponseUserDto } from 'src/user/dto/response-user.dto';
 
 @ApiTags('admin/occupations')
 @Controller('admin/occupations')
@@ -66,5 +68,18 @@ export class AdminOccupationController {
   @UsePipes(new ValidationPipe({ transform: true }))
   public async saveOccupation(@Body() body: RequestOccupationDto) {
     return await this.adminOccupationService.saveOccupation(body);
+  }
+
+  @Delete()
+  @ApiOperation({
+    summary: 'Delete an existing occupation by name',
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'Occupation Deleted',
+    type: ResponseOccupationDto,
+  })
+  public async deleteOccupation(@Query('name') name: string) {
+    return await this.adminOccupationService.deleteOccupation(name);
   }
 }

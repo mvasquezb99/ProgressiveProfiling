@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Post,
   Query,
@@ -83,5 +84,17 @@ export class AdminOccupationCategoryController {
     return await this.adminOccupationCategoryService.relateCategoryToOccupation(
       body,
     );
+  }
+  @Delete()
+  @ApiOperation({
+    summary: 'Delete an existing occupation by name',
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'Occupation Deleted',
+    type: ResponseOccupationCategoryDto,
+  })
+  public async deleteCategory(@Query('name') name: string) {
+    return await this.adminOccupationCategoryService.deleteCategory(name);
   }
 }
