@@ -1,33 +1,33 @@
-import { useRef, useContext, useState, useEffect } from 'react';
-import { FormContext } from '../../../context/context';
+import { useRef, useState, useEffect } from 'react';
 import Card from '../../layout/Card';
-import CardTitle from '../../common/CardTitle';
 import Input from '../../common/Input';
 import BackButton from '../../common/BackButton';
 import Dropdown from '../../common/Dropdown';
 import { categories } from '../../../constants/educationCategories';
 import { labelStyles, inputStyles } from '../../../constants/styles';
 import { getKey, translateLabel, translateField } from '../../../utils/translateLabel';
-import Modal from './Modal';
-import Button from '../../common/Button';
+import Modal from '../EditingPanel/Modal';
 import ErrorMessage from '../../common/ErrorMessage';
 import AsyncSelect from 'react-select/async';
 import Axios from 'axios';
+import Button from '../../common/Button';
 import {
+  userFormat,
   userFormatError,
   removeAccents,
-  checkErrors,
   checkSubmit,
+  checkErrors,
   getErrors,
 } from '../../../utils/userFormats';
 
 const OCCUPATIONS_URL = 'http://localhost:3000/occupation/';
 
-export default function EditingPanel({ nextStep }) {
-  const [cachedOptions, setCachedOptions] = useState([]);
-  const [userData, setUserData] = useContext(FormContext);
-  const [error, setError] = useState(userFormatError);
+export default function AdminAddUserForm({ setJsonInput }) {
   const modal = useRef();
+  const [cachedOptions, setCachedOptions] = useState([]);
+  const [userData, setUserData] = useState(userFormat);
+  const [error, setError] = useState(userFormatError);
+
   const handleChangeInput = (inputId, value) => {
     setError((prevError) => {
       return {
@@ -58,6 +58,28 @@ export default function EditingPanel({ nextStep }) {
     }));
   };
 
+  const handleChangeOccupations = (value) => {
+    setError((prevError) => {
+      return {
+        ...prevError,
+        occupations: false,
+      };
+    });
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      occupations: value.map((currOccupation) => currOccupation.value),
+    }));
+  };
+
+  const handleSubmit = () => {
+    const errors = checkSubmit(userData);
+    setError(errors);
+    if (checkErrors(errors)) {
+      return;
+    }
+    setJsonInput(JSON.stringify(userData));
+  };
+
   useEffect(() => {
     const fetchOptions = async () => {
       try {
@@ -73,22 +95,13 @@ export default function EditingPanel({ nextStep }) {
     };
     fetchOptions();
   }, []);
+
   const loadOptions = (inputValue, callback) => {
     const normalizedInput = removeAccents(inputValue.toLowerCase());
     const filteredOptions = cachedOptions.filter((option) =>
       removeAccents(option.label.toLowerCase()).includes(normalizedInput)
     );
     callback(filteredOptions);
-  };
-
-  const handleSubmit = () => {
-    const errors = checkSubmit(userData);
-    setError(errors);
-
-    if (checkErrors(errors)) {
-      return;
-    }
-    nextStep(6);
   };
 
   const handleChangeLanguages = (language, operation) => {
@@ -108,21 +121,8 @@ export default function EditingPanel({ nextStep }) {
     }
   };
 
-  const handleChangeOccupations = (value) => {
-    setError((prevError) => {
-      return {
-        ...prevError,
-        occupations: false,
-      };
-    });
-    setUserData((prevUserData) => ({
-      ...prevUserData,
-      occupations: value.map((currOccupation) => currOccupation.value),
-    }));
-  };
-
   return (
-    <Card step={3}>
+    <Card>
       <Modal
         ref={modal}
         handleClose={handleChangeLanguages}
@@ -130,19 +130,8 @@ export default function EditingPanel({ nextStep }) {
         label="Lenguaje"
         inputId="language"
       />
-      <nav className="flex align-left w-full">
-        <BackButton
-          onClick={() => {
-            nextStep(4);
-          }}
-        />
-      </nav>
-      <CardTitle
-        title="Información personal"
-        subtitle="Verifica si la información es correcta y editala si es necesario"
-      />
       {checkErrors(error) && <ErrorMessage message={`Por favor ingresa tu ${getErrors(error)}`} />}
-      <div className="grid grid-cols-2 gap-2 overflow-auto h-[30rem] pr-2 max-w-150">
+      <div className="grid grid-cols-2 gap-2 overflow-auto h-[37rem] pr-2 w-full">
         <Input
           label="Nombre"
           type="text"
@@ -160,7 +149,7 @@ export default function EditingPanel({ nextStep }) {
         <Dropdown
           options={categories}
           label="Categoría de ocupación"
-          placeholder={userData.category.name}
+          placeholder={'----Seleccione----'}
           name="select"
           onChange={(e) => handleChangeInput('category', { name: e.target.value })}
           value={userData.category.name}
@@ -222,17 +211,13 @@ export default function EditingPanel({ nextStep }) {
             </ul>
           </div>
         </div>
-        <div>
+        <div className="min-h-44">
           <div className="flex justify-between">
             <p className={labelStyles}>Ocupaciones</p>
           </div>
           <AsyncSelect
             cacheOptions
             isMulti
-            defaultValue={userData.occupations.map((occupation) => ({
-              value: { name: occupation.name },
-              label: occupation.name,
-            }))}
             loadOptions={loadOptions}
             defaultOptions={cachedOptions}
             styles={{

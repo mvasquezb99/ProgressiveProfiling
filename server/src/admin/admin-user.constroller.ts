@@ -58,7 +58,7 @@ export class AdminUserController {
   })
   @UsePipes(new ValidationPipe({ transform: true }))
   public async saveUser(@Body() body: RequestFinalUserDto) {
-    await this.adminUserService.saveUser(body);
+    return await this.adminUserService.saveUser(body);
   }
 
   @Post('relate')
