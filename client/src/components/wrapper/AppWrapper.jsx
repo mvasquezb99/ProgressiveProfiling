@@ -6,24 +6,11 @@ import EditingPanel from '../pages/EditingPanel';
 import FinalPage from '../pages/FinalPage';
 import { useState } from 'react';
 import { FormContext } from '../../context/context';
+import { userFormat } from '../../utils/userFormats';
 
 export default function AppWrapper() {
   const [step, setStep] = useState(1);
-  const [userData, setUserData] = useState({
-    name: '',
-    birthdate: '',
-    category: { name: '' },
-    location: {
-      city: '',
-      country: '',
-      postalCode: '',
-      region: '',
-    },
-    education: [],
-    languages: [],
-    occupations: [],
-    work: [],
-  });
+  const [userData, setUserData] = useState(userFormat);
   const handleNextStep = (step) => {
     setStep(step);
   };

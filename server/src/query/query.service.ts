@@ -10,7 +10,7 @@ export type QueryNode = {
 
 @Injectable()
 export class QueryService {
-  constructor(private readonly configService: ConfigService) { }
+  constructor(private readonly configService: ConfigService) {}
 
   public queryRelationships(userName: string): Promise<QueryResult> {
     return new QueryBuilder()
@@ -90,8 +90,8 @@ export class QueryService {
     return new QueryBuilder()
       .raw(
         "MATCH (u:User {name: '" +
-        username +
-        "'})-[r:HasEducation]->(e:Education) DELETE r",
+          username +
+          "'})-[r:HasEducation]->(e:Education) DELETE r",
       )
       .run();
   }
@@ -100,8 +100,8 @@ export class QueryService {
     return new QueryBuilder()
       .raw(
         "MATCH (u:User {name: '" +
-        username +
-        "'})-[r:WorkExperience]->(w:Work) DELETE r",
+          username +
+          "'})-[r:WorkExperience]->(w:Work) DELETE r",
       )
       .run();
   }
@@ -112,8 +112,8 @@ export class QueryService {
     return new QueryBuilder()
       .raw(
         "MATCH (u:User {name: '" +
-        username +
-        "'})-[r:HasLocation]->(l:Location) DELETE r",
+          username +
+          "'})-[r:HasLocation]->(l:Location) DELETE r",
       )
       .run();
   }
@@ -124,8 +124,8 @@ export class QueryService {
     return new QueryBuilder()
       .raw(
         "MATCH (u:User {name: '" +
-        username +
-        "'})-[c:LikesCategory]->(c:Category) DELETE r",
+          username +
+          "'})-[c:LikesCategory]->(c:Category) DELETE r",
       )
       .run();
   }
@@ -136,8 +136,20 @@ export class QueryService {
     return new QueryBuilder()
       .raw(
         "MATCH (u:User {name: '" +
-        username +
-        "'})-[r:LikesOccupation]->(o:Occupation) DELETE r",
+          username +
+          "'})-[r:LikesOccupation]->(o:Occupation) DELETE r",
+      )
+      .run();
+  }
+
+  public getOccupationsFromCategory(
+    categoryName: string,
+  ): Promise<QueryResult> {
+    return new QueryBuilder()
+      .raw(
+        "MATCH (c:Category WHERE c.name = '" +
+          categoryName +
+          "')-[r:Has]->(o:Occupation) RETURN o",
       )
       .run();
   }

@@ -7,6 +7,10 @@ import { QueryModule } from 'src/query/query.module';
 import { AdminUserController } from './admin-user.constroller';
 import { UserModule } from 'src/user/user.module';
 import { AdminUserService } from './admin-user.service';
+import { AdminOccupationController } from './admin-occupation.controller';
+import { AdminOccupationService } from './admin-occupation.service';
+import { AdminOccupationCategoryController } from './admin-occupation-category.controller';
+import { AdminOccupationCategoryService } from './admin-occupation-category.service';
 
 @Module({
   imports: [
@@ -17,7 +21,15 @@ import { AdminUserService } from './admin-user.service';
     QueryModule,
     NeogmaModule,
   ],
-  providers: [AdminUserService],
-  controllers: [AdminUserController],
+  providers: [
+    AdminUserService,
+    AdminOccupationService,
+    AdminOccupationCategoryService,
+  ],
+  controllers: [
+    AdminUserController,
+    AdminOccupationController,
+    AdminOccupationCategoryController,
+  ],
 })
-export class AdminModule { }
+export class AdminModule {}
