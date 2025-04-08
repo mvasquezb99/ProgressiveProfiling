@@ -2,7 +2,7 @@ import { labelStyles } from '../../../constants/styles';
 import { useState } from 'react';
 
 import PropTypes from 'prop-types';
-
+import React from 'react';
 export default function ProfessionItem({ profession, handleClick }) {
   const [isClicked, setIsClicked] = useState(false);
 
@@ -23,6 +23,7 @@ export default function ProfessionItem({ profession, handleClick }) {
         toggleClass();
         handleClick(profession);
       }}
+      data-testid='profession'
     >
       <p className={labelStyles}>{profession.name}</p>
     </div>

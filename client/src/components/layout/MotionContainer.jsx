@@ -3,7 +3,7 @@ import { useDragControls } from "motion/react"
 import { useEffect, useRef, useState } from "react";
 
 import PropTypes from 'prop-types';
-
+import React from "react";
 export default function MotionContainer({ children, handleLike, handleDislike, handleSuperlike }) {
     const controls = useDragControls();
     const card = useRef(null);
