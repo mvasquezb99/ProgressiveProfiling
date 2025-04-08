@@ -7,6 +7,24 @@ import { RequestEducationDto } from 'src/user/dto/request-education.dto';
 import { RequestLocationDto } from 'src/user/dto/request-location.dto';
 import { RequestWorkDto } from 'src/user/dto/request-work.dto';
 
+export class RelateCategoryWithOccupationDto {
+  @ApiPropertyOptional({
+    example: '{ name: "Technology" }',
+    description: 'Occupation category',
+  })
+  @ValidateNested()
+  @Type(() => RequestOccupationCategoryDto)
+  category: RequestOccupationCategoryDto;
+
+  @ApiPropertyOptional({
+    example: '{ name: "Software Engineering" }',
+    description: 'Occupation category',
+  })
+  @ValidateNested()
+  @Type(() => RequestOccupationDto)
+  occupation: RequestOccupationDto;
+}
+
 export class UpdateRelationshipsDto {
   @ApiPropertyOptional({
     example: '{ degree: "Bachelor", institution: "MIT", area: "Biology" }',

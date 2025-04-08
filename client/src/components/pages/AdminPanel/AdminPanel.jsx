@@ -15,11 +15,20 @@ export default function AdminPanel() {
   const endpoints = {
     '[GET] Get all users': '/users',
     '[GET] Get users by name': '/admin/users',
+    '[GET] Get all occupations': '/admin/occupations',
+    '[GET] Get occupation by name': '/admin/occupations/single',
+    '[GET] Get all occupation categories': '/admin/categories',
+    '[GET] Get occupation category by name': '/admin/categories/single',
     '[POST] Create many users': '/admin/users',
-    '[DELETE] Delete user by name': '/admin/users',
-    '[PUT] Update a user by name': '/admin/users',
     '[POST] Create a single user': '/admin/users/single',
     '[POST] Relate an existing user': '/admin/users/relate',
+    '[POST] Create many occupations': '/admin/occupations',
+    '[POST] Create a single occupation': '/admin/occupations/single',
+    '[POST] Create many categories': '/admin/categories',
+    '[POST] Create a single category': '/admin/categories/single',
+    '[POST] Relate a category with a occupation': '/admin/categories/relate',
+    '[PUT] Update a user by name': '/admin/users',
+    '[DELETE] Delete user by name': '/admin/users',
   };
 
   const server_url = 'http://localhost:3000';
@@ -171,9 +180,8 @@ export default function AdminPanel() {
           <div className="w-1/2 p-4 flex flex-col h-screen">
             <div className="bg-gray-700 p-4 rounded-lg shadow-md flex-grow flex flex-col overflow-auto">
               <div
-                className={`mb-2 text-lg font-bold rounded-lg bg-gray-600 p-2 ${
-                  status >= 200 && status < 300 ? 'text-green-500' : 'text-red-500'
-                }`}
+                className={`mb-2 text-lg font-bold rounded-lg bg-gray-600 p-2 ${status >= 200 && status < 300 ? 'text-green-500' : 'text-red-500'
+                  }`}
               >
                 {' '}
                 <span className="text-white">Status: </span>

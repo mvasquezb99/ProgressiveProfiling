@@ -132,7 +132,7 @@ export class AdminUserService {
     );
   }
 
-  public async saveUser(user: RequestFinalUserDto) {
+  public async saveUser(user: RequestFinalUserDto): Promise<ResponseUserDto> {
     const userProp = this.userMapper.toProperties(user);
 
     let educationNode = await this.educationClass.educationModel.findOne({
@@ -208,6 +208,22 @@ export class AdminUserService {
         }),
       ),
     );
+    const dtoData: Record<string, QueryNode[]> = {};
+    const updatedUser = await this.userClass.userModel.findOne({
+      where: {
+        name: user.name,
+      },
+    });
+    if (!updatedUser) {
+      throw new Error('New user not found');
+    }
+    const relationsNodes = await this.queryService.queryRelationships(
+      updatedUser.name,
+    );
+    dtoData[user.name] = relationsNodes.records.map(
+      (r) => r.get('n') as QueryNode,
+    );
+    return this.userMapper.apply(updatedUser, dtoData[updatedUser.name]);
   }
 
   public async relateUser(
