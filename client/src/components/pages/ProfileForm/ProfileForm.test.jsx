@@ -110,10 +110,7 @@ describe(ProfileFrom, () => {
                 <ProfileFrom nextStep={mockNextStep} />
             </FormContext.Provider>
         );
-
-        /**
-         * Right arrow test
-        */
+        
         const arrowRight = container.querySelector('#arrowRight');
         const arrowUp = container.querySelector('#arrowUp');
 

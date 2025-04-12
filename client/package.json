@@ -17,6 +17,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@tailwindcss/vite": "^4.0.6",
     "axios": "^1.7.9",
+    "cypress": "^14.3.0",
     "json-edit-react": "^1.25.0",
     "motion": "^12.4.3",
     "react": "^19.0.0",
