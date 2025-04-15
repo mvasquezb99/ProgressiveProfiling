@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { JsonEditor } from 'json-edit-react';
 import AdminAddUserForm from './AdminAddUserForm';
-import { getFormat } from '../../../utils/apiHelpers';
+import { getFormat, getHint } from '../../../utils/apiHelpers';
 
 export default function AdminPanel() {
   const [jsonInput, setJsonInput] = useState('{}');
@@ -12,6 +12,8 @@ export default function AdminPanel() {
   const [endpoint, setEndpoint] = useState('/users');
   const [status, setStatus] = useState(null);
   const [inputMode, setInputMode] = useState('json');
+  const [hint, setHint] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const endpoints = {
     '[GET] Get all users': '/users',
@@ -37,6 +39,7 @@ export default function AdminPanel() {
   const server_url = 'http://localhost:3000';
 
   const handleSendRequest = async () => {
+    setLoading(true);
     try {
       let parsedJson;
       if (typeof jsonInput === typeof '') {
@@ -63,6 +66,8 @@ export default function AdminPanel() {
     } catch (error) {
       setStatus('Error');
       setResponse({ error: 'Invalid JSON or request failed' });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -89,10 +94,12 @@ export default function AdminPanel() {
   };
 
   useEffect(() => {
-    const format = getFormat(method,endpoint);
+    const format = getFormat(method, endpoint);
     setJsonInput(format);
+    const hint = getHint(method, endpoint);
+    setHint(hint);
   }, [method, endpoint]);
-  
+
   return (
     <main className="flex items-center justify-center h-screen w-screen">
       <div className="flex items-center justify-center min-h-screen min-w-screen bg-gray-900 text-white">
@@ -151,6 +158,9 @@ export default function AdminPanel() {
                   + Add Query Param
                 </button>
               </div>
+              <div className="text-gray-200 text-sm italic">
+                🔎 {hint}
+              </div>
               <div className="w-full flex-grow bg-gray-600 text-white p-2 rounded-lg">
                 {endpoint === '/admin/users/single' ? (
                   <div>
@@ -188,7 +198,7 @@ export default function AdminPanel() {
           <div className="w-1/2 p-4 flex flex-col h-screen">
             <div className="bg-gray-700 p-4 rounded-lg shadow-md flex-grow flex flex-col overflow-auto">
               <div
-                className={`mb-2 text-lg font-bold rounded-lg bg-gray-600 p-2 ${status >= 200 && status < 300 ? 'text-green-500' : 'text-red-500'
+                className={`mb-2 text-lg font-bold rounded-lg bg-gray-600 p-2 ${status >= 200 && status < 300 ? 'text-green-500' : (status !== null ? 'text-red-500' : 'text-yellow-500')
                   }`}
               >
                 {' '}
@@ -196,12 +206,17 @@ export default function AdminPanel() {
                 {status !== null ? status : 'Waiting...'}
               </div>
               <div className="w-full flex-grow bg-gray-600 text-white p-2 rounded-lg">
-                <JsonEditor data={response || {}} viewOnly={true} />
+                {loading ? (
+                  <div className="flex justify-center items-center h-full">
+                    <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-white" />
+                  </div>) : (
+                  <JsonEditor data={response || {}} viewOnly={true} />
+                )}
               </div>
             </div>
           </div>
         </div>
       </div>
-    </main>
+    </main >
   );
 }
