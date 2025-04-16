@@ -31,6 +31,7 @@ export type UserInstance = NeogmaInstance<UserPropertiesI, UserRelatedNodes>;
 
 export interface UserRelatedNodes {
   LikesOccupation: ModelRelatedNodesI<UserClass['userModel'], UserInstance>;
+  DislikesOccupation: ModelRelatedNodesI<UserClass['userModel'], UserInstance>;
   LikesCategory: ModelRelatedNodesI<UserClass['userModel'], UserInstance>;
   LikesUser: ModelRelatedNodesI<UserClass['userModel'], UserInstance>;
   HasEducation: ModelRelatedNodesI<UserClass['userModel'], UserInstance>;
@@ -89,6 +90,11 @@ export class UserClass {
           model: this.occupationClass.occupationModel,
           direction: 'out',
           name: 'LikesOccupation',
+        },
+        DislikesOccupation: {
+          model: this.occupationClass.occupationModel,
+          direction: 'out',
+          name: 'DislikesOccupation',
         },
         LikesCategory: {
           model: this.occupationCategoryClass.categoryModel,

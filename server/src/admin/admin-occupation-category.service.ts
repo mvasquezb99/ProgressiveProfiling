@@ -115,7 +115,6 @@ export class AdminOccupationCategoryService {
 
     for (const occProp of occupationsProp) {
       if (occProp.name === body.occupation.name) {
-        console.log('YA ESTAAAAAA');
         return this.occupationCategoryMapper.toResponseWithOccupations(
           category,
           occupationsProp,

@@ -7,6 +7,9 @@
       {
         "include": "assets/**/*",
         "outDir": "./dist/assets/"
+      },
+      {
+        "include": "email/templates/**/*"
       }
     ],
     "deleteOutDir": true,

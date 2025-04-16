@@ -37,7 +37,9 @@ import { NeogmaModule } from 'src/neogma/neogma.module';
     ResponseUserDto,
   ],
   exports: [
+    UserService,
     UserClass,
+    UserMapper,
     LocationClass,
     EducationClass,
     WorkClass,
@@ -48,4 +50,4 @@ import { NeogmaModule } from 'src/neogma/neogma.module';
   ],
   controllers: [UserController],
 })
-export class UserModule { }
+export class UserModule {}

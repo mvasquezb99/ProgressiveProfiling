@@ -153,4 +153,16 @@ export class QueryService {
       )
       .run();
   }
+
+  public getDislikedOccupationsFromUser(
+    userName: string,
+  ): Promise<QueryResult> {
+    return new QueryBuilder()
+      .raw(
+        "MATCH (u:User WHERE u.name = '" +
+          userName +
+          "')-[r:DislikesOccupation]->(o:Occupation) RETURN o",
+      )
+      .run();
+  }
 }

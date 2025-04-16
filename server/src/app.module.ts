@@ -25,9 +25,15 @@ import { OccupationCategoryMapper } from './occupation-category/mapper/occupatio
 import { ProfilerMapper } from './profiler/mapper/profiler.mapper';
 import { QueryModule } from './query/query.module';
 import { AdminModule } from './admin/admin.module';
+import { EmailModule } from './email/email.module';
+import { SurveyModule } from './survey/survey.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { SurveyController } from './survey/survey.controller';
+import { SurveyService } from './survey/survey.service';
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     ThrottlerModule.forRoot({
       throttlers: [
         {
@@ -48,12 +54,15 @@ import { AdminModule } from './admin/admin.module';
     ProfilerModule,
     QueryModule,
     AdminModule,
+    EmailModule,
+    SurveyModule,
   ],
   controllers: [
     AppController,
     OccupationController,
     OccupationCategoryController,
     UserController,
+    SurveyController,
   ],
   providers: [
     {

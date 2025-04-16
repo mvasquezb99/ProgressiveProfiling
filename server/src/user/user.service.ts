@@ -29,6 +29,26 @@ export class UserService {
     @Inject(LocationClass) private readonly locationClass: LocationClass,
   ) {}
 
+  public async findByName(name: string): Promise<ResponseUserDto> {
+    const dtoData: Record<string, QueryNode[]> = {};
+    const user = await this.userClass.userModel.findOne({
+      where: {
+        name: name,
+      },
+    });
+    if (!user) {
+      throw new Error('User not found');
+    }
+    const relationsNodes = await this.queryService.queryRelationships(
+      user.name,
+    );
+    dtoData[user.name] = relationsNodes.records.map(
+      (r) => r.get('n') as QueryNode,
+    );
+
+    return this.userMapper.apply(user, dtoData[user.name]);
+  }
+
   public async findAll(): Promise<ResponseUserDto[]> {
     const dtoData: Record<string, QueryNode[]> = {};
     const users = await this.userClass.userModel.findMany();
