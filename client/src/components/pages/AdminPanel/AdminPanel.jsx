@@ -47,7 +47,7 @@ export default function AdminPanel() {
       } else {
         parsedJson = jsonInput;
       }
-      console.log(parsedJson);
+      // console.log(parsedJson);
       const queryString = queryParams
         .filter((param) => param.key && param.value)
         .map((param) => `${encodeURIComponent(param.key)}=${encodeURIComponent(param.value)}`)
@@ -60,7 +60,7 @@ export default function AdminPanel() {
         headers: { 'Content-Type': 'application/json' },
         data: method !== 'GET' ? parsedJson : undefined,
       });
-      console.log(url);
+      // console.log(url);
       setStatus(res.status);
       setResponse(res.data);
     } catch (error) {
@@ -82,6 +82,7 @@ export default function AdminPanel() {
   };
 
   const handleSubmitAddUser = async (userInput) => {
+    console.log(userInput)
     setJsonInput(userInput);
     await handleSendRequest();
   };

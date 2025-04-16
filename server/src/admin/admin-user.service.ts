@@ -37,6 +37,7 @@ export class AdminUserService {
   ) {}
 
   public async getUserByName(name: string): Promise<ResponseUserDto> {
+    const dtoData: Record<string, QueryNode[]> = {};
     const user = await this.userClass.userModel.findOne({
       where: {
         name: name,
@@ -45,7 +46,14 @@ export class AdminUserService {
     if (!user) {
       throw new Error('User not found');
     }
-    return this.userMapper.toResponse(user);
+    const relationsNodes = await this.queryService.queryRelationships(
+      user.name,
+    );
+    dtoData[user.name] = relationsNodes.records.map(
+      (r) => r.get('n') as QueryNode,
+    );
+
+    return this.userMapper.apply(user, dtoData[user.name]);
   }
 
   public async saveUsers(body: RequestFinalUserArrayDto): Promise<void> {

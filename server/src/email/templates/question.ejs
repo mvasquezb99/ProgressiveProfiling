@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Confirmación de nueva ocupación</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+        color: #212529;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .email-container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        max-width: 600px;
+        width: 90%;
+        padding: 30px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 20px;
+        color: #333333;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 10px 0 20px;
+      }
+
+      li {
+        font-size: 16px;
+        margin: 5px 0;
+      }
+
+      .suggested {
+        font-size: 18px;
+        color: #28a745;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 12px 20px;
+        margin: 10px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        color: #ffffff;
+      }
+
+      .button.confirm {
+        background-color: #28a745;
+      }
+
+      .button.deny {
+        background-color: #dc3545;
+      }
+
+      .footer {
+        margin-top: 40px;
+        font-size: 12px;
+        color: #6c757d;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <h1>Hola <%= userName %>! Ayudanos a mejorar tu perfil</h1>
+
+      <p>Tus ocupaciones actuales son:</p>
+      <ul>
+        <% currentsOccupations.forEach(occupation => { %>
+          <li><%= occupation %></li>
+        <% }) %>
+      </ul>
+
+      <p class="suggested">
+        Nuestra sugerencia: <%= suggestedOccupation %>
+      </p>
+
+      <div>
+        <a
+          href="<%=URL %>?name=<%=userName %>"
+          class="button confirm"
+        >
+          Si, me identifico
+        </a>
+
+        <a
+          href="<%=URL %>?name=<%=userName %>"
+          class="button deny"
+        >
+          No, ese no soy yo
+        </a>
+      </div>
+
+      <div class="footer">
+        Estas recibiendo este email como parte de una estrategia de mejoramiento de tu perfil, puedes ignorarlo si no estas interesado.
+      </div>
+    </div>
+  </body>
+</html>
+
