@@ -44,6 +44,12 @@
         margin: 5px 0;
       }
 
+      .suggested-intro {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
       .suggested {
         font-size: 18px;
         color: #28a745;
@@ -88,25 +94,35 @@
         <% }) %>
       </ul>
 
-      <p class="suggested">
-        Nuestra sugerencia: <%= suggestedOccupation %>
+      <p class="suggested-intro">
+        Nuestra sugerencia: <span class="suggested"><%= suggestedOccupation %></span> 
       </p>
 
-      <div>
-        <a
-          href="<%=URL %>?name=<%=userName %>"
-          class="button confirm"
-        >
-          Si, me identifico
-        </a>
+      <!-- ACCEPT Button -->
+      <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" style="margin: 10px auto;">
+        <tr>
+          <td bgcolor="#28a745" style="border-radius: 5px;">
+            <a href="<%= url %>?userName=<%= encodeURIComponent(userName) %>&answer=ACCEPT&occupationName=<%= encodeURIComponent(suggestedOccupation) %>"
+              target="_blank"
+              style="display: inline-block; padding: 12px 20px; font-family: Arial, sans-serif; font-size: 14px; color: #ffffff; text-decoration: none; font-weight: bold;">
+              Sí, me identifico
+            </a>
+          </td>
+        </tr>
+      </table>
 
-        <a
-          href="<%=URL %>?name=<%=userName %>"
-          class="button deny"
-        >
-          No, ese no soy yo
-        </a>
-      </div>
+      <!-- REJECT Button -->
+      <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" style="margin: 10px auto;">
+        <tr>
+          <td bgcolor="#dc3545" style="border-radius: 5px;">
+            <a href="<%= url %>?userName=<%= encodeURIComponent(userName) %>&answer=REJECT&occupationName=<%= encodeURIComponent(suggestedOccupation) %>"
+              target="_blank"
+              style="display: inline-block; padding: 12px 20px; font-family: Arial, sans-serif; font-size: 14px; color: #ffffff; text-decoration: none; font-weight: bold;">
+              No, ese no soy yo
+            </a>
+          </td>
+        </tr>
+      </table>
 
       <div class="footer">
         Estas recibiendo este email como parte de una estrategia de mejoramiento de tu perfil, puedes ignorarlo si no estas interesado.

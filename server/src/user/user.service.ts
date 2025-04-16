@@ -13,7 +13,6 @@ import { WorkMapper } from './mapper/work.mapper';
 import { LocationMapper } from './mapper/location.mapper';
 import { ResponseProfilerDto } from 'src/profiler/dto/response-profiler.dto';
 import { QueryNode, QueryService } from 'src/query/query.service';
-import { name } from 'ejs';
 
 @Injectable()
 export class UserService {

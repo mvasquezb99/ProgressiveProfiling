@@ -9,7 +9,7 @@ interface SurveyEmailData {
   question: string;
   currentsOccupations: string[];
   suggestedOccupation: string;
-  url?: string;
+  url: string;
 }
 
 @Injectable()
@@ -36,7 +36,7 @@ export class EmailService {
       question: `Please tell us your ${field}`,
       currentsOccupations: currentsOccupations,
       suggestedOccupation: suggestedOccupation,
-      url: process.env.SURVEY_URL,
+      url: process.env.SURVEY_URL || 'http://localhost:5173/survey-response',
     });
 
     await this.transporter.sendMail({

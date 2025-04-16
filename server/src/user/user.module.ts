@@ -39,6 +39,7 @@ import { NeogmaModule } from 'src/neogma/neogma.module';
   exports: [
     UserService,
     UserClass,
+    UserMapper,
     LocationClass,
     EducationClass,
     WorkClass,

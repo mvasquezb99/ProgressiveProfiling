@@ -28,6 +28,8 @@ import { AdminModule } from './admin/admin.module';
 import { EmailModule } from './email/email.module';
 import { SurveyModule } from './survey/survey.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { SurveyController } from './survey/survey.controller';
+import { SurveyService } from './survey/survey.service';
 
 @Module({
   imports: [
@@ -60,6 +62,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     OccupationController,
     OccupationCategoryController,
     UserController,
+    SurveyController,
   ],
   providers: [
     {

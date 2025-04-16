@@ -1,13 +1,31 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
+import { RequestSurveyDto } from './dto/request-survey.dto';
+import { SurveyService } from './survey.service';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('survey-response')
 @Controller('survey-response')
 export class SurveyController {
+  public constructor(private readonly surveyService: SurveyService) {}
+
   @Post()
-  handleResponse(
-    @Body() body: { userName: string; field: string; answer: string },
-  ) {
-    const { userName, field, answer } = body;
-    console.log(`User ${userName} responded to ${field}: ${answer}`);
-    return { message: 'Thank you for your response!' };
+  @ApiOperation({ summary: 'Handle user email response' })
+  @ApiResponse({
+    status: 201,
+    description: 'User likes or dislikes the suggested occupation',
+    type: String,
+  })
+  @UsePipes(new ValidationPipe({ transform: true }))
+  handleResponse(@Body() body: RequestSurveyDto) {
+    console.log(
+      `User ${body.userName} responded with answer ${body.answer} to occupation ${body.occupationName}`,
+    );
+    return this.surveyService.manageResponse(body);
   }
 }

@@ -11,6 +11,7 @@ import { EducationMapper } from './education.mapper';
 import { LocationMapper } from './location.mapper';
 import { WorkMapper } from './work.mapper';
 import { QueryNode } from 'src/query/query.service';
+import { RequestUserDto } from '../dto/request-user.dto';
 
 @Injectable()
 export class UserMapper {
@@ -20,7 +21,7 @@ export class UserMapper {
     private readonly workMapper: WorkMapper,
     @Inject(OccupationCategoryMapper)
     private readonly occupationCategoryMapper: OccupationCategoryMapper,
-  ) { }
+  ) {}
 
   public apply(
     user: UserPropertiesI,
@@ -91,6 +92,19 @@ export class UserMapper {
       image: '',
       birthdate: user.birthdate,
       skills: '',
+      languages: user.languages,
+    };
+    return userProp;
+  }
+
+  public toPropertiesFromNormalDto(user: RequestUserDto): UserPropertiesI {
+    const userProp: UserPropertiesI = {
+      type: Type.REGULAR,
+      name: user.name,
+      email: '',
+      image: '',
+      birthdate: '',
+      skills: user.skills,
       languages: user.languages,
     };
     return userProp;
