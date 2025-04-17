@@ -2,6 +2,7 @@ import { translateField } from './translateLabel';
 const userFormat = {
   name: '',
   birthdate: '',
+  email: '',
   category: { name: '' },
   location: {
     city: '',
@@ -18,6 +19,7 @@ const userFormat = {
 const userFormatError = {
   name: false,
   birthdate: false,
+  email: false,
   category: false,
   location: false,
   education: false,
@@ -29,6 +31,7 @@ const userFormatError = {
 const checkSubmit = (userData) => {
   return {
     name: userData.name.trim() === '',
+    email: userData.email.trim() === '' || !userData.email.includes('@'),
     birthdate: userData.birthdate.trim() === '',
     category: userData.category.name.trim() === '',
     location:
@@ -54,6 +57,7 @@ const removeAccents = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, 
 
 const checkErrors = (errors) => {
   return errors.name ||
+    errors.email ||
     errors.birthdate ||
     errors.category ||
     errors.location ||

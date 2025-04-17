@@ -82,7 +82,7 @@ export default function AdminPanel() {
   };
 
   const handleSubmitAddUser = async (userInput) => {
-    console.log(userInput)
+    console.log(userInput);
     setJsonInput(userInput);
     await handleSendRequest();
   };
@@ -102,11 +102,11 @@ export default function AdminPanel() {
   }, [method, endpoint]);
 
   return (
-    <main className="flex items-center justify-center h-screen w-screen">
-      <div className="flex items-center justify-center min-h-screen min-w-screen bg-gray-900 text-white">
-        <div className="w-3/4 max-w-8xl bg-gray-800 p-6 rounded-lg shadow-lg flex justify-center items-center mx-auto min-h-[80vh] h-[100vh]">
+    <main className="flex items-center justify-center h-full w-full overflow-hidden">
+      <div className="flex items-center justify-center min-h-full min-w-screen bg-gray-900 text-white">
+        <div className="w-3/4 max-w-8xl bg-gray-800 p-6 rounded-lg shadow-lg flex justify-center items-stretch mx-auto h-screen overflow-hidden">
           {/* Left Panel */}
-          <div className="w-1/2 p-4 flex flex-col h-screen">
+          <div className="w-1/2 p-4 flex flex-col h-full overflow-y-auto">
             <div className="bg-gray-700 p-4 rounded-lg shadow-md flex-grow flex flex-col">
               <a href={`${server_url}/api/docs`}>For more info visit the docs</a>
               <select
@@ -159,9 +159,7 @@ export default function AdminPanel() {
                   + Add Query Param
                 </button>
               </div>
-              <div className="text-gray-200 text-sm italic">
-                🔎 {hint}
-              </div>
+              <div className="text-gray-200 text-sm italic">🔎 {hint}</div>
               <div className="w-full flex-grow bg-gray-600 text-white p-2 rounded-lg">
                 {endpoint === '/admin/users/single' ? (
                   <div>
@@ -196,11 +194,16 @@ export default function AdminPanel() {
           </div>
 
           {/* Right Panel */}
-          <div className="w-1/2 p-4 flex flex-col h-screen">
+          <div className="w-1/2 p-4 flex flex-col h-full overflow-y-auto">
             <div className="bg-gray-700 p-4 rounded-lg shadow-md flex-grow flex flex-col overflow-auto">
               <div
-                className={`mb-2 text-lg font-bold rounded-lg bg-gray-600 p-2 ${status >= 200 && status < 300 ? 'text-green-500' : (status !== null ? 'text-red-500' : 'text-yellow-500')
-                  }`}
+                className={`mb-2 text-lg font-bold rounded-lg bg-gray-600 p-2 ${
+                  status >= 200 && status < 300
+                    ? 'text-green-500'
+                    : status !== null
+                    ? 'text-red-500'
+                    : 'text-yellow-500'
+                }`}
               >
                 {' '}
                 <span className="text-white">Status: </span>
@@ -210,7 +213,8 @@ export default function AdminPanel() {
                 {loading ? (
                   <div className="flex justify-center items-center h-full">
                     <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-white" />
-                  </div>) : (
+                  </div>
+                ) : (
                   <JsonEditor data={response || {}} viewOnly={true} />
                 )}
               </div>
@@ -218,6 +222,6 @@ export default function AdminPanel() {
           </div>
         </div>
       </div>
-    </main >
+    </main>
   );
 }
