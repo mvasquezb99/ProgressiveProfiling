@@ -22,16 +22,14 @@ jobs:
           cache: npm
 
       - name: Install Dependencies
-        run: |
-          cd client
-          npm install
+        run: npm ci
+        working-directory: client
 
       - name: Run Prettier
-        run: |
-          cd client
-          npm run format -- --check
+        run: npm run format -- --check
+        working-directory: client
 
       - name: Run ESLint
-        run: |
-          cd client
+        run: npm run lint
+        working-directory: client
           npm run lint
