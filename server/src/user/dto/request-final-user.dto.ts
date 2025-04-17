@@ -24,6 +24,10 @@ export class RequestFinalUserDto {
   @IsString()
   name: string;
 
+  @ApiProperty({ example: 'JohnDoe@example.com', description: 'User email' })
+  @IsString()
+  email: string;
+
   @ApiProperty({ example: '1990-01-01', description: 'User birthdate' })
   @IsString()
   birthdate: string;
@@ -76,6 +80,11 @@ export class RequestFinalUserUpdateDto {
   @ApiProperty({ example: 'John Doe', description: 'User name' })
   @IsString()
   name: string;
+
+  @ApiProperty({ example: 'JohnDoe@example.com', description: 'User email' })
+  @IsOptional()
+  @IsString()
+  email?: string;
 
   @ApiProperty({ example: '1990-01-01', description: 'User birthdate' })
   @IsOptional()

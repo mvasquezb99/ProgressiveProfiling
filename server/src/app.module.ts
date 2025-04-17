@@ -29,7 +29,7 @@ import { EmailModule } from './email/email.module';
 import { SurveyModule } from './survey/survey.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { SurveyController } from './survey/survey.controller';
-import { SurveyService } from './survey/survey.service';
+import { MagnetoModule } from './magneto/magneto.module';
 
 @Module({
   imports: [
@@ -56,6 +56,7 @@ import { SurveyService } from './survey/survey.service';
     AdminModule,
     EmailModule,
     SurveyModule,
+    MagnetoModule,
   ],
   controllers: [
     AppController,

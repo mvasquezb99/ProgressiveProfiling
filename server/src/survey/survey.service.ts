@@ -17,11 +17,14 @@ export class SurveyService {
     private readonly queryService: QueryService,
   ) {}
 
-  @Cron('0 10 * * *') // Every day at 10 AM
-  // @Cron('30 * * * * *') // Every 45 seconds
+  // @Cron('0 10 * * *') // Every day at 10 AM
+  @Cron('30 * * * * *') // Every 45 seconds
   private async sendSurveys() {
     const users = await this.usersService.findAllRegular();
     for (const user of users) {
+      if (!user.email) {
+        continue;
+      }
       const dislikedOccupations = new Array<string>();
       const currentUserOccupaitons = new Array<string>();
       const possibleSuggestedOccupations = new Array<string>();
@@ -70,10 +73,10 @@ export class SurveyService {
           }
         }
       } else {
-        throw Error('No occupations to suggest');
+        console.log('No occupations to suggest for user', user.name);
+        continue;
       }
 
-      // manuel.email = 'manelix22@gmail.com';
       const ownOccupationNamesSet: Set<string> = new Set(
         user.occupations.map((occupation) => occupation.name),
       );

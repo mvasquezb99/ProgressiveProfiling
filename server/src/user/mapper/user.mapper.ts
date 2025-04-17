@@ -88,7 +88,7 @@ export class UserMapper {
     const userProp: UserPropertiesI = {
       type: Type.REGULAR,
       name: user.name,
-      email: '',
+      email: user.email,
       image: '',
       birthdate: user.birthdate,
       skills: '',
