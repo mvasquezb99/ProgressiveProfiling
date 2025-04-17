@@ -54,7 +54,7 @@ export default function ProfessionForm({ nextStep }) {
         />
       </nav>
       <CardTitle title="Un ultimo paso" subtitle="Selecciona al menos 1 ocupación que se relacione contigo" />
-      {error && <ErrorMessage message="Debes seleccionar al menos una ocupación" />}
+      {error && <ErrorMessage id="occupationError" message="Debes seleccionar al menos una ocupación" />}
       <div className="grid grid-cols-3 gap-2 overflow-auto h-[23rem] no-scrollbar pt-5">
         {userData.occupations.map((profession, index) => (
           <ProfessionItem key={index} profession={profession} handleClick={handleClick} />
