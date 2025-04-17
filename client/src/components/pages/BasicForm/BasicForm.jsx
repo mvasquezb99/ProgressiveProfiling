@@ -90,7 +90,7 @@ export default function BasicForm({ nextStep }) {
             inputId="name"
             value={enteredData.name}
           />
-          {error.name && <ErrorMessage message="!Por favor ingresa tu nombre!" />}
+          {error.name && <ErrorMessage id="nameError" message="!Por favor ingresa tu nombre!" />}
           <Input
             label="Email"
             handleChange={handleChange}
@@ -98,7 +98,7 @@ export default function BasicForm({ nextStep }) {
             inputId="email"
             value={enteredData.email}
           />
-          {error.email && <ErrorMessage message="!Por favor ingresa un email valido!" />}
+          {error.email && <ErrorMessage id="emailError" message="!Por favor ingresa un email valido!" />}
           <Input
             label="Fecha de Nacimiento"
             handleChange={handleChange}
@@ -106,7 +106,9 @@ export default function BasicForm({ nextStep }) {
             inputId="birthdate"
             value={enteredData.birthdate}
           />
-          {error.birthdate && <ErrorMessage message="!Por favor ingresa tu fecha de nacimiento!" />}
+          {error.birthdate && (
+            <ErrorMessage id="birthdateError" message="!Por favor ingresa tu fecha de nacimiento!" />
+          )}
 
           <Dropdown
             options={categories}
@@ -116,7 +118,9 @@ export default function BasicForm({ nextStep }) {
             onChange={(e) => handleChange('category', { name: e.target.value })}
             value={enteredData.category.name}
           />
-          {error.category && <ErrorMessage message="!Por favor ingresa tu categoría de ocupación!" />}
+          {error.category && (
+            <ErrorMessage id="categoryError" message="!Por favor ingresa tu categoría de ocupación!" />
+          )}
 
           <div className="flex w-full">
             <Button onClick={handleSubmit}>Continuar</Button>
