@@ -151,6 +151,13 @@ export default function EditingPanel({ nextStep }) {
           handleChange={handleChangeInput}
         />
         <Input
+          label="Email"
+          type="email"
+          inputId="email"
+          value={userData.email}
+          handleChange={handleChangeInput}
+        />
+        <Input
           label="Fecha de nacimiento"
           type="date"
           inputId="birthdate"
@@ -206,7 +213,7 @@ export default function EditingPanel({ nextStep }) {
               className="fa-solid fa-plus items-center hover:pointer hover:cursor-pointer text-green-700 hover:text-green-500"
             ></i>
           </div>
-          <div className="max-h-30 overflow-y-auto pr-1">
+          <div className="max-h-15 overflow-y-auto pr-1">
             <ul className="grid grid-cols-2 gap-1 ">
               {userData.languages.split(',').map((language, index) => (
                 <li key={index} className={`flex justify-between text-xs ${inputStyles} items-center`}>
@@ -222,7 +229,7 @@ export default function EditingPanel({ nextStep }) {
             </ul>
           </div>
         </div>
-        <div>
+        <div className="col-span-2">
           <div className="flex justify-between">
             <p className={labelStyles}>Ocupaciones</p>
           </div>

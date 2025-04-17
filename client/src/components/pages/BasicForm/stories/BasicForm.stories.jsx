@@ -11,7 +11,7 @@ export default {
     docs: {
       description: {
         component:
-          'The first form of the app that collects user data such as name, birthdate, education, and location',
+          'The first form of the app that collects user data such as name, email, birthdate, education, and location',
       },
     },
   },

@@ -140,6 +140,13 @@ export default function AdminAddUserForm({ setJsonInput }) {
           handleChange={handleChangeInput}
         />
         <Input
+          label="email"
+          type="email"
+          inputId="email"
+          value={userData.email}
+          handleChange={handleChangeInput}
+        />
+        <Input
           label="Fecha de nacimiento"
           type="date"
           inputId="birthdate"
@@ -211,7 +218,7 @@ export default function AdminAddUserForm({ setJsonInput }) {
             </ul>
           </div>
         </div>
-        <div className="min-h-44">
+        <div className="col-span-2">
           <div className="flex justify-between">
             <p className={labelStyles}>Ocupaciones</p>
           </div>

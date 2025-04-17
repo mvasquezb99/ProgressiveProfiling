@@ -21,11 +21,12 @@ export default function BasicForm({ nextStep }) {
       name: enteredData.name.trim() === '',
       birthdate: enteredData.birthdate.trim() === '',
       category: enteredData.category.name.trim() === '',
+      email: enteredData.email.trim() === '' || !enteredData.email.includes('@'),
     };
 
     setError(errors);
 
-    if (!errors.name && !errors.birthdate && !errors.category) {
+    if (!errors.name && !errors.birthdate && !errors.category && !errors.email) {
       nextStep(2);
     }
   };
@@ -90,6 +91,14 @@ export default function BasicForm({ nextStep }) {
             value={enteredData.name}
           />
           {error.name && <ErrorMessage message="!Por favor ingresa tu nombre!" />}
+          <Input
+            label="Email"
+            handleChange={handleChange}
+            type="email"
+            inputId="email"
+            value={enteredData.email}
+          />
+          {error.email && <ErrorMessage message="!Por favor ingresa un email valido!" />}
           <Input
             label="Fecha de Nacimiento"
             handleChange={handleChange}
