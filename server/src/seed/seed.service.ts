@@ -145,7 +145,7 @@ export class SeedDataService {
 
     //With Tecnología de la Información
     await cienceNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Tecnología de la Información' },
       properties: { Weight: 1 },
     });
