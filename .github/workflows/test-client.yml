@@ -1,4 +1,4 @@
-name: Run NestJS Tests Server
+name: Run NestJS Tests Client
 
 on:
   push:

@@ -5,7 +5,7 @@ import { Neo4jContainer, StartedNeo4jContainer } from '@testcontainers/neo4j';
 import { setupDBEnv } from './utils/setupDBEnv';
 import { RequestFinalUserDto } from 'src/user/dto/request-final-user.dto';
 
-jest.setTimeout(20000);
+jest.setTimeout(50000);
 
 const exampleUser: RequestFinalUserDto = {
   name: 'John Doe',
