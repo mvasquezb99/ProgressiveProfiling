@@ -30,6 +30,7 @@ const exampleUser: RequestFinalUserDto = {
     name: 'Ciencias e Investigación',
   },
   occupations: [{ name: 'Operations Manager' }, { name: 'Software Developer' }],
+  email: 'JohnDoe@example.com',
 };
 
 describe('UserController', () => {

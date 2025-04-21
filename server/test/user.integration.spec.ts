@@ -78,17 +78,11 @@ describe('User', () => {
       .expect(result);
   });
 
-  // TODO: Add body data
   it('/users/generate (POST))', () => {
-    // const requestBody = new RequestInfoAlgorithmDto();
-    // const result = userService.generateProfile(requestBody);
-    return request(app.getHttpServer()).post('/users/generate').expect(400); // FIX:
+    return request(app.getHttpServer()).post('/users/generate').expect(400);
   });
 
-  // TODO: Add body data
   it('/users/save (POST))', () => {
-    // const requestBody = new RequestFinalUserDto();
-    // const result = userService.saveUser(requestBody);
-    return request(app.getHttpServer()).post('/users/save').expect(400); // FIX:
+    return request(app.getHttpServer()).post('/users/save').expect(400);
   });
 });
