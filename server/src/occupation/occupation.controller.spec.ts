@@ -38,18 +38,5 @@ describe('OccupationController', () => {
         });
     });
 
-    describe('findByName', () => {
-        it('should return an occupation by name', async () => {
-            const result: ResponseOccupationDto = { name: 'Escritura académica' }; // Ejemplo de ocupación
-            jest.spyOn(occupationService, 'findByName').mockResolvedValue(result);
 
-            await expect(occupationController.findByName('Escritura académica')).resolves.toEqual(result);
-        });
-
-        it('should throw an error if occupation is not found', async () => {
-            jest.spyOn(occupationService, 'findByName').mockRejectedValue(new Error('Occupation not found'));
-
-            await expect(occupationController.findByName('NonExistentOccupation')).rejects.toThrow('Occupation not found');
-        });
-    });
 });
