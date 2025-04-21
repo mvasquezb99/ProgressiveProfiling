@@ -153,7 +153,7 @@ export class SeedDataService {
     //With Transporte y Logística
 
     await cienceNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Transporte y Logística' },
       properties: { Weight: 9 },
     });
@@ -161,7 +161,7 @@ export class SeedDataService {
     //With Manufactura y Producción
 
     await cienceNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Manufactura y Producción' },
       properties: { Weight: 9 },
     });
@@ -181,7 +181,7 @@ export class SeedDataService {
 
     //With Ciencias e Investigación
     await tecnologiaNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Ciencias e Investigación' },
       properties: { Weight: 1 },
     });
@@ -189,7 +189,7 @@ export class SeedDataService {
     //With Transporte y Logística
 
     await tecnologiaNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Transporte y Logística' },
       properties: { Weight: 9 },
     });
@@ -197,7 +197,7 @@ export class SeedDataService {
     //With Manufactura y Producción
 
     await tecnologiaNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Manufactura y Producción' },
       properties: { Weight: 9 },
     });
@@ -218,21 +218,21 @@ export class SeedDataService {
     //With Manufactura y Producción
 
     await transporteNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Manufactura y Producción' },
       properties: { Weight: 1 },
     });
 
     //With Tecnología de la Información
     await transporteNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Tecnología de la Información' },
       properties: { Weight: 9 },
     });
 
     //With Ciencias e Investigación
     await transporteNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Ciencias e Investigación' },
       properties: { Weight: 9 },
     });
@@ -252,21 +252,21 @@ export class SeedDataService {
 
     //With Transporte y Logística
     await manufacturaNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Transporte y Logística' },
       properties: { Weight: 1 },
     });
 
     //With Tecnología de la Información
     await manufacturaNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Tecnología de la Información' },
       properties: { Weight: 9 },
     });
 
     //With Ciencias e Investigación
     await manufacturaNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Ciencias e Investigación' },
       properties: { Weight: 9 },
     });
