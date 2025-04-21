@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Confirmación de envío de perfiles</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+        color: #212529;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .email-container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        max-width: 600px;
+        width: 90%;
+        padding: 30px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 20px;
+        color: #333333;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 16px;
+        margin: 10px 0;
+      }
+
+      .highlight {
+        font-size: 18px;
+        color: #007bff;
+        font-weight: bold;
+      }
+
+      .footer {
+        margin-top: 40px;
+        font-size: 12px;
+        color: #6c757d;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <h1><%= field %></h1>
+
+      <p>Se han enviado correctamente <span class="highlight"><%= numUsers %></span> perfiles a Magneto.</p>
+
+      <p>Gracias por continuar mejorando los perfiles de nuestros usuarios.</p>
+
+      <div class="footer">
+        Este es un correo automático de confirmación. No es necesario que respondas.
+      </div>
+    </div>
+  </body>
+</html>
