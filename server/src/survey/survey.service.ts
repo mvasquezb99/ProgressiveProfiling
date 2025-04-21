@@ -17,8 +17,8 @@ export class SurveyService {
     private readonly queryService: QueryService,
   ) {}
 
-  // @Cron('0 10 * * *') // Every day at 10 AM
-  @Cron('30 * * * * *') // Every 45 seconds
+  @Cron('0 10 * * *') // Every day at 10 AM
+  // @Cron('30 * * * * *') // Every 45 seconds
   private async sendSurveys() {
     const users = await this.usersService.findAllRegular();
     for (const user of users) {

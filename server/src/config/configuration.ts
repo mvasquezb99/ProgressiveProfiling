@@ -13,4 +13,7 @@ export default () => ({
     superlikeWeight: 10,
     minLimit: 5,
   },
+  magneto: {
+    exportUrl: 'https://magneto:8000/profiles',
+  },
 });
