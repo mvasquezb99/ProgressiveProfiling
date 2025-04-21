@@ -10,7 +10,7 @@ import { StartedNeo4jContainer, Neo4jContainer } from '@testcontainers/neo4j';
 import { setupDBEnv } from './utils/setupDBEnv';
 import { NeogmaModule } from 'src/neogma/neogma.module';
 
-jest.setTimeout(20000);
+jest.setTimeout(50000);
 
 describe('User', () => {
   let app: INestApplication<App>;

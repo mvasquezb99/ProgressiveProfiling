@@ -1,4 +1,4 @@
-name: Run NestJS Tests Server
+name: Run NestJS Tests Client
 
 on:
   push:
@@ -23,8 +23,8 @@ jobs:
 
       - name: Install Dependencies
         run: npm ci
-        working-directory: server
+        working-directory: client
 
       - name: Run Tests
         run: npm run test
-        working-directory: server
+        working-directory: client

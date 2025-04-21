@@ -47,7 +47,6 @@ export default function AdminPanel() {
       } else {
         parsedJson = jsonInput;
       }
-      // console.log(parsedJson);
       const queryString = queryParams
         .filter((param) => param.key && param.value)
         .map((param) => `${encodeURIComponent(param.key)}=${encodeURIComponent(param.value)}`)
@@ -95,11 +94,13 @@ export default function AdminPanel() {
   };
 
   useEffect(() => {
-    const format = getFormat(method, endpoint);
-    setJsonInput(format);
+    if (!jsonInput || Object.keys(jsonInput).length === 0) {
+      const format = getFormat(method, endpoint);
+      setJsonInput(format);
+    }
     const hint = getHint(method, endpoint);
     setHint(hint);
-  }, [method, endpoint]);
+  }, [method, endpoint, jsonInput]);
 
   return (
     <main className="flex items-center justify-center h-full w-full overflow-hidden">
@@ -197,13 +198,12 @@ export default function AdminPanel() {
           <div className="w-1/2 p-4 flex flex-col h-full overflow-y-auto">
             <div className="bg-gray-700 p-4 rounded-lg shadow-md flex-grow flex flex-col overflow-auto">
               <div
-                className={`mb-2 text-lg font-bold rounded-lg bg-gray-600 p-2 ${
-                  status >= 200 && status < 300
-                    ? 'text-green-500'
-                    : status !== null
+                className={`mb-2 text-lg font-bold rounded-lg bg-gray-600 p-2 ${status >= 200 && status < 300
+                  ? 'text-green-500'
+                  : status !== null
                     ? 'text-red-500'
                     : 'text-yellow-500'
-                }`}
+                  }`}
               >
                 {' '}
                 <span className="text-white">Status: </span>
