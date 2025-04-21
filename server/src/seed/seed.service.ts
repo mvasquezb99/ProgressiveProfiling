@@ -223,7 +223,21 @@ export class SeedDataService {
       properties: { Weight: 1 },
     });
 
+    //With Tecnología de la Información
+    await transporteNode.relateTo({
+      alias: 'Distance',
+      where: { name: 'Tecnología de la Información' },
+      properties: { Weight: 9 },
+    });
 
+    //With Ciencias e Investigación
+    await transporteNode.relateTo({
+      alias: 'Distance',
+      where: { name: 'Ciencias e Investigación' },
+      properties: { Weight: 9 },
+    });
+
+    //--------Relate Manufactura y Producción-------------
 
     const manufacturaNode =
       await this.occupationCategoryClass.categoryModel.findOne({
