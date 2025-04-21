@@ -38,5 +38,18 @@ describe('OccupationController', () => {
         });
     });
 
+    describe('findByName', () => {
+        it('should return a category by name', async () => {
+            const result: ResponseOccupationCategoryDto = { name: 'Tecnología de la Información' };
+            jest.spyOn(occupationCategoryService, 'findByName').mockResolvedValue(result);
 
+            await expect(occupationCategoryController.findByName('Tecnología de la Información')).resolves.toEqual(result);
+        });
+
+        it('should throw an error if category is not found', async () => {
+            jest.spyOn(occupationCategoryService, 'findByName').mockRejectedValue(new Error('Occupation category not found'));
+
+            await expect(occupationCategoryController.findByName('NonExistentCategory')).rejects.toThrow('Occupation category not found');
+        });
+    });
 });
