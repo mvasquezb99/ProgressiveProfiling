@@ -22,14 +22,14 @@ export default function ProfileFrom({ nextStep }) {
   const [profile, setProfile] = useState(null);
   const [userData, setUserData] = useContext(FormContext);
 
-  const { data: categoryProfiles, isLoading, error, setData: setCategoryProfiles} = useFetch(uri);
+  const { data: categoryProfiles, isLoading, error, setData: setCategoryProfiles } = useFetch(uri);
 
   const removeProfile = () => {
     if (categoryProfiles.length === 1) {
-      setCategoryProfiles((prev) => prev.filter((p) => p.name !== profile.name))
+      setCategoryProfiles((prev) => prev.filter((p) => p.name !== profile.name));
       handleSubmit();
     } else {
-      setCategoryProfiles((prev) => prev.filter((p) => p.name !== profile.name))
+      setCategoryProfiles((prev) => prev.filter((p) => p.name !== profile.name));
     }
   };
 
@@ -102,7 +102,7 @@ export default function ProfileFrom({ nextStep }) {
     if (categoryProfiles && categoryProfiles.length >= 1) {
       setRandomProfile(categoryProfiles);
     }
-  }, [categoryProfiles])
+  }, [categoryProfiles]);
 
   return (
     <Card step={2} rem={25}>
@@ -116,7 +116,7 @@ export default function ProfileFrom({ nextStep }) {
         <p className="text-xs font-bold text-gray-700 leading-snug flex justify-center items-center w-[68%]">
           Haz click y desliza!
         </p>
-        <p className="text-base font-bold text-gray-700 leading-snug flex justify-center items-center flex-grow">
+        <p id="counter" className="text-base font-bold text-gray-700 leading-snug flex justify-center items-center flex-grow">
           {likedProfiles.length + superlikedProfiles.length}
         </p>
       </nav>
@@ -132,13 +132,21 @@ export default function ProfileFrom({ nextStep }) {
           <Loading message={'Buscando perfiles'} />
         )}
       </MotionContainer>
-      <SwipeArrows handleDislike={handleDislike} handleLike={handleLike} handleSuperlike={handleSuperlike} />
-      {likedProfiles.length + superlikedProfiles.length >= 7 ? (
+      {!isLoading && (
         <>
-          <Button onClick={handleSubmit}>Continuar</Button>
+          <SwipeArrows
+            handleDislike={handleDislike}
+            handleLike={handleLike}
+            handleSuperlike={handleSuperlike}
+          />
+          {likedProfiles.length + superlikedProfiles.length >= 7 ? (
+            <>
+              <Button id="continueBtn" onClick={handleSubmit}>Continuar</Button>
+            </>
+          ) : (
+            ''
+          )}
         </>
-      ) : (
-        ''
       )}
     </Card>
   );

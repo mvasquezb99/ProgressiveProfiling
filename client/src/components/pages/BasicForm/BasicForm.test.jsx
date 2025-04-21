@@ -29,35 +29,42 @@ describe(BasicForm, () => {
         {
             description: 'nothing is filled.',
             userData: {
-                name: '', birthdate: '', category: { name: '' }
+                name: '', birthdate: '', email: '', category: { name: '' }
             },
-            expectedErrors: 3,
+            expectedErrors: 4,
         },
         {
             description: 'only the name is filled.',
             userData: {
-                name: 'test_name', birthdate: '', category: { name: '' }
+                name: 'test_name', birthdate: '', email: '', category: { name: '' }
             },
-            expectedErrors: 2,
+            expectedErrors: 3,
         },
         {
             description: 'only the birthday is filled.',
             userData: {
-                name: '', birthdate: 'test_birthday', category: { name: '' }
+                name: '', birthdate: 'test_birthday', email: '', category: { name: '' }
             },
-            expectedErrors: 2,
+            expectedErrors: 3,
         },
         {
             description: 'only the category is filled.',
             userData: {
-                name: '', birthdate: '', category: { name: 'test_category' }
+                name: '', birthdate: '', email: '', category: { name: 'test_category' }
             },
-            expectedErrors: 2,
+            expectedErrors: 3,
+        },
+        {
+            description: 'only the email is filled.',
+            userData: {
+                name: '', birthdate: '', email: 'test@profilers.com', category: { name: '' }
+            },
+            expectedErrors: 3,
         },
     ]
     const testSuccessScenario = {
         userData: {
-            name: 'test_name', birthdate: '03/04/2004', category: { name: 'test_category' }
+            name: 'test_name', birthdate: '03/04/2004', email: 'test@profilers.com', category: { name: 'test_category' }
         },
     }
 

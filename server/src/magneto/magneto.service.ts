@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Cron } from '@nestjs/schedule';
+// import { Cron } from '@nestjs/schedule';
 import { UserService } from 'src/user/user.service';
 
 // TODO:
@@ -7,8 +7,7 @@ import { UserService } from 'src/user/user.service';
 // The endpoint should be in the config file
 @Injectable()
 export class MagnetoService {
-  constructor(private readonly userService: UserService) { }
+  constructor(private readonly userService: UserService) {}
 
-  @Cron('0 10 * * *') // Every day at 10 AM
-
+  // @Cron('0 10 * * *') // Every day at 10 AM
 }

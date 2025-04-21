@@ -6,7 +6,7 @@ export const getLocation = async (lat, lon) => {
     const response = await axios.get(url);
 
     if (response.data && response.data.address) {
-      const city = response.data.address.city || response.data.address.town || response.data.address.village;
+      const city = response.data.address.city || response.data.address.town || response.data.address.village ;
       const country = response.data.address.country;
       const postalCode = response.data.address.postcode;
       const region = response.data.address.state || response.data.address.county;

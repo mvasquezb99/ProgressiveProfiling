@@ -15,7 +15,6 @@ import {
   RequestOccupationArrayDto,
   RequestOccupationDto,
 } from 'src/occupation/dto/request-occupation.dto';
-import { ResponseUserDto } from 'src/user/dto/response-user.dto';
 
 @ApiTags('admin/occupations')
 @Controller('admin/occupations')
