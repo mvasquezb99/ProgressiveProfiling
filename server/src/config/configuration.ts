@@ -14,6 +14,13 @@ export default () => ({
     minLimit: 5,
   },
   magneto: {
-    exportUrl: 'https://magneto:8000/profiles',
+    exportUrl: 'http://127.0.0.1:3000/magneto/profilers',
+  },
+  email: {
+    profilers: {
+      mail: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+    surveyUrl: process.env.SURVEY_URL,
   },
 });
