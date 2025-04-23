@@ -10,7 +10,7 @@ import Button from '../../common/Button';
 import PropTypes from 'prop-types';
 import ErrorMessage from '../../common/ErrorMessage';
 import React from 'react';
-import Checkbox from '../../common/CheckBox';
+import Checkbox from '../../common/Checkbox';
 
 export default function BasicForm({ nextStep }) {
   const [enteredData, setEnteredData] = useContext(FormContext);
