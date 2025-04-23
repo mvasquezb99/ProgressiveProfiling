@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 export default function ProfileCard({ profile }) {
-    const { name, image, education, categories, occupations, languages } = profile;
+    const { name, education, categories, occupations, languages } = profile;
+    const image = profile.image || '/constants/pngegg.png'; 
     return (
         <article className="h-full w-full max-w-80 bg-white rounded-2xl text-black flex flex-col shadow-md">
             <div className="h-1/2 w-full rounded-t-2xl ">
-                <img className="h-full w-full max-h-45 rounded-t-2xl object-cover object-center" src={image} alt='https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/80.jpg'></img>
+                <img className="h-full w-full max-h-45 rounded-t-2xl object-cover object-center" src={image} alt='No hay imagen disponible'></img>
                 <section className="w-full h-full p-2 pl-4 space-y-1">
                     <h2 className="text-2xl font-bold font-mono" data-testid="name" >{name}</h2>
                     <div className="flex justify-start ml-0.5 font-medium text-gray-700 text-md">

@@ -2,9 +2,9 @@ import { inputStyles, labelStyles } from '../../constants/styles';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-export default function Input({ label, handleChange, type, inputId, ...props }) {
+export default function Input({ label, handleChange, type, inputId, containerStyles, ...props }) {
   return (
-    <div className="flex flex-col">
+    <div className={`flex flex-col ${containerStyles}`}>
       <label className={labelStyles} htmlFor={inputId}>
         {label}
       </label>

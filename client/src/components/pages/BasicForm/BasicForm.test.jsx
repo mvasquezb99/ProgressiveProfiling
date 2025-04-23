@@ -1,4 +1,4 @@
-import { screen, render, fireEvent } from "@testing-library/react";
+import { screen, render, fireEvent, getByTestId } from "@testing-library/react";
 import { FormContext } from "../../../context/context";
 
 import BasicForm from './BasicForm'
@@ -31,35 +31,35 @@ describe(BasicForm, () => {
             userData: {
                 name: '', birthdate: '', email: '', category: { name: '' }
             },
-            expectedErrors: 4,
+            expectedErrors: 5,
         },
         {
             description: 'only the name is filled.',
             userData: {
                 name: 'test_name', birthdate: '', email: '', category: { name: '' }
             },
-            expectedErrors: 3,
+            expectedErrors: 4,
         },
         {
             description: 'only the birthday is filled.',
             userData: {
                 name: '', birthdate: 'test_birthday', email: '', category: { name: '' }
             },
-            expectedErrors: 3,
+            expectedErrors: 4,
         },
         {
             description: 'only the category is filled.',
             userData: {
                 name: '', birthdate: '', email: '', category: { name: 'test_category' }
             },
-            expectedErrors: 3,
+            expectedErrors: 4,
         },
         {
             description: 'only the email is filled.',
             userData: {
                 name: '', birthdate: '', email: 'test@profilers.com', category: { name: '' }
             },
-            expectedErrors: 3,
+            expectedErrors: 4,
         },
     ]
     const testSuccessScenario = {
@@ -117,15 +117,18 @@ describe(BasicForm, () => {
 
     it('Check that the form let the user advance if everything is filled correctly', () => {
         const userData = { ...mockUserData, ...testSuccessScenario.userData }
-        const { getByRole } = render(
+        const { getByRole, getByTestId } = render(
             <FormContext.Provider value={[userData, setMockUserData]}>
                 <BasicForm nextStep={mockNextStep} />
             </FormContext.Provider>
         );
 
+        const termsButton = getByTestId('policyTerms');
+        fireEvent.click(termsButton);
+
         const endButton = getByRole('button', { name: /Continuar/i });
         fireEvent.click(endButton);
-
+        
         expect(mockNextStep).toHaveBeenCalled();
     })
 })

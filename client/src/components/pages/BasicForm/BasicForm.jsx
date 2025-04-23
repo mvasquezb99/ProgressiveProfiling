@@ -10,11 +10,13 @@ import Button from '../../common/Button';
 import PropTypes from 'prop-types';
 import ErrorMessage from '../../common/ErrorMessage';
 import React from 'react';
+import Checkbox from '../../common/Checkbox';
 
 export default function BasicForm({ nextStep }) {
   const [enteredData, setEnteredData] = useContext(FormContext);
-  const [error, setError] = useState({ name: false, birthdate: false, category: false });
-
+  const [terms, setTerms] = useState({ emailTerms: false, policyTerms: false });
+  const [error, setError] = useState({ name: false, birthdate: false, category: false, emailTerms: false, policyTerms: false });
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const errors = {
@@ -22,11 +24,13 @@ export default function BasicForm({ nextStep }) {
       birthdate: enteredData.birthdate.trim() === '',
       category: enteredData.category.name.trim() === '',
       email: enteredData.email.trim() === '' || !enteredData.email.includes('@'),
+      policyTerms: !terms.policyTerms,
+      emailTerms: !terms.policyTerms
     };
 
     setError(errors);
 
-    if (!errors.name && !errors.birthdate && !errors.category && !errors.email) {
+    if (!errors.name && !errors.birthdate && !errors.category && !errors.policyTerms) {
       nextStep(2);
     }
   };
@@ -42,6 +46,15 @@ export default function BasicForm({ nextStep }) {
       };
     });
   };
+
+  const handleChecked = (value) => {
+    const newTerms = {
+      ...terms,
+      [value]:!terms[value],
+    }
+
+    setTerms(newTerms)
+  }
 
   const getLocationData = async (position) => {
     const { city, country, postalCode, region } = await getLocation(
@@ -99,6 +112,7 @@ export default function BasicForm({ nextStep }) {
             value={enteredData.email}
           />
           {error.email && <ErrorMessage id="emailError" message="!Por favor ingresa un email valido!" />}
+          {enteredData.email !== '' && <Checkbox name='emailTerms' label='¿Aceptas recibir emails para mejorar tu experiencia?' handleChecked={handleChecked} />}
           <Input
             label="Fecha de Nacimiento"
             handleChange={handleChange}
@@ -122,6 +136,10 @@ export default function BasicForm({ nextStep }) {
             <ErrorMessage id="categoryError" message="!Por favor ingresa tu categoría de ocupación!" />
           )}
 
+          <Checkbox name='policyTerms' label='¿Aceptas nuestros terminos y condiciones?' handleChecked={handleChecked} />
+          {error.policyTerms && (
+            <ErrorMessage id="policyError" message="!Debes aceptar nuestros terminos y condiciones!" />
+          )}
           <div className="flex w-full">
             <Button onClick={handleSubmit}>Continuar</Button>
           </div>
