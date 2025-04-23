@@ -13,6 +13,7 @@ describe('template spec', () => {
     cy.get('#emailError').should('be.visible');
     cy.get('#birthdateError').should('be.visible');
     cy.get('#categoryError').should('be.visible');
+    cy.get('#policyError').should('be.visible');
   });
 
   it('should submit the form with valid data', () => {

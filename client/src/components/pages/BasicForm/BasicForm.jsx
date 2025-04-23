@@ -138,7 +138,7 @@ export default function BasicForm({ nextStep }) {
 
           <Checkbox name='policyTerms' label='¿Aceptas nuestros terminos y condiciones?' handleChecked={handleChecked} />
           {error.policyTerms && (
-            <ErrorMessage id="categoryError" message="!Debes aceptar nuestros terminos y condiciones!" />
+            <ErrorMessage id="policyError" message="!Debes aceptar nuestros terminos y condiciones!" />
           )}
           <div className="flex w-full">
             <Button onClick={handleSubmit}>Continuar</Button>

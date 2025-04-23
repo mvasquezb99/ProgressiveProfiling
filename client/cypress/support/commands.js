@@ -11,6 +11,7 @@ Cypress.Commands.add('fillBasicForm', () => {
   cy.get('input[name="email"]').type('q6k9V@example.com');
   cy.get('input[name="birthdate"]').type('1990-01-01');
   cy.get('select').select('Ciencias e Investigación');
+  cy.get('input[name="policyTerms"]').check();
   cy.get('button').click();
 });
 
