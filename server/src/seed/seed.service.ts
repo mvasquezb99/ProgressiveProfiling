@@ -524,7 +524,10 @@ export class SeedDataService {
         console.log("es null");
       }
 
-
+      await userNode.relateTo({
+        alias: 'WorkExperience',
+        where: { uuid: randomWork.uuid },
+      });
       console.log('----------------------------------------');
     }
   }
