@@ -515,12 +515,16 @@ export class SeedDataService {
         where: { uuid: randomLocation.uuid },
       });
 
+      if (randomEducation != null) {
+        await userNode.relateTo({
+          alias: 'HasEducation',
+          where: { uuid: randomEducation.uuid },
+        });
+      } else {
+        console.log("es null");
+      }
 
 
-      await userNode.relateTo({
-        alias: 'WorkExperience',
-        where: { uuid: randomWork.uuid },
-      });
       console.log('----------------------------------------');
     }
   }
