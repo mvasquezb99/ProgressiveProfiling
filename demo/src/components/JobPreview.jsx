@@ -1,10 +1,8 @@
-
-
 export default function JobPreview({ job }) {
     return (
         <section className="hover:bg-[#F4F4FA] w-full p-3 rounded-lg flex h-30 items-center transition-colors ease-in delay-75">
             <div className="w-1/5 flex items-center space-x-6 pl-3">
-                <div className="w-20 h-20 bg-white"></div>
+                <div className="w-20 h-20 bg-gray-100 rounded-2xl"></div>
                 <h3 className="font-semibold">Desarrollador</h3>
             </div>
             <div className="w-1/5">
