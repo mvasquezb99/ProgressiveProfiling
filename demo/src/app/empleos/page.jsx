@@ -10,7 +10,6 @@ export default function index() {
 
     useEffect(() => {
         setUri(`http://localhost:3000/api/jobOffers`);
-        console.log(jobsOffers);
     }, []);
 
     return (
@@ -34,8 +33,13 @@ export default function index() {
                     <h2 className="font-semibold text-lg">Educación</h2>
                 </section>
             </div>
-            <div id="job-offers" className="flex-grow h-full p-4 overflow-scroll ">
-                <JobPreview />
+            <div id="job-offers" className="flex-grow h-[90vh] p-4 overflow-scroll">
+                {
+                    isLoading ? <></> :
+                        jobsOffers.data.map((job) => (
+                            <JobPreview job={job} />
+                        ))
+                }
                 <JobPreview />
                 <JobPreview />
             </div>
