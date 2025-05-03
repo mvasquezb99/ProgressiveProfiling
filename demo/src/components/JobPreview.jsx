@@ -26,7 +26,7 @@ export default function JobPreview({ job }) {
                     <h3 className="font-semibold">{jobInfo.name}</h3>
                 </div>
                 <div className="w-1/5">
-                    <h3>Company‼️</h3>
+                    <h3>Company‼</h3>
                 </div>
                 <div className="w-1/5">
                     <h3>{jobInfo.category}</h3>

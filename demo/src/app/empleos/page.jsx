@@ -9,12 +9,12 @@ export default function index() {
     const { data: jobsOffers, isLoading, error, setData: setJobOffers } = useFetch(uri);
 
     useEffect(() => {
-        setUri(`http://localhost:3000/api/jobOffers`);
+        setUri(`http://localhost:8000/api/jobOffers`);
     }, []);
 
     return (
         <section className="w-full flex-grow flex">
-            <div id="filter-side-bar" className="w-1/6 h-full p-4 space-y-4 border-r-1 border-gray-200">
+            <div id="filter-side-bar" className="w-1/4 h-full p-4 space-y-4 border-r-1 border-gray-200">
                 <section className="bg-[#F4F4FA] w-full p-3 rounded-lg">
                     <h2 className="font-semibold text-xl">Filtrar empleos</h2>
                 </section>
@@ -33,7 +33,7 @@ export default function index() {
                     <h2 className="font-semibold text-lg">Educación</h2>
                 </section>
             </div>
-            <div id="job-offers" className="flex-grow h-[90vh] p-4 overflow-scroll">
+            <div id="job-offers" className="w-10/12 h-[90vh] p-4 overflow-scroll">
                 {
                     isLoading ? <></> :
                         jobsOffers.data.map((job) => (
