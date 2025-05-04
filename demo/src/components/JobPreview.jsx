@@ -1,17 +1,16 @@
 import posthog from "posthog-js";
 import { useEffect, useState } from "react"
 
-export default function JobPreview({ job }) {
+export default function JobPreview({ job, email }) {
     const [jobInfo, setJobInfo] = useState(undefined);
-    // get email ...
-
 
     useEffect(() => {
         setJobInfo(job);
     }, [job])
 
     useEffect(() => {
-        posthog.identify("manelix");
+        posthog.identify(email);
+        console.log("Identified with:", email);
     }, [])
 
     const tutorialClick = () => {

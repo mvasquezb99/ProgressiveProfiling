@@ -14,9 +14,9 @@ export default function index() {
     useEffect(() => {
         setUri(`http://localhost:8000/api/jobOffers`);
     }, []);
-    
+
     useEffect(() => {
-        const emailParam = searchParams.get('email');
+        const emailParam = searchParams.get('email') || 'Guest';
         setEmail(emailParam);
     }, [searchParams])
 
@@ -45,7 +45,7 @@ export default function index() {
                 {
                     isLoading ? <></> :
                         jobsOffers.data.map((job, i) => (
-                            <JobPreview job={job} key={i}/>
+                            <JobPreview job={job} key={i} email={email} />
                         ))
                 }
                 <JobPreview />
