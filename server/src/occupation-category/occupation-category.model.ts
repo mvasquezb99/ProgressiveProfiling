@@ -22,7 +22,7 @@ export interface CategoryRelatedNodes {
     OccupationCategoryClass['categoryModel'],
     CategoryInstance
   >;
-  Similar: ModelRelatedNodesI<
+  Distance: ModelRelatedNodesI<
     {
       createOne: OccupationCategoryClass['categoryModel']['createOne'];
     },
@@ -41,7 +41,7 @@ export class OccupationCategoryClass {
   constructor(
     @Inject(NEOGMA_CONNECTION) private readonly neogma: Neogma,
     @Inject(OccupationClass) private readonly occupationClass: OccupationClass,
-  ) {}
+  ) { }
 
   public categoryModel = ModelFactory<
     CategoryPropertiesI,
@@ -62,10 +62,10 @@ export class OccupationCategoryClass {
           direction: 'out',
           name: 'Has',
         },
-        Similar: {
+        Distance: {
           model: 'self',
           direction: 'out',
-          name: 'Similar',
+          name: 'Distance',
           properties: {
             Weight: {
               property: 'weight',

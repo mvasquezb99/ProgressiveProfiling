@@ -27,7 +27,7 @@ export class SeedDataService {
     @Inject(LocationClass) private readonly locationClass: LocationClass,
     @Inject(EducationClass) private readonly educationClass: EducationClass,
     @Inject(WorkClass) private readonly workClass: WorkClass,
-  ) {}
+  ) { }
 
   /**
    * Seeds the database with initial user data.
@@ -145,7 +145,7 @@ export class SeedDataService {
 
     //With Tecnología de la Información
     await cienceNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Tecnología de la Información' },
       properties: { Weight: 1 },
     });
@@ -153,14 +153,15 @@ export class SeedDataService {
     //With Transporte y Logística
 
     await cienceNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Transporte y Logística' },
       properties: { Weight: 9 },
     });
 
     //With Manufactura y Producción
+
     await cienceNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Manufactura y Producción' },
       properties: { Weight: 9 },
     });
@@ -180,7 +181,7 @@ export class SeedDataService {
 
     //With Ciencias e Investigación
     await tecnologiaNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Ciencias e Investigación' },
       properties: { Weight: 1 },
     });
@@ -188,7 +189,7 @@ export class SeedDataService {
     //With Transporte y Logística
 
     await tecnologiaNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Transporte y Logística' },
       properties: { Weight: 9 },
     });
@@ -196,7 +197,7 @@ export class SeedDataService {
     //With Manufactura y Producción
 
     await tecnologiaNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Manufactura y Producción' },
       properties: { Weight: 9 },
     });
@@ -217,21 +218,21 @@ export class SeedDataService {
     //With Manufactura y Producción
 
     await transporteNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Manufactura y Producción' },
       properties: { Weight: 1 },
     });
 
     //With Tecnología de la Información
     await transporteNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Tecnología de la Información' },
       properties: { Weight: 9 },
     });
 
     //With Ciencias e Investigación
     await transporteNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Ciencias e Investigación' },
       properties: { Weight: 9 },
     });
@@ -251,21 +252,21 @@ export class SeedDataService {
 
     //With Transporte y Logística
     await manufacturaNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Transporte y Logística' },
       properties: { Weight: 1 },
     });
 
     //With Tecnología de la Información
     await manufacturaNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Tecnología de la Información' },
       properties: { Weight: 9 },
     });
 
     //With Ciencias e Investigación
     await manufacturaNode.relateTo({
-      alias: 'Similar',
+      alias: 'Distance',
       where: { name: 'Ciencias e Investigación' },
       properties: { Weight: 9 },
     });
@@ -299,7 +300,83 @@ export class SeedDataService {
       ],
     };
 
+    const skillsEducationsMap = {
+      "Metodología científica": [
+        "Licenciatura en Ciencias",
+        "Maestría/Doctorado en Investigación Científica"
+      ],
+      "Escritura académica": [
+        "Educación en Ciencias",
+        "Comunicación Científica",
+        "Maestría en Educación"
+      ],
+      "Experimentación": [
+        "Investigación y Desarrollo (I+D)",
+        "Psicología Experimental"
+      ],
+      "Análisis de resultados": [
+        "Estadística Aplicada",
+        "Investigación de Operaciones"
+      ],
+      "Automatización": [
+        "Ingeniería en Automatización",
+        "Técnico en Automatización y Control Industrial"
+      ],
+      "Control de calidad": [
+        "Tecnología en Control de Calidad",
+        "Técnico en Calidad Industrial"
+      ],
+      "Mantenimiento industrial": [
+        "Técnico en Mantenimiento Industrial",
+        "Ingeniería Mecánica",
+        "Ingeniería Industrial",
+        "Tecnología en Mecatrónica"
+      ],
+      "Producción en línea": [
+        "Ingeniería en Producción",
+        "Tecnología en Producción Industrial"
+      ],
+      "Desarrollo web": [
+        "Ingeniería de Software",
+        "Técnico en Desarrollo Web",
+      ],
+      "Bases de datos": [
+        "Ingeniería en Sistemas Computacionales",
+        "Técnico en Bases de Datos",
+      ],
+      "Ciberseguridad": [
+        "Ingeniería en Ciberseguridad",
+        "Técnico en Ciberseguridad",
+        "Licenciatura en Seguridad Informática"
+      ],
+      "Administración de sistemas": [
+        "Licenciatura en Tecnología de la Información",
+        "Administración de Sistemas Informáticos",
+      ],
+      "Conducción": [
+        "Técnico en Conducción de Vehículos de Transporte",
+        "Licencia profesional de conducción",
+        "Gestión de Transporte"
+      ],
+      "Gestión de flotas": [
+        "Gestión Logística y Transporte",
+        "Administración Logística",
+        "Ingeniería en Transporte y Logística"
+      ],
+      "Logística": [
+        "Ingeniería en Logística",
+        "Tecnología en Gestión Logística"
+      ],
+      "Mantenimiento de vehículos": [
+        "Técnico en Mecánica Automotriz",
+        "Ingeniería Mecánica Automotriz"
+      ]
+    };
+
+
     const allSkills = Object.values(categoriesSkillsMap).flat();
+    const allCategories = Object.keys(categoriesSkillsMap).flat();
+    const allEducations = Object.values(skillsEducationsMap).flat();
 
     faker.seed(123);
     const users = Array.from({ length: 50 }, () => ({
@@ -309,9 +386,9 @@ export class SeedDataService {
       image: faker.image.personPortrait(),
       birthdate: faker.date.birthdate().toISOString(),
       skills: faker.helpers
-        .arrayElements(allSkills, {
+        .arrayElements(categoriesSkillsMap[allCategories[Math.floor(Math.random() * 4)]], {
           min: 1,
-          max: 4,
+          max: 2,
         })
         .join(', '),
       languages: faker.helpers
@@ -333,20 +410,16 @@ export class SeedDataService {
       uuid: uuidv4(),
     }));
 
-    const education = Array.from({ length: 20 }, () => ({
+    let i = 0;
+    const education = Array.from({ length: allEducations.length }, () => ({
       degree: faker.helpers.arrayElement([
-        'Inicial',
-        'Media',
-        'Preescolar',
-        'Basica',
+        //'Inicial',
+        //'Media',
+        //'Preescolar',
+        //'Basica',
         'Superior',
       ]),
-      area: faker.helpers.arrayElement([
-        'Ciencias de la Computación',
-        'Matemáticas',
-        'Física',
-        'Biología',
-      ]),
+      area: allEducations[i++],
       institution: faker.company.name(),
       uuid: uuidv4(),
     }));
@@ -372,7 +445,7 @@ export class SeedDataService {
     for (const userNode of usersNodes) {
       const userSkills = userNode.skills.split(', ');
       const randomUserSkill =
-        userSkills[Math.floor(Math.random() * relationCategory.length)];
+        userSkills[Math.floor(Math.random() * userSkills.length)];
 
       for (const categorySkill of Object.keys(categoriesSkillsMap)) {
         if (categoriesSkillsMap[categorySkill].includes(randomUserSkill)) {
@@ -413,20 +486,25 @@ export class SeedDataService {
       const categoryRelatedOccupationsMap = categoryRelatedOccupations.map(
         (item) => item.target.dataValues.name,
       );
-
+      let selectedOccupation = '';
       for (let i = 0; i < 3; i++) {
-        const selectedOccupation =
+        selectedOccupation =
           categoryRelatedOccupationsMap[
-            Math.floor(Math.random() * categoryRelatedOccupationsMap.length)
+          Math.floor(Math.random() * categoryRelatedOccupationsMap.length)
           ];
         await userNode.relateTo({
           alias: 'LikesOccupation',
           where: { name: selectedOccupation },
         });
       }
+      console.log("ACCEDIENDO A " + randomUserSkill);
+      let r = skillsEducationsMap[randomUserSkill][Math.floor(Math.random() * skillsEducationsMap[randomUserSkill].length)]
+      const randomEducation = await this.educationClass.educationModel.findOne(
+        {
+          where: { area: r },
+        },
+      );
 
-      const randomEducation =
-        educationsNodes[Math.floor(Math.random() * educationsNodes.length)];
       const randomLocation =
         locationsNodes[Math.floor(Math.random() * locationsNodes.length)];
       const randomWork =
@@ -437,10 +515,14 @@ export class SeedDataService {
         where: { uuid: randomLocation.uuid },
       });
 
-      await userNode.relateTo({
-        alias: 'HasEducation',
-        where: { uuid: randomEducation.uuid },
-      });
+      if (randomEducation != null) {
+        await userNode.relateTo({
+          alias: 'HasEducation',
+          where: { uuid: randomEducation.uuid },
+        });
+      } else {
+        console.log("es null");
+      }
 
       await userNode.relateTo({
         alias: 'WorkExperience',
