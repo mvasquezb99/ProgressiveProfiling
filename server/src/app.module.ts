@@ -30,6 +30,7 @@ import { SurveyModule } from './survey/survey.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { SurveyController } from './survey/survey.controller';
 import { MagnetoModule } from './magneto/magneto.module';
+import { PosthogModule } from './posthog/posthog.module';
 
 @Module({
   imports: [
@@ -57,6 +58,7 @@ import { MagnetoModule } from './magneto/magneto.module';
     EmailModule,
     SurveyModule,
     MagnetoModule,
+    PosthogModule,
   ],
   controllers: [
     AppController,
