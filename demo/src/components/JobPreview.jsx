@@ -21,7 +21,7 @@ export default function JobPreview({ job }) {
 
     return (
         jobInfo ?
-            <a onClick={tutorialClick} className="hover:bg-[#F4F4FA] w-full p-3 rounded-lg flex h-30 items-center transition-colors ease-in delay-75">
+            <a onClick={tutorialClick} className="hover:bg-[#F4F4FA] w-full p-3 rounded-lg flex h-30 items-center transition-colors ease-in delay-75" key={jobInfo.name}>
                 <div className="w-1/5 flex items-center space-x-6 pl-3">
                     <h3 className="font-semibold">{jobInfo.name}</h3>
                 </div>

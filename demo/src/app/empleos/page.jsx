@@ -3,18 +3,26 @@ import JobPreview from "@/components/JobPreview";
 import { useEffect, useState } from "react";
 import { useFetch } from "@/hooks/useFetch";
 import { categories } from "@/constants/educationCategories";
+import { useSearchParams } from "next/navigation";
 
 export default function index() {
     const [uri, setUri] = useState(null);
     const { data: jobsOffers, isLoading, error, setData: setJobOffers } = useFetch(uri);
+    const searchParams = useSearchParams();
+    const [email, setEmail] = useState(null);
 
     useEffect(() => {
         setUri(`http://localhost:8000/api/jobOffers`);
     }, []);
+    
+    useEffect(() => {
+        const emailParam = searchParams.get('email');
+        setEmail(emailParam);
+    }, [searchParams])
 
     return (
         <section className="w-full flex-grow flex">
-            <div id="filter-side-bar" className="w-1/4 h-full p-4 space-y-4 border-r-1 border-gray-200">
+            <div id="filter-side-bar" className="w-1/4 h-full p-4 space-y-4 border-r-1 border-gray-200 max-w-80">
                 <section className="bg-[#F4F4FA] w-full p-3 rounded-lg">
                     <h2 className="font-semibold text-xl">Filtrar empleos</h2>
                 </section>
@@ -36,8 +44,8 @@ export default function index() {
             <div id="job-offers" className="w-10/12 h-[90vh] p-4 overflow-scroll">
                 {
                     isLoading ? <></> :
-                        jobsOffers.data.map((job) => (
-                            <JobPreview job={job} />
+                        jobsOffers.data.map((job, i) => (
+                            <JobPreview job={job} key={i}/>
                         ))
                 }
                 <JobPreview />

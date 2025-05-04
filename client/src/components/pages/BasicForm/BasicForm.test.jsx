@@ -49,7 +49,7 @@ describe(BasicForm, () => {
         },
         {
             description: 'only the category is filled.',
-            userData: {
+            userData: { 
                 name: '', birthdate: '', email: '', category: { name: 'test_category' }
             },
             expectedErrors: 4,
