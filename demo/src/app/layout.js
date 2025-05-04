@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { PostHogProvider } from "../components/PostHogProvider";
+import NavBar from "@/components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,9 +23,11 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <PostHogProvider>
-          {/* Navbar */}
-          {children}
-          {/* Footer */}
+          <main className="w-full h-screen flex flex-col">
+            <NavBar />
+            {children}
+            {/* Footer */}
+          </main>
         </PostHogProvider>
       </body>
     </html>

@@ -15,7 +15,13 @@ export default function FinalPage() {
       try {
         const requestData = userData;
         await axios.post('http://localhost:3000/users/save', requestData);
-        window.open('https://www.magneto365.com/es', '_blank');
+        // window.open('https://www.magneto365.com/es', '_blank');
+        // await axios.post('http://localhost:8000/api/user', { email: userData.email }, {
+        //   headers: {
+        //     'Content-Type': 'application/json'
+        //   }
+        // });
+        window.open(`http://localhost:8000/empleos?email=${userData.email}`, '_blank');
       } catch (err) {
         setError(err.message);
       } finally {
