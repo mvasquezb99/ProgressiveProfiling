@@ -1,6 +1,6 @@
 export default () => ({
   query: {
-    similar: {
+    Distance: {
       minWeight: 5,
     },
     users: {
