@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import PropTypes from 'prop-types';
 import React from "react";
-export default function MotionContainer({ children, handleLike, handleDislike, handleSuperlike }) {
+export default function MotionContainer({ children, handleLike, handleDislike, handleSuperlike, motionStyles }) {
     const controls = useDragControls();
     const card = useRef(null);
     const [action, setAction] = useState(false);
@@ -41,7 +41,7 @@ export default function MotionContainer({ children, handleLike, handleDislike, h
             onDragEnd={handleActionChange}
             dragSnapToOrigin
             dragConstraints={{ left: -10, right: 10, top: -10, bottom: 0 }}
-            className={`w-[20rem] h-[28rem]`}
+            className={`w-[20rem] h-[28rem] ${motionStyles}`}
             id="dragBox"
         >
             {children}
