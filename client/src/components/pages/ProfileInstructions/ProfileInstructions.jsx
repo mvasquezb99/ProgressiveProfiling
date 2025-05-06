@@ -25,10 +25,10 @@ export default function ProfileInstructions({ nextStep }) {
         setInDemo(!inDemo);
     }
     return (
-        <section className="w-1/2 h-2/3 lg:w-2/3 lg:h-3/4 bg-[#f4f4fa] flex">
+        <section className="xl:w-2/3 xl:h-3/4 lg:w-2/3 lg:h-3/4 bg-[#f4f4fa] flex max-h-[35rem] max-w-[49rem]">
             <div className={`w-1/2 h-full p-10 flex flex-col justify-between ${!inDemo ? "shadow-sm" : "shadow-none"} `}>
-                <div className="w-fit h-fit md:text-lg lg:text-sm">
-                    <h2 className="text-2xl font-bold mb-2 text-[#090467]">Encuentra tu perfil ideal 🚀</h2>
+                <div className="w-fit h-fit xl:text-base lg:text-sm">
+                    <h2 className="xl:text-3xl lg:text-2xl font-bold mb-2 text-[#090467]">Encuentra tu perfil ideal 🚀</h2>
                     <div className="flex flex-col space-y-4 mt-8">
                         <div className="flex items-center space-x-4">
                             <div className="p-3 w-12 bg-white shadow-md rounded-xl cursor-pointer text-red-500 hover:text-white hover:bg-red-500  transition-colors">
@@ -57,7 +57,7 @@ export default function ProfileInstructions({ nextStep }) {
                     handleLike={() => { }}
                     handleDislike={() => { }}
                     handleSuperlike={() => { }}
-                    motionStyles={'lg:w-[17rem] lg:h-[24rem] '}
+                    motionStyles={'xl:w-[20rem] xl:h-[28rem] lg:w-[18rem] lg:h-[24rem] '}
                 >
                     <ProfileCard profile={profiles[0]} />
                 </MotionContainer>
