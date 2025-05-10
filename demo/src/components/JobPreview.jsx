@@ -1,7 +1,7 @@
 import posthog from "posthog-js";
 import { useEffect, useState } from "react"
 
-export default function JobPreview({ job, email }) {
+export default function JobPreview({ job, email, openExtraInfoPanel }) {
     const [jobInfo, setJobInfo] = useState(undefined);
 
     useEffect(() => {
@@ -14,6 +14,7 @@ export default function JobPreview({ job, email }) {
     }, [])
 
     const tutorialClick = () => {
+        openExtraInfoPanel(jobInfo);
         posthog.capture('Job offer event', { name: jobInfo.name, category: jobInfo.category, occupations: jobInfo.occupations });
         console.log("event captured");
     }
