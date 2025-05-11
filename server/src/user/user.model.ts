@@ -25,6 +25,8 @@ export type UserPropertiesI = {
   birthdate: string;
   skills: string;
   languages: string;
+  promSalary?: string;
+  numApplications?: number;
 };
 
 export type UserInstance = NeogmaInstance<UserPropertiesI, UserRelatedNodes>;
@@ -83,6 +85,15 @@ export class UserClass {
         languages: {
           type: 'string',
           required: false,
+        },
+        promSalary: {
+          type: 'string',
+          required: false,
+        },
+        numApplications: {
+          type: 'number',
+          required: false,
+          default: 0,
         },
       },
       relationships: {

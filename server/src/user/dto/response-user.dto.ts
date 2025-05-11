@@ -40,6 +40,10 @@ export class ResponseUserDto {
   })
   languages: string;
 
+  promSalary: string;
+
+  numApplications: number;
+
   @ApiProperty({
     example: '{ degree: "Bachelor", institution: "MIT", area: "Biology" }',
     description: 'User education',

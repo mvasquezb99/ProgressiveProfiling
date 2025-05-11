@@ -80,6 +80,8 @@ export class UserMapper {
     userDto.languages = user.languages;
     userDto.categories = [];
     userDto.occupations = [];
+    userDto.promSalary = user.promSalary || '';
+    userDto.numApplications = user.numApplications || 0;
 
     return userDto;
   }

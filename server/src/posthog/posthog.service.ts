@@ -14,7 +14,6 @@ import { Cron } from '@nestjs/schedule';
 export class PosthogService {
   apiKey: string;
   projectId: string;
-  eventName: string = 'Job offer event';
   constructor(
     private readonly configService: ConfigService,
     private readonly httpService: HttpService,
@@ -50,7 +49,7 @@ export class PosthogService {
           Authorization: `Bearer ${this.apiKey}`,
         },
         params: {
-          event: this.eventName,
+          event: 'Job offer event',
         },
       },
     );
@@ -72,7 +71,7 @@ export class PosthogService {
           Authorization: `Bearer ${this.apiKey}`,
         },
         params: {
-          event: this.eventName,
+          event: 'Job offer event',
           after: after24h,
         },
       },
@@ -86,15 +85,42 @@ export class PosthogService {
     return response.data;
   }
 
+  async getAllJobOfferAppliedEventsLast24h(): Promise<PosthogEventsResponseDto> {
+    const after24h = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+    const response$ = this.httpService.get<PosthogEventsResponseDto>(
+      `https://us.posthog.com/api/projects/${this.projectId}/events/`,
+      {
+        headers: {
+          Authorization: `Bearer ${this.apiKey}`,
+        },
+        params: {
+          event: 'Job offer applied',
+          after: after24h,
+        },
+      },
+    );
+    const response: AxiosResponse<PosthogEventsResponseDto> =
+      await firstValueFrom(response$);
+    console.log(
+      'Number of job offer applied in the last 24h:',
+      response.data.results.length,
+    );
+    return response.data;
+  }
+
   @Cron('0 0 * * *') // Every day at midnight
-  async getAllJobOfferEventsAndUpdateUsers() {
-    const events = await this.getAllJobOfferEventsLast24h();
+  async getAllJobOfferAppliedEventsAndUpdateUsers() {
+    const events = await this.getAllJobOfferAppliedEventsLast24h();
     let numUsersUpdated = 0;
 
     for (const event of events.results) {
       const userEmail = event.distinct_id;
       // const jobOfferName = event.properties.name;
       // const jobOfferCategory = event.properties.category;
+      // const jobOfferExperience = event.properties.experience;
+      // const jobOfferDuration = event.properties.duration;
+      const jobOfferSalary = event.properties.salary;
+      // const jobOfferLoction = event.properties.location;
       const jobOfferOccupations = event.properties.occupations;
 
       try {
@@ -103,6 +129,25 @@ export class PosthogService {
           console.error(`Can't identify user with ${userEmail}`);
           continue;
         }
+        // Update salary
+
+        const newNumJobApplies = user.numApplications + 1;
+        const newPromSalary =
+          (Number(user.promSalary) + Number(jobOfferSalary)) / newNumJobApplies;
+
+        await this.userClass.userModel.update(
+          {
+            promSalary: String(newPromSalary),
+            numApplications: newNumJobApplies,
+          },
+          {
+            where: {
+              email: userEmail,
+            },
+          },
+        );
+
+        // Update occupations
         const dislikedOccupations = new Array<string>();
         const currentUserOccupaitons = new Array<string>();
 
