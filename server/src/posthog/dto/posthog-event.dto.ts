@@ -9,6 +9,18 @@ class Properties {
 
   @ApiProperty()
   category: string;
+
+  @ApiProperty()
+  experience: string;
+
+  @ApiProperty()
+  duration: string;
+
+  @ApiProperty()
+  salary: string;
+
+  @ApiProperty()
+  location: string;
 }
 
 export class PosthogEventDto {

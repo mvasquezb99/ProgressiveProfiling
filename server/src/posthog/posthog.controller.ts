@@ -17,6 +17,6 @@ export class PosthogController {
 
   @Get('events/job-offers/update-users')
   public async getAllJobOfferEventsAndUpdateUsers() {
-    return await this.posthogService.getAllJobOfferEventsAndUpdateUsers();
+    return await this.posthogService.getAllJobOfferAppliedEventsAndUpdateUsers();
   }
 }
