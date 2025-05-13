@@ -14,7 +14,7 @@ function JobsContent() {
   const [selectedJob, setSelectedJob] = useState(null);
 
   useEffect(() => {
-    setUri(`http://localhost:3000/api/jobOffers`);
+    setUri(`http://localhost:8000/api/jobOffers`);
   }, []);
 
   useEffect(() => {
