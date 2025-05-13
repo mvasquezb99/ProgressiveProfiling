@@ -58,8 +58,8 @@ export default function ProfileInstructions({ nextStep }) {
                                         <i className="fa-solid fa-arrow-left text-2xl h-full w-full"></i>
                                     </div>
                                     : <div className="p-3 w-12 flex justify-center items-center">
-                                        <div id="arrowLeft-mission" class={`w-6 h-6 flex items-center justify-center border-2 rounded-md cursor-pointer select-none transition-colors duration-150 ease-in-out bg-white border-gray-300 hover:border-gray-400`}>
-                                            <i class="fa-solid fa-check"></i>
+                                        <div id="arrowLeft-mission" className={`w-6 h-6 flex items-center justify-center border-2 rounded-md cursor-pointer select-none transition-colors duration-150 ease-in-out bg-white border-gray-300 hover:border-gray-400`}>
+                                            <i className="fa-solid fa-check"></i>
                                         </div>
                                     </div>
                             }
@@ -72,8 +72,8 @@ export default function ProfileInstructions({ nextStep }) {
                                         <i className="fa-solid fa-star text-2xl"></i>
                                     </div>
                                     : <div className="p-3 w-12 flex justify-center items-center">
-                                        <div id="arrowUp-mission" class={`w-6 h-6 flex items-center justify-center border-2 rounded-md cursor-pointer select-none transition-colors duration-150 ease-in-out bg-white border-gray-300 hover:border-gray-400`}>
-                                            <i class="fa-solid fa-check"></i>
+                                        <div id="arrowUp-mission" className={`w-6 h-6 flex items-center justify-center border-2 rounded-md cursor-pointer select-none transition-colors duration-150 ease-in-out bg-white border-gray-300 hover:border-gray-400`}>
+                                            <i className="fa-solid fa-check"></i>
                                         </div>
                                     </div>
                             }
@@ -87,8 +87,8 @@ export default function ProfileInstructions({ nextStep }) {
                                         <i className="fa-solid fa-arrow-right text-2xl "></i>
                                     </div>
                                     : <div className="p-3 w-12 flex justify-center items-center">
-                                        <div id="arrowRight-mission" class={`w-6 h-6 flex items-center justify-center border-2 rounded-md cursor-pointer select-none transition-colors duration-150 ease-in-out bg-white border-gray-300 hover:border-gray-400`}>
-                                            <i class="fa-solid fa-check"></i>
+                                        <div id="arrowRight-mission" className={`w-6 h-6 flex items-center justify-center border-2 rounded-md cursor-pointer select-none transition-colors duration-150 ease-in-out bg-white border-gray-300 hover:border-gray-400`}>
+                                            <i className="fa-solid fa-check"></i>
                                         </div>
                                     </div>
                             }
