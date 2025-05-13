@@ -10,7 +10,7 @@ describe('useFetch', () => {
         const mockData = [{ id: 1, name: 'Alice' }, { id: 2, name: 'Bob' }];
         axios.get.mockResolvedValueOnce({ data: mockData });
 
-        const { result } = renderHook(() => useFetch('http://localhost:3000/users/categories?category=Tecnología de la Información'));
+        const { result } = renderHook(() => useFetch(import.meta.env.VITE_SERVER_URL + '/users/categories?category=Tecnología de la Información'));
 
         expect(result.current.data).toBe(null);
         expect(result.current.isLoading).toBe(true);

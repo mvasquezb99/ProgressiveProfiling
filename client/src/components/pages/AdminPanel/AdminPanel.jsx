@@ -3,6 +3,7 @@ import axios from 'axios';
 import { JsonEditor } from 'json-edit-react';
 import AdminAddUserForm from './AdminAddUserForm';
 import { getFormat, getHint } from '../../../utils/apiHelpers';
+import dotenv from 'dotenv';
 
 export default function AdminPanel() {
   const [jsonInput, setJsonInput] = useState('{}');
@@ -36,7 +37,7 @@ export default function AdminPanel() {
     '[DELETE] Delete category by name': '/admin/categories',
   };
 
-  const server_url = 'http://localhost:3000';
+  const server_url = import.meta.env.VITE_SERVER_URL;
 
   const handleSendRequest = async () => {
     setLoading(true);
