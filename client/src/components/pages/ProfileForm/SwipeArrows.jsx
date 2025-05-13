@@ -13,7 +13,7 @@ const SwipeArrows = ({ handleLike, handleDislike, handleSuperlike }) => {
         onClick={handleDislike}
         id='arrowLeft'
       >
-        <i className="fa-solid fa-arrow-left text-2xl h-full w-full"></i>
+        <i className="fa-solid fa-arrow-left text-2xl h-full w-full" id="arrowLeft"></i>
       </motion.div>
 
       <motion.div
@@ -24,7 +24,7 @@ const SwipeArrows = ({ handleLike, handleDislike, handleSuperlike }) => {
         onClick={handleSuperlike}
         id='arrowUp'
       >
-        <i className="fa-solid fa-star text-2xl"></i>
+        <i className="fa-solid fa-star text-2xl" id="arrowUp"></i>
       </motion.div>
 
       <motion.div
@@ -35,7 +35,7 @@ const SwipeArrows = ({ handleLike, handleDislike, handleSuperlike }) => {
         onClick={handleLike}
         id='arrowRight'
       >
-        <i className="fa-solid fa-arrow-right text-2xl "></i>
+        <i className="fa-solid fa-arrow-right text-2xl" id="arrowRight"></i>
       </motion.div>
     </article>
   );

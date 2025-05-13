@@ -1,5 +1,4 @@
-import Card from "../../layout/Card";
-import CardTitle from "../../common/CardTitle";
+/* eslint-disable no-unused-vars */
 import Button from "../../common/Button";
 import PropTypes from 'prop-types';
 import { useState, useEffect } from "react";
