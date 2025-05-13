@@ -1,12 +1,12 @@
 'use client'; // Don't remove
 import JobPreview from '@/components/JobPreview';
 import ExtraInfoPanel from '@/components/ExtraInfoPanel';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useFetch } from '@/hooks/useFetch';
 import { categories } from '@/constants/educationCategories';
 import { useSearchParams } from 'next/navigation';
 
-export default function index() {
+function JobsContent() {
   const [uri, setUri] = useState(null);
   const { data: jobsOffers, isLoading, error, setData: setJobOffers } = useFetch(uri);
   const searchParams = useSearchParams();
@@ -14,7 +14,7 @@ export default function index() {
   const [selectedJob, setSelectedJob] = useState(null);
 
   useEffect(() => {
-    setUri(`http://localhost:8000/api/jobOffers`);
+    setUri(`http://localhost:3000/api/jobOffers`);
   }, []);
 
   useEffect(() => {
@@ -26,9 +26,8 @@ export default function index() {
     setSelectedJob(job);
   };
 
-
   return (
-    <section className="w-full flex-grow flex">
+    <>
       <div id="filter-side-bar" className="w-1/4 h-full p-4 space-y-4 border-r-1 border-gray-200 max-w-80">
         <section className="bg-[#F4F4FA] w-full p-3 rounded-lg">
           <h2 className="font-semibold text-xl">Filtrar empleos</h2>
@@ -53,11 +52,33 @@ export default function index() {
         </section>
       </div>
       <div id="job-offers" className="w-10/12 h-[90vh] p-4 overflow-scroll">
-        {isLoading ? <></> : jobsOffers.data.map((job, i) => <JobPreview job={job} key={i} email={email} openExtraInfoPanel={onClickOffer} />)}
+        {isLoading ? (
+          <></>
+        ) : (
+          jobsOffers?.data?.map((job, i) => (
+            <JobPreview job={job} key={i} email={email} openExtraInfoPanel={onClickOffer} />
+          ))
+        )}
         <JobPreview />
         <JobPreview />
       </div>
       {selectedJob && <ExtraInfoPanel job={selectedJob} />}
+    </>
+  );
+}
+
+export default function EmpleosPage() {
+  return (
+    <section className="w-full flex-grow flex">
+      <Suspense
+        fallback={
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
+          </div>
+        }
+      >
+        <JobsContent />
+      </Suspense>
     </section>
   );
 }
