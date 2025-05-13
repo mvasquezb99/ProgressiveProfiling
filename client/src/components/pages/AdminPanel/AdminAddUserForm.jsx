@@ -20,7 +20,7 @@ import {
   getErrors,
 } from '../../../utils/userFormats';
 
-const OCCUPATIONS_URL = 'http://localhost:3000/occupation/';
+const OCCUPATIONS_URL = import.meta.env.VITE_SERVER_URL + '/occupation/';
 
 export default function AdminAddUserForm({ setJsonInput }) {
   const modal = useRef();

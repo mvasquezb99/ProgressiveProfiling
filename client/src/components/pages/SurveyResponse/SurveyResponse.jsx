@@ -12,7 +12,7 @@ const SurveyResponse = () => {
   useEffect(() => {
     const sendSurveyResponse = async () => {
       try {
-        await axios.post('http://localhost:3000/survey-response', {
+        await axios.post(import.meta.env.VITE_SERVER_URL + '/survey-response', {
           userName: userName,
           answer: answer,
           occupationName: occupationName,

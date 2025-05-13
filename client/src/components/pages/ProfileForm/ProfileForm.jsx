@@ -80,7 +80,7 @@ export default function ProfileFrom({ nextStep }) {
       superLikedUsers: superlikedProfiles,
     };
 
-    const response = await axios.post('http://localhost:3000/users/generate', requestData);
+    const response = await axios.post(import.meta.env.VITE_SERVER_URL + '/users/generate', requestData);
     fillUserData(response.data);
     nextStep(4);
   };
@@ -94,7 +94,7 @@ export default function ProfileFrom({ nextStep }) {
 
   useEffect(() => {
     if (userData.category.name) {
-      setUri(`http://localhost:3000/users/categories?category=${userData.category.name}`);
+      setUri(import.meta.env.VITE_SERVER_URL + `/users/categories?category=${userData.category.name}`);
     }
   }, [userData.category.name]);
 
