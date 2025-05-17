@@ -1,9 +1,12 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import posthog from 'posthog-js';
+import { useSearchParams } from 'next/navigation';
 
 export default function NavBar() {
     const [searchText, setSearchText] = useState('');
+    const [email, setEmail] = useState('');
+    const searchParams = useSearchParams();
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter' && searchText.trim() !== '') {
@@ -18,6 +21,12 @@ export default function NavBar() {
             console.log("event captured");
         }
     };
+
+    useEffect(() => {
+        const emailParam = searchParams.get('email') || 'Guest';
+        setEmail(emailParam);
+    }, [searchParams]);
+
 
     return (
         <nav className="w-full h-22 flex border-b-1 border-gray-200">
@@ -36,8 +45,17 @@ export default function NavBar() {
                 />
             </section>
             <section className="w-1/4 flex justify-center items-center space-x-2">
-                <a href="" className="rounded-2xl hover:bg-[#F4F4FA] text-[#002D5A] p-2 px-5 font-semibold">Iniciar sesión</a>
-                <a href="http://localhost:5173/" className="rounded-2xl bg-[#9EE4B8] text-[#002D5A] p-2 px-5 font-semibold">Crear cuenta</a>
+                {email === 'Guest' ? (
+                    <>
+                        <a href="" className="rounded-2xl hover:bg-[#F4F4FA] text-[#002D5A] p-2 px-5 font-semibold">Iniciar sesión</a>
+                        <a href="http://localhost:5173/" className="rounded-2xl bg-[#9EE4B8] text-[#002D5A] p-2 px-5 font-semibold">Crear cuenta</a>
+                    </>
+                ) : (
+                    <>
+                        <p className="text-[#002D5A] p-2 px-5 font-semibold">{email.split('@')[0]}</p>
+                        <a href="" className="rounded-2xl bg-[#9EE4B8] text-[#002D5A] hover:bg-[#9EE4B8] p-2 px-5 font-semibold">Cerrar sesión</a>
+                    </>
+                )}
             </section>
         </nav>
     );
