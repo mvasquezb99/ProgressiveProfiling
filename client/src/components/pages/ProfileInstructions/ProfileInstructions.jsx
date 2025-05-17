@@ -13,6 +13,7 @@ export default function ProfileInstructions({ nextStep }) {
     const [inDemo, setInDemo] = useState(false);
     const [missionsCompleted, setMissionsCompleted] = useState(0);
     const [progress, setProgress] = useState(0.0);
+    const [profileIndex, setProfileIndex] = useState(0);
     
     useEffect(() => {
         if (progress === 0) {
@@ -35,12 +36,19 @@ export default function ProfileInstructions({ nextStep }) {
     }
 
     const handleMissionCheck = (evt) => {
-        const rightMission = document.getElementById(evt.target.id + "-mission");
-        rightMission.classList.remove('bg-white');
-        rightMission.classList.add('bg-green-600');
-        rightMission.classList.add('border-green-600');
+
+        const missionElement = document.getElementById(evt.target.id + "-mission");
+        missionElement.classList.remove('bg-white');
+        missionElement.classList.add('bg-green-600');
+        missionElement.classList.add('border-green-600');
+
+        const missionText = document.getElementById(evt.target.id + "-mission-text");
+        missionText.classList.remove('text-[#090467]');
+        missionText.classList.add('text-gray-300');
+        missionText.classList.add('line-through'); 
 
         setMissionsCompleted(missionsCompleted + 1);
+        setProfileIndex(profileIndex + 1);
     };
 
     return (
@@ -48,7 +56,7 @@ export default function ProfileInstructions({ nextStep }) {
             <div className={`w-1/2 h-full p-10 flex flex-col justify-between ${!inDemo ? "shadow-sm" : "shadow-none"} `}>
                 <div className="w-fit h-fit xl:text-base lg:text-sm">
                     <h2 className="xl:text-3xl lg:text-2xl font-bold mb-2 text-[#090467]">Encuentra tu perfil ideal 🚀</h2>
-                    <p className="xl:text-lg lg:text-base mb-2 text-[#090467]">Lee atentamente y realiza la demo para continuar</p>
+                    <p className="xl:text-lg lg:text-base mb-2 text-[#090467]">Lee atentamente y realiza las siguietes misiones para continuar</p>
                     <div className="flex flex-col space-y-4 mt-8">
                         <div className="flex items-center space-x-4">
                             {
@@ -57,12 +65,12 @@ export default function ProfileInstructions({ nextStep }) {
                                         <i className="fa-solid fa-arrow-left text-2xl h-full w-full"></i>
                                     </div>
                                     : <div className="p-3 w-12 flex justify-center items-center">
-                                        <div id="arrowLeft-mission" className={`w-6 h-6 flex items-center justify-center border-2 rounded-md cursor-pointer select-none transition-colors duration-150 ease-in-out bg-white border-gray-300 hover:border-gray-400`}>
+                                        <div id="arrowLeft-mission" className={`w-6 h-6 flex items-center justify-center border-2 rounded-md bg-gray-300 border-gray-400`}>
                                             <i className="fa-solid fa-check"></i>
                                         </div>
                                     </div>
                             }
-                            <p className="text-l h-full text-[#090467]">Haz click o desliza si este perfil<span className="font-bold"> no te representa</span>.</p>
+                            <p className="text-l h-full text-[#090467]" id="arrowLeft-mission-text">Haz click o desliza si este perfil<span className="font-bold text-red-500"> no te representa</span>.</p>
                         </div>
                         <div className="flex items-center space-x-4">
                             {
@@ -71,13 +79,13 @@ export default function ProfileInstructions({ nextStep }) {
                                         <i className="fa-solid fa-star text-2xl"></i>
                                     </div>
                                     : <div className="p-3 w-12 flex justify-center items-center">
-                                        <div id="arrowUp-mission" className={`w-6 h-6 flex items-center justify-center border-2 rounded-md cursor-pointer select-none transition-colors duration-150 ease-in-out bg-white border-gray-300 hover:border-gray-400`}>
+                                        <div id="arrowUp-mission" className={`w-6 h-6 flex items-center justify-center border-2 rounded-md bg-gray-300 border-gray-400`}>
                                             <i className="fa-solid fa-check"></i>
                                         </div>
                                     </div>
                             }
 
-                            <p className="text-l h-full text-[#090467]">Haz clic o desliza si este perfil<span className="font-bold"> te representa completamente</span>.</p>
+                            <p className="text-l h-full text-[#090467]" id="arrowUp-mission-text">Haz clic o desliza si este perfil<span className="font-bold text-yellow-500"> te representa completamente</span>.</p>
                         </div>
                         <div className="flex items-center space-x-4">
                             {
@@ -86,13 +94,13 @@ export default function ProfileInstructions({ nextStep }) {
                                         <i className="fa-solid fa-arrow-right text-2xl "></i>
                                     </div>
                                     : <div className="p-3 w-12 flex justify-center items-center">
-                                        <div id="arrowRight-mission" className={`w-6 h-6 flex items-center justify-center border-2 rounded-md cursor-pointer select-none transition-colors duration-150 ease-in-out bg-white border-gray-300 hover:border-gray-400`}>
+                                        <div id="arrowRight-mission" className={`w-6 h-6 flex items-center justify-center border-2 rounded-md bg-gray-300 border-gray-400`}>
                                             <i className="fa-solid fa-check"></i>
                                         </div>
                                     </div>
                             }
 
-                            <p className="text-l h-full text-[#090467]">Haz clic o desliza si este perfil<span className="font-bold"> te representa parcialmente</span>.</p>
+                            <p className="text-l h-full text-[#090467]" id="arrowRight-mission-text">Haz clic o desliza si este perfil<span className="font-bold text-green-500"> te representa parcialmente</span>.</p>
                         </div>
                     </div>
                 </div>
@@ -100,7 +108,7 @@ export default function ProfileInstructions({ nextStep }) {
                     {
                         !buttonDisabled ?
                             !inDemo ?
-                                <Button onClick={handleClick}>Iniciar demo!</Button>
+                                <Button onClick={handleClick}>Iniciar demostración!</Button>
                                 :
                                 missionsCompleted < 3 ?
                                     <Button customStyles={'bg-gray-400'}>Cumple las misiones para avanzar!</Button>
@@ -109,7 +117,7 @@ export default function ProfileInstructions({ nextStep }) {
                                         Continuar
                                     </Button>
                             :
-                            <Button customStyles={'bg-gray-400 opacity-30'}>
+                            <Button customStyles={'bg-gray-400 opacity-30 cursor-not-allowed'}>
                                 <i className="fa-solid fa-lock text-2xl h-full w-full"></i>
                             </Button>
                     }
@@ -125,7 +133,7 @@ export default function ProfileInstructions({ nextStep }) {
                     handleSuperlike={() => { }}
                     motionStyles={'xl:w-[18rem] xl:h-[25rem] lg:w-[18rem] lg:h-[25rem] '}
                 >
-                    <ProfileCard profile={profiles[0]} />
+                    <ProfileCard profile={profiles[profileIndex]} />
                 </MotionContainer>
                 <SwipeArrows
                     handleDislike={handleMissionCheck}
